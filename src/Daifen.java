@@ -35,7 +35,7 @@ public class Daifen
    private static String _mailerType    = "POP3";
    private static String _server        = "pop.mail.yahoo.fr";
    private static String _user          = "stollvor";
-   private static String _password      = "";
+   private static String _password      = "Wctfs122";
 
 
    //===============================   PROTECTED   ===========================
