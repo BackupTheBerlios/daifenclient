@@ -99,7 +99,7 @@ class GraphicPanel extends JPanel{
             rayonMax -= marge;
 
             // Calcul de l'angle
-            double alpha = (((positionCirculaire-1) * 2*pi / nbPosition)+ angleSelection + globalRotation) % (2*pi);
+            double alpha = (((positionCirculaire-1) * 2*pi / nbPosition) + globalRotation) % (2*pi);
               if (alpha < 0) {
                 alpha = (2*pi) + alpha;
             }
@@ -203,7 +203,6 @@ class GraphicPanel extends JPanel{
         newFrame.getContentPane().add( graphicPanel, BorderLayout.CENTER);
 
         newFrame.pack();
-        //    myPanel.getGeneralPanel().setVisible(true);
 
         newFrame.show();
 
@@ -252,7 +251,8 @@ class GraphicPanel extends JPanel{
             }
 
             // choix du sens de rotation pour aller au plus court
-            if ( ((Sprite)(spriteList.get(selectedIndex))).getAngle() < angleSelection + pi ) {
+           double angle = ((Sprite)(spriteList.get(selectedIndex))).getAngle();
+            if ( angle < angleSelection + pi  && angle > angleSelection) {
                 sensRotation = -1;
             }
             else {
