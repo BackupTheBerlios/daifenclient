@@ -1,27 +1,28 @@
 // CC_VERSIONS
 
 /**
- * POP3_Message.java
+ *
+ * RegexpFilter.java
  *
  * DESCRIPTION:
  *
- *    @author        STOLLVOR  -  Mar 29, 2004
- *    @version       v0.1          
+ *    @author        STOLLVOR  -  Jun 29, 2004
  *
  * HOW TO USE:
  *
  *
  */
 
-package mailbox.POP3;
+package specific.io.filter;
 
-import mailbox.MailMessage;
 import tools.Trace;
 
-import java.util.HashMap;
+import java.io.File;
+import java.io.FilenameFilter;
+import java.util.regex.Pattern;
 
 
-public class POP3_Message extends MailMessage implements POP3_Constants
+public class RegexpFilter implements FilenameFilter
 {
    //*************************************************************************
    //***                          MEMBER DECLARATION                       ***
@@ -32,61 +33,42 @@ public class POP3_Message extends MailMessage implements POP3_Constants
 
    //===============================   PROTECTED   ===========================
 
+   protected Pattern _pattern = Pattern.compile(".*");   // default: all files
+
 
 
    //*************************************************************************
    //***                       CONSTRUCTOR DECLARATION                     ***
    //*************************************************************************
 
-   public POP3_Message(int p_index, HashMap p_header)
+   public RegexpFilter(String p_regexp)
    {
-      super(p_index, p_header);
+      _pattern = Pattern.compile(p_regexp);
    }
+
+
+   //*************************************************************************
+   //***                              ACCESSOR                             ***
+   //*************************************************************************
+
 
 
    //*************************************************************************
    //***                         PUBLIC DECLARATION                        ***
    //*************************************************************************
 
-   public String getFrom()
+   public boolean accept(File p_dir, String p_name)
    {
-      String l_text = _header.get(CST_FROM).toString();
+      boolean l_result = false;
 
-      Trace.println("POP3_Message::getFrom() -> ", "return(" + l_text + ")");
+      if ( ! new File(p_dir + "/" + p_name).isDirectory() )
+      {
+         l_result = _pattern.matcher(p_name).matches();
+      }
 
-      return l_text;
-   }
+      Trace.println("p_name = ", p_name + " (" + l_result + ")");
 
-   public String getTo()
-   {
-      String l_text = _header.get(CST_TO).toString();
-
-      Trace.println("POP3_Message::getTo() -> ", "return(" + l_text + ")");
-
-      return l_text;
-   }
-
-   public String getDate()
-   {
-      String l_text = _header.get(CST_DATE).toString();
-
-      Trace.println("POP3_Message::getDate() -> ", "return(" + l_text + ")");
-
-      return l_text;
-   }
-
-   public String getSubject()
-   {
-      String l_text = _header.get(CST_SUBJECT).toString();
-
-      Trace.println("POP3_Message::getSubject() -> ", "return(" + l_text + ")");
-
-      return l_text;
-   }
-
-   public byte[] getBody()
-   {
-      return _bufBody;
+      return l_result;
    }
 
 
@@ -102,5 +84,6 @@ public class POP3_Message extends MailMessage implements POP3_Constants
 
 
 }
+
 
 //*** EOF ************************************************************ EOF ***

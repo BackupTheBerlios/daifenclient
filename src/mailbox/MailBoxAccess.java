@@ -60,7 +60,8 @@ public abstract class MailBoxAccess
    public abstract int         getNbMessages ()      throws MessageException;
    public abstract MailMessage getMessage    (int i) throws MessageException;
 
-   public abstract MailBody    getMessageBody(MailMessage p_msg)
+   public abstract MailHeader[]  getHeaders();
+   public abstract MailBody      getMessageBody(MailMessage p_msg)
       throws MessageException, IOException;
 
    public abstract void refreshDownloadedHeadersList() throws MessageException;

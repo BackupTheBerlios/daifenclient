@@ -5,6 +5,7 @@ import mailbox.MailBody;
 import mailbox.MailMessage;
 import specific.DaifenManager;
 import specific.DaifenMessage;
+import specific.DaifenConstants;
 import specific.data.api.*;
 import specific.data.info.*;
 import tools.Trace;
@@ -66,194 +67,161 @@ public class Daifen
 
       try
       {
-         DaifenManager l_daifen = new DaifenManager(_mailerType, _server,
-                                                    _user, _password);
+         DaifenManager l_daifen = new DaifenManager();
 
+         l_daifen.connect(_mailerType, _server, _user, _password);
+
+         l_daifen.setStartingMoon(347);
+
+         l_daifen.synchronizePersitenceDB();
 
          try
          {
-            MailMessage l_msg = l_daifen.getBilan("347");
+            DaifenMessage l_msg = l_daifen.getBilan("347");
 //            MailMessage l_msg = l_daifen.getLastBilan();
 
             if ( l_msg != null )
             {
-               MailBody l_body = l_daifen.getBody(l_msg);
+               DataKingdomAPI l_kdApi = l_msg.getKingdomDataAPI();
 
-               DaifenMessage l_DaifenMsg = new DaifenMessage((MailMessage)l_body);
 
-               try
+               //########################   ATTACK   ######################
+
                {
-                  l_DaifenMsg.parseMail();
+                  AttackAPI l_api = l_kdApi.getAttackAPI();
 
-                  l_DaifenMsg.writeObject("data/bilan/347.xml");
-
-                  DaifenMessage l_readMsg = new DaifenMessage("data/bilan/347.xml");
-                  DataKingdomAPI l_kdApi = l_DaifenMsg.getKingdomDataAPI();
-
-                  /*try
+                  l_api.createIterator();
+                  while ( l_api.hasNext() )
                   {
-//                     String filename = "Test.xml";
-//                     XMLEncoder encoder =
-//                        new XMLEncoder(new  FileOutputStream(filename));
-//                     encoder.writeObject(l_DaifenMsg);
-//                     encoder.close();
+                     AttackInfo l_info = l_api.next();
 
-//                  XMLDecoder decoder = new XMLDecoder(
-//                     new FileInputStream(filename));
-//                  AttackInfo x =  (AttackInfo)decoder.readObject();
-//                  System.out.println(
-//                     "k=" +  x.getAttackedKingdom() + " s=" + x.getAttackStatus());
+                     String        l_str;
+                     int           l_int;
+                     String[]      l_lst1;
+                     TroupesInfo[] l_lst2;
+
+                     l_str    = l_info.getAttackedKingdom();
+                     l_int    = l_info.getAttackStatus();
+                     l_lst1   = l_info.getArrAttackers();
+                     l_lst2   = l_info.getArrAttackTroups();
+                     l_lst2   = l_info.getArrDeadAttackTroups();
+                     l_lst2   = l_info.getArrDeadDefenseTroups();
+                     l_lst2   = l_info.getArrDefenseTroups();
+                     l_lst2   = l_info.getArrDestroyedBuilding();
                   }
-                  catch (FileNotFoundException e)
+               }
+
+               //#######################   CONTACTS   #####################
+
+               {
+                  ContactAPI l_api = l_kdApi.getContactAPI();
+
+                  l_api.createIterator();
+                  while ( l_api.hasNext() )
                   {
-                     System.out.println("not found");
-                  }*/
+                     ContactInfo l_info = l_api.next();
 
+                     String        l_str;
 
-                  //########################   ATTACK   ######################
-
-                  {
-                     AttackAPI l_api = l_kdApi.getAttackAPI();
-
-                     l_api.createIterator();
-                     while ( l_api.hasNext() )
-                     {
-                        AttackInfo l_info = l_api.next();
-
-                        String        l_str;
-                        int           l_int;
-                        String[]      l_lst1;
-                        TroupesInfo[] l_lst2;
-
-                        l_str    = l_info.getAttackedKingdom();
-                        l_int    = l_info.getAttackStatus();
-                        l_lst1   = l_info.getArrAttackers();
-                        l_lst2   = l_info.getArrAttackTroups();
-                        l_lst2   = l_info.getArrDeadAttackTroups();
-                        l_lst2   = l_info.getArrDeadDefenseTroups();
-                        l_lst2   = l_info.getArrDefenseTroups();
-                        l_lst2   = l_info.getArrDestroyedBuilding();
-                     }
+                     l_str    = l_info.getKingdom();
+                     l_str    = l_info.getSpecies();
+                     l_str    = l_info.getEmail();
                   }
+               }
 
-                  //#######################   CONTACTS   #####################
+               //#######################   ECONOMY   ######################
 
+               {
+                  EconomyAPI l_api = l_kdApi.getEconomyAPI();
+
+                  int           l_int;
+
+                  l_int = l_api.getGold();
+                  l_int = l_api.getIntellect();
+               }
+
+               //######################   KNOWLEDGE   #####################
+
+               {
+                  KnowledgeAPI l_api = l_kdApi.getKnowledgeAPI();
+
+                  l_api.createIterator();
+                  while ( l_api.hasNext() )
                   {
-                     ContactAPI l_api = l_kdApi.getContactAPI();
+                     KnowledgeInfo l_info = l_api.next();
 
-                     l_api.createIterator();
-                     while ( l_api.hasNext() )
-                     {
-                        ContactInfo l_info = l_api.next();
-
-                        String        l_str;
-
-                        l_str    = l_info.getKingdom();
-                        l_str    = l_info.getSpecies();
-                        l_str    = l_info.getEmail();
-                     }
-                  }
-
-                  //#######################   ECONOMY   ######################
-
-                  {
-                     EconomyAPI l_api = l_kdApi.getEconomyAPI();
-
+                     String        l_str;
                      int           l_int;
 
-                     l_int = l_api.getGold();
-                     l_int = l_api.getIntellect();
+                     l_str    = l_info.getKnowledge();
+                     l_int    = l_info.getTurn();
                   }
-
-                  //######################   KNOWLEDGE   #####################
-
-                  {
-                     KnowledgeAPI l_api = l_kdApi.getKnowledgeAPI();
-
-                     l_api.createIterator();
-                     while ( l_api.hasNext() )
-                     {
-                        KnowledgeInfo l_info = l_api.next();
-
-                        String        l_str;
-                        int           l_int;
-
-                        l_str    = l_info.getKnowledge();
-                        l_int    = l_info.getTurn();
-                     }
-                  }
-
-                  //#######################   RUMOUR   #######################
-
-                  {
-                     RumourAPI l_api = l_kdApi.getRumourAPI();
-
-                     l_api.createIterator();
-                     while ( l_api.hasNext() )
-                     {
-                        RumourInfo l_info = l_api.next();
-
-                        String        l_str;
-
-                        l_str    = l_info.getKingdom();
-                        l_str    = l_info.getRumour();
-                     }
-                  }
-
-                  //#####################   INV_TROUPES   ####################
-
-                  {
-                     TroupesAPI l_api = l_kdApi.getTroupesAPI();
-
-                     l_api.createIterator();
-                     while ( l_api.hasNext() )
-                     {
-                        TroupesInfo l_info = l_api.next();
-
-                        String   l_str;
-                        int      l_int;
-
-                        l_str    = l_info.getUnit();
-                        l_int    = l_info.getQuantity();
-                     }
-                  }
-
-                  //####################   INV_BATIMENTS   ###################
-
-                  {
-                     TroupesAPI l_api = l_kdApi.getBatimentsAPI();
-
-                     l_api.createIterator();
-                     while ( l_api.hasNext() )
-                     {
-                        TroupesInfo l_info = l_api.next();
-
-                        String   l_str;
-                        int      l_int;
-
-                        l_str    = l_info.getUnit();
-                        l_int    = l_info.getQuantity();
-                     }
-                  }
-
-                  //########################   SOCIAL   ######################
-
-                  {
-                     SocialAPI l_api = l_kdApi.getSocialAPI();
-
-                     String l_str    = null;
-                     int    l_points = 0;
-
-                     l_str    = l_api.getRank();
-                     l_str    = l_api.getInfo();
-                     l_points = l_api.getPoints();
-                  }
-
                }
-               catch ( ParsingMessageException e )
+
+               //#######################   RUMOUR   #######################
+
                {
-                  System.out.println("Exception Error: " +
-                                     "Unable to retrieve the last bilan.");
+                  RumourAPI l_api = l_kdApi.getRumourAPI();
+
+                  l_api.createIterator();
+                  while ( l_api.hasNext() )
+                  {
+                     RumourInfo l_info = l_api.next();
+
+                     String        l_str;
+
+                     l_str    = l_info.getKingdom();
+                     l_str    = l_info.getRumour();
+                  }
+               }
+
+               //#####################   INV_TROUPES   ####################
+
+               {
+                  TroupesAPI l_api = l_kdApi.getTroupesAPI();
+
+                  l_api.createIterator();
+                  while ( l_api.hasNext() )
+                  {
+                     TroupesInfo l_info = l_api.next();
+
+                     String   l_str;
+                     int      l_int;
+
+                     l_str    = l_info.getUnit();
+                     l_int    = l_info.getQuantity();
+                  }
+               }
+
+               //####################   INV_BATIMENTS   ###################
+
+               {
+                  TroupesAPI l_api = l_kdApi.getBatimentsAPI();
+
+                  l_api.createIterator();
+                  while ( l_api.hasNext() )
+                  {
+                     TroupesInfo l_info = l_api.next();
+
+                     String   l_str;
+                     int      l_int;
+
+                     l_str    = l_info.getUnit();
+                     l_int    = l_info.getQuantity();
+                  }
+               }
+
+               //########################   SOCIAL   ######################
+
+               {
+                  SocialAPI l_api = l_kdApi.getSocialAPI();
+
+                  String l_str    = null;
+                  int    l_points = 0;
+
+                  l_str    = l_api.getRank();
+                  l_str    = l_api.getInfo();
+                  l_points = l_api.getPoints();
                }
             }
          }
@@ -272,7 +240,6 @@ public class Daifen
             System.out.println("Exception Error: " +
                                "Unable to retrieve the bilan body.");
          }
-
       }
       catch ( UnknownMailerClientException e )
       {
@@ -289,6 +256,24 @@ public class Daifen
       catch ( PasswordException e )
       {
          System.out.println("Exception Error: Unknown POP3 mailer.");
+      }
+      catch ( MessageException e )
+      {
+         System.out.println("Exception Error: MessageException...");
+      }
+      catch ( FileNotFoundException e )
+      {
+         System.out.println("Exception Error: FileNotFoundException...");
+      }
+      catch ( IOException e )
+      {
+         System.out.println("Exception Error: " +
+                            "Unable to retrieve the bilan body.");
+      }
+      catch ( ParsingMessageException e )
+      {
+         System.out.println("Exception Error: " +
+                            "Unable to retrieve the last bilan.");
       }
    }
 

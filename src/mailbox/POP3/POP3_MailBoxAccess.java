@@ -22,11 +22,13 @@ import exception.PasswordException;
 import mailbox.MailBody;
 import mailbox.MailBoxAccess;
 import mailbox.MailMessage;
+import mailbox.MailHeader;
 import tools.Trace;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.Arrays;
 import java.util.regex.Pattern;
 
 
@@ -201,6 +203,21 @@ public class POP3_MailBoxAccess extends MailBoxAccess
 
       return l_msg;
    }
+
+
+   public MailHeader[] getHeaders()
+   {
+      Trace.enterFunction("POP3_MailBoxAccess::getHeaders()");
+
+      MailHeader[] l_lstHeaders = new MailHeader[getLstMsg().size()];
+
+      l_lstHeaders = (MailHeader[]) getLstMsg().toArray(l_lstHeaders);
+
+      Trace.exitFunction("POP3_MailBoxAccess::getHeaders()");
+
+      return l_lstHeaders;
+   }
+
 
    public MailBody getMessageBody(MailMessage p_msg) throws MessageException,
                                                             IOException

@@ -36,8 +36,7 @@ public class POP3_Sink extends POP3Sink
    private POP3_Message    _tmpMessage    = null;
 
    private HashMap         _tmpHeaderMap  = null;
-   private String          _tmpBody       = null;
-   private byte[]          _tmpBody2       = null;
+   private byte[]          _tmpBody       = null;
 
    private int             _index         = -1;
    private String          _key           = new String();
@@ -79,10 +78,9 @@ public class POP3_Sink extends POP3Sink
    }
 
 
-//   public String getMailBody()
    public byte[] getMailBody()
    {
-      return _tmpBody2;
+      return _tmpBody;
    }
 
 
@@ -141,7 +139,7 @@ public class POP3_Sink extends POP3Sink
 
    public void topComplete()
    {
-      super.topComplete();    //To change body of overridden methods use File | Settings | File Templates.
+      super.topComplete();
 
       if ( _key.length() != 0 )
       {
@@ -163,8 +161,7 @@ public class POP3_Sink extends POP3Sink
    {
       super.retrieveStart(i, i1);
 
-      _tmpBody  = new String();
-      _tmpBody2 = null;
+      _tmpBody = null;
 
       Trace.println("1111111111111111111111111111111111111111111111111");
    }
@@ -173,58 +170,38 @@ public class POP3_Sink extends POP3Sink
    {
       super.retrieve(p_bytes);
 
-//      Charset charset = Charset.forName("ISO-8859-1");
-// //     Charset charset = Charset.forName("US-ASCII");
-//      CharsetDecoder decoder = charset.newDecoder();
-//      try
-//      {
-//         CharBuffer cbuf = decoder.decode(ByteBuffer.wrap(p_bytes));
-//         String s = cbuf.toString();
-//         _tmpBody += s;
-//         Trace.println(s);
-//
-//      }
-//      catch (CharacterCodingException e)
-//      {
-//      }
-
-
       byte[] tmp    = null;
 
-      if ( _tmpBody2 == null )
+      if ( _tmpBody == null )
       {
-         _tmpBody2 = new byte[p_bytes.length];
+         _tmpBody = new byte[p_bytes.length];
 
          for ( int i = 0 ; i < p_bytes.length ; i++ )
          {
-            _tmpBody2[i] = p_bytes[i];
+            _tmpBody[i] = p_bytes[i];
          }
       }
       else
       {
-         tmp   = new byte[_tmpBody2.length + p_bytes.length];
+         tmp   = new byte[_tmpBody.length + p_bytes.length];
 
-         for ( int i = 0 ; i < _tmpBody2.length ; i++ )
+         for ( int i = 0 ; i < _tmpBody.length ; i++ )
          {
-            tmp[i] = _tmpBody2[i];
+            tmp[i] = _tmpBody[i];
          }
          for ( int i = 0 ; i < p_bytes.length ; i++ )
          {
-            tmp[i + _tmpBody2.length] = p_bytes[i];
+            tmp[i + _tmpBody.length] = p_bytes[i];
          }
 
-         _tmpBody2 = tmp;
+         _tmpBody = tmp;
       }
-
-
-      _tmpBody += new String(p_bytes);
    }
 
    public void retrieveComplete()
    {
       super.retrieveComplete();
 
-      Trace.println(_tmpBody);
       Trace.println("2222222222222222222222222222222222222222222222222");
    }
 

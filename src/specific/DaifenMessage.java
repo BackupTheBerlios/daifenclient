@@ -29,6 +29,8 @@ import tools.Trace;
 import java.io.*;
 import java.beans.XMLEncoder;
 import java.beans.XMLDecoder;
+import java.util.regex.Pattern;
+import java.util.regex.Matcher;
 
 
 public class DaifenMessage implements DaifenConstants
@@ -120,10 +122,8 @@ public class DaifenMessage implements DaifenConstants
       _mailParsed = false;
 
       MailBody l_mailBody  = _msg;
-//      String   l_bufBody      = _msg.getBody();
       byte[]   l_bufBody      = _msg.getBody();
 
-//      ByteArrayInputStream l_buf = new ByteArrayInputStream(l_bufBody.getBytes());
       ByteArrayInputStream l_buf = new ByteArrayInputStream(l_bufBody);
 
       MIMEParser l_MIMEparser = new MIMEParser();
