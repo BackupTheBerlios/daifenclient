@@ -13,7 +13,7 @@
  *
  */
 
-package specific;
+package specific.data;
 
 
 public class KingdomInfo

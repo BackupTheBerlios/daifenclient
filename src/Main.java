@@ -9,6 +9,8 @@ import tools.Trace;
 
 import java.io.File;
 import java.util.Iterator;
+import java.lang.reflect.Method;
+import java.lang.reflect.InvocationTargetException;
 
 /**
  * Main.java
@@ -23,6 +25,18 @@ import java.util.Iterator;
  *
  */
 
+class Essai
+{
+   public void essai()
+   {
+      System.out.println("Execution de la fonction essai()...");
+   }
+
+   public void essai2(int i)
+   {
+      System.out.println("Execution de la fonction essai2(" + i + ")...");
+   }
+}
 
 public class Main
 {
@@ -54,73 +68,37 @@ public class Main
    {
       Trace.setTraces((new File("./TRACES")).isFile());
 
-      MailerFactory l_factory = new MailerFactory();
+      Trace.println("Connecting to yahoo...");
 
-      try
+      Essai    l_essai = new Essai();
+      Method[] l_lst   = l_essai.getClass().getMethods();
+
+      for ( int i = 0 ; i < l_lst.length ; i++ )
       {
-         MailBoxAccess l_mailbox = l_factory.createMailerClient("POP3");
+         Method f = l_lst[i];
 
-         Trace.println("Connecting to yahoo...");
-         l_mailbox.connect("pop.mail.yahoo.fr");
-
-         l_mailbox.user("stollvor");
-         l_mailbox.password("Skywalker");
-
-         String l_nbMsg = new Integer(l_mailbox.getNbMessages()).toString();
-         Trace.println("NB Messages = ", l_nbMsg);
-
-         // GET MESSAGE
-         MailHeader l_msg = l_mailbox.getMessage(1);
-
-         l_msg.printOn();
-
-         // ITERATOR
-         Trace.println("Using the Iterator");
-
-         Iterator l_iter = l_mailbox.iterator();
-
-         while ( l_iter.hasNext() )
+         if ( f.getName().compareTo("essai2") == 0 )
          {
-            l_msg = (MailHeader) l_iter.next();
-
-            Trace.println("Message Header = ", l_msg.toString());
+            try
+            {
+               f.invoke(l_essai, new Object[0]);
+//               Class[] l_type = f.getParameterTypes();
+//               l_type.clone();
+//               f.invoke(l_essai, new Class[] {Class.class. });
+            }
+            catch ( IllegalAccessException e )
+            {
+               // TODO: Meme si tu ne traites pas l'exception pour le moment
+               //       met au moins une trace... Trace.println(...);
+            }
+            catch ( InvocationTargetException e )
+            {
+               // TODO: Meme si tu ne traites pas l'exception pour le moment
+               //       met au moins une trace... Trace.println(...);
+            }
          }
+      }
 
-         //FIND MESSAGES
-//         MailMessage[] l_arrMsg = l_mailbox.findMessages("Daifen");
-         MailMessage[] l_arrMsg = l_mailbox.findMessages(
-            "\\[Daifen\\.com\\]\\s+Tour\\s+(\\d+)\\s-\\s+(\\w+)");
-
-         for ( int i = 0 ; i < l_arrMsg.length ; i++)
-         {
-            System.out.println("Message[" + i + "] = " +
-                               l_arrMsg[i].getSubject());
-         }
-
-         Trace.println("Disconnecting from yahoo...");
-         l_mailbox.disconnect();
-      }
-      catch ( UnknownMailerClientException e )
-      {
-         Trace.println("EXCEPTION: ", "UnknownMailerClientException...");
-      }
-      catch ( ConnectionException e )
-      {
-         e.printStackTrace();
-         Trace.println("EXCEPTION: ", "Problem with the mailer connection");
-      }
-      catch ( LoginException e )
-      {
-         Trace.println("EXCEPTION: ", "Problem with the login user name");
-      }
-      catch ( PasswordException e )
-      {
-         Trace.println("EXCEPTION: ", "Problem with the password user name");
-      }
-      catch ( MessageException e )
-      {
-         Trace.println("EXCEPTION: ", "MessageException...");
-      }
 
       System.out.println("Main is finished.");
    }

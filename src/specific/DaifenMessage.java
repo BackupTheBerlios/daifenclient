@@ -28,6 +28,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.HashMap;
 
+import specific.parser.KingdomParser;
+import specific.parser.ContinentsParser;
+
 
 public class DaifenMessage implements DaifenConstants
 {
@@ -173,7 +176,6 @@ public class DaifenMessage implements DaifenConstants
       if ( l_firstPart instanceof MIMEBasicPart )
       {
          MIMEBasicPart l_continents = (MIMEBasicPart) l_firstPart;
-//         l_continents.setContentTypeParams("charset=iso-8859-1");
 
          if ( l_continents.getContentEncoding() != E7BIT )
          {
