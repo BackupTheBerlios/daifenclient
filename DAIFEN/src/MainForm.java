@@ -1,10 +1,7 @@
 
 import javax.swing.*;
-import javax.swing.border.Border;
-import javax.swing.border.BevelBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.Vector;
 
 /**
@@ -268,7 +265,7 @@ MainForm mainForm;
 
         message[2] = "Mot de passe Daifen :";
         // TODO Retirer le mot de passe en dure
-        message[3] = new JPasswordField("Wctfs096");
+        message[3] = new JPasswordField("");
         message[4] = new JCheckBox("Mot de passe Yahoo different :", false);
         message[5] = new JPasswordField();
         message[6] = "Ou creez un nouveau seigneur en cliquant sur le bouton <Creer un Seigneur>";
