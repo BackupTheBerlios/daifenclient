@@ -71,11 +71,6 @@ public class KingdomParser extends    MailParser
       return (AttackAPI) _attackParser;
    }
 
-   public SocialAPI getSocialAPI()
-   {
-      return (SocialAPI) _socialParser;
-   }
-
    public ContactAPI getContactAPI()
    {
       return (ContactAPI) _contactParser;
@@ -101,6 +96,16 @@ public class KingdomParser extends    MailParser
       return (TroupesAPI) _invBatimentsParser;
    }
 
+   public SocialAPI getSocialAPI()
+   {
+      return (SocialAPI) _socialParser;
+   }
+
+   public RumourAPI getRumourAPI()
+   {
+      return (RumourAPI) _rumourParser;
+   }
+   
 
    //*************************************************************************
    //***                        PROTECTED DECLARATION                      ***

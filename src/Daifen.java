@@ -5,13 +5,8 @@ import mailbox.MailBody;
 import mailbox.MailMessage;
 import specific.DaifenManager;
 import specific.DaifenMessage;
-import specific.data.api.AttackAPI;
-import specific.data.api.DataKingdomAPI;
-import specific.data.api.SocialAPI;
-import specific.data.api.ContactAPI;
-import specific.data.info.AttackInfo;
-import specific.data.info.TroupesInfo;
-import specific.data.info.ContactInfo;
+import specific.data.api.*;
+import specific.data.info.*;
 import tools.Trace;
 
 import java.io.File;
@@ -92,20 +87,20 @@ public class Daifen
                   //########################   ATTACK   ######################
 
                   {
-                     AttackAPI l_attackApi = l_kdApi.getAttackAPI();
+                     AttackAPI l_api = l_kdApi.getAttackAPI();
 
-                     l_attackApi.createIterator();
-                     while ( l_attackApi.hasNext() )
+                     l_api.createIterator();
+                     while ( l_api.hasNext() )
                      {
-                        AttackInfo l_info = l_attackApi.next();
+                        AttackInfo l_info = l_api.next();
 
                         String        l_str;
-                        int           l_status;
+                        int           l_int;
                         String[]      l_lst1;
                         TroupesInfo[] l_lst2;
 
                         l_str    = l_info.getAttackedKingdom();
-                        l_status = l_info.getAttackStatus();
+                        l_int    = l_info.getAttackStatus();
                         l_lst1   = l_info.getArrAttackers();
                         l_lst2   = l_info.getArrAttackTroups();
                         l_lst2   = l_info.getArrDeadAttackTroups();
@@ -115,38 +110,117 @@ public class Daifen
                      }
                   }
 
-                  //########################   SOCIAL   ######################
-
-                  {
-                     SocialAPI l_socialApi = l_kdApi.getSocialAPI();
-
-                     String l_str    = null;
-                     int    l_points = 0;
-
-                     l_str    = l_socialApi.getRank();
-                     l_str    = l_socialApi.getInfo();
-                     l_points = l_socialApi.getPoints();
-                  }
-
                   //#######################   CONTACTS   #####################
 
                   {
-                     ContactAPI l_contactApi = l_kdApi.getContactAPI();
+                     ContactAPI l_api = l_kdApi.getContactAPI();
 
-                     l_contactApi.createIterator();
-                     while ( l_contactApi.hasNext() )
+                     l_api.createIterator();
+                     while ( l_api.hasNext() )
                      {
-                        ContactInfo l_info = l_contactApi.next();
+                        ContactInfo l_info = l_api.next();
 
                         String        l_str;
-                        int           l_status;
-                        String[]      l_lst1;
-                        TroupesInfo[] l_lst2;
 
                         l_str    = l_info.getKingdom();
                         l_str    = l_info.getSpecies();
                         l_str    = l_info.getEmail();
                      }
+                  }
+
+                  //#######################   ECONOMY   ######################
+
+                  {
+                     EconomyAPI l_api = l_kdApi.getEconomyAPI();
+
+                     int           l_int;
+
+                     l_int = l_api.getGold();
+                     l_int = l_api.getIntellect();
+                  }
+
+                  //######################   KNOWLEDGE   #####################
+
+                  {
+                     KnowledgeAPI l_api = l_kdApi.getKnowledgeAPI();
+
+                     l_api.createIterator();
+                     while ( l_api.hasNext() )
+                     {
+                        KnowledgeInfo l_info = l_api.next();
+
+                        String        l_str;
+                        int           l_int;
+
+                        l_str    = l_info.getknowledge();
+                        l_int    = l_info.getTurn();
+                     }
+                  }
+
+                  //#######################   RUMOUR   #######################
+
+                  {
+                     RumourAPI l_api = l_kdApi.getRumourAPI();
+
+                     l_api.createIterator();
+                     while ( l_api.hasNext() )
+                     {
+                        RumourInfo l_info = l_api.next();
+
+                        String        l_str;
+
+                        l_str    = l_info.getKingdom();
+                        l_str    = l_info.getRumour();
+                     }
+                  }
+
+                  //#####################   INV_TROUPES   ####################
+
+                  {
+                     TroupesAPI l_api = l_kdApi.getTroupesAPI();
+
+                     l_api.createIterator();
+                     while ( l_api.hasNext() )
+                     {
+                        TroupesInfo l_info = l_api.next();
+
+                        String   l_str;
+                        int      l_int;
+
+                        l_str    = l_info.getUnit();
+                        l_int    = l_info.getQuantity();
+                     }
+                  }
+
+                  //####################   INV_BATIMENTS   ###################
+
+                  {
+                     TroupesAPI l_api = l_kdApi.getBatimentsAPI();
+
+                     l_api.createIterator();
+                     while ( l_api.hasNext() )
+                     {
+                        TroupesInfo l_info = l_api.next();
+
+                        String   l_str;
+                        int      l_int;
+
+                        l_str    = l_info.getUnit();
+                        l_int    = l_info.getQuantity();
+                     }
+                  }
+
+                  //########################   SOCIAL   ######################
+
+                  {
+                     SocialAPI l_api = l_kdApi.getSocialAPI();
+
+                     String l_str    = null;
+                     int    l_points = 0;
+
+                     l_str    = l_api.getRank();
+                     l_str    = l_api.getInfo();
+                     l_points = l_api.getPoints();
                   }
 
                }

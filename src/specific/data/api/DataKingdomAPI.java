@@ -26,9 +26,10 @@ public interface DataKingdomAPI
    ContactAPI              getContactAPI();
    EconomyAPI              getEconomyAPI();
    KnowledgeAPI            getKnowledgeAPI();
-   SocialAPI               getSocialAPI();
    TroupesAPI              getTroupesAPI();
    TroupesAPI              getBatimentsAPI();
+   SocialAPI               getSocialAPI();
+   RumourAPI               getRumourAPI();
 }
 
 
