@@ -15,10 +15,9 @@
 
 package specific.parser.sections;
 
+import specific.data.api.AttackAPI;
 import specific.data.info.AttackInfo;
 import specific.data.info.TroupesInfo;
-import specific.data.info.AttackStatus;
-import specific.data.api.AttackAPI;
 import specific.parser.KingdomParserConstants;
 import tools.Trace;
 
@@ -110,117 +109,9 @@ public class AttackParser extends    SectionParser
    //***                         PUBLIC DECLARATION                        ***
    //*************************************************************************
 
-
-   //*************************   API IMPLEMENTATION   ************************
-
-   public String getAttackedKingdom()
+   public AttackInfo next()
    {
-      String     l_result = "";
-      AttackInfo l_info   = getCurrentIterInfo();
-
-      if ( l_info != null )
-      {
-         l_result = l_info.getAttackedKingdom();
-      }
-
-      return l_result;
-   }
-
-   public String[] getLstAttackers()
-   {
-      String[]   l_result = new String[0];
-      AttackInfo l_info   = getCurrentIterInfo();
-
-      if ( l_info != null )
-      {
-         l_result = new String[l_info.getLstAttackers().size()];
-         l_result = (String[]) l_info.getLstAttackers().toArray(l_result);
-      }
-
-      return l_result;
-   }
-
-   public TroupesInfo[] getLstAttackTroups()
-   {
-      TroupesInfo[] l_result = new TroupesInfo[0];
-      AttackInfo    l_info   = getCurrentIterInfo();
-
-      if ( l_info != null )
-      {
-         l_result = new TroupesInfo[l_info.getLstAttackTroups().size()];
-         l_result = (TroupesInfo[]) l_info.getLstAttackTroups().toArray(l_result);
-      }
-
-      return l_result;
-   }
-
-   public TroupesInfo[] getLstDefenseTroups()
-   {
-      TroupesInfo[] l_result = new TroupesInfo[0];
-      AttackInfo    l_info   = getCurrentIterInfo();
-
-      if ( l_info != null )
-      {
-         l_result = new TroupesInfo[l_info.getLstDefenseTroups().size()];
-         l_result = (TroupesInfo[]) l_info.getLstDefenseTroups().toArray(l_result);
-      }
-
-      return l_result;
-   }
-
-   public TroupesInfo[] getLstDeadAttackTroups()
-   {
-      TroupesInfo[] l_result = new TroupesInfo[0];
-      AttackInfo    l_info   = getCurrentIterInfo();
-
-      if ( l_info != null )
-      {
-         l_result = new TroupesInfo[l_info.getLstDeadAttackTroups().size()];
-         l_result = (TroupesInfo[]) l_info.getLstDeadAttackTroups().toArray(l_result);
-      }
-
-      return l_result;
-   }
-
-   public TroupesInfo[] getLstDeadDefenseTroups()
-   {
-      TroupesInfo[] l_result = new TroupesInfo[0];
-      AttackInfo    l_info   = getCurrentIterInfo();
-
-      if ( l_info != null )
-      {
-         l_result = new TroupesInfo[l_info.getLstDeadDefenseTroups().size()];
-         l_result = (TroupesInfo[]) l_info.getLstDeadDefenseTroups().toArray(l_result);
-      }
-
-      return l_result;
-   }
-
-   public TroupesInfo[] getLstDestroyedBuilding()
-   {
-      TroupesInfo[] l_result = new TroupesInfo[0];
-      AttackInfo    l_info   = getCurrentIterInfo();
-
-      if ( l_info != null )
-      {
-         l_result = new TroupesInfo[l_info.getLstDestroyedBuilding().size()];
-         l_result = (TroupesInfo[]) l_info.getLstDestroyedBuilding().toArray(l_result);
-      }
-
-      return l_result;
-   }
-
-   public int getAttackStatus()
-   {
-      int        l_result = AttackStatus.ATTACK_UNKNOW_STATUS;
-      AttackInfo l_info   = getCurrentIterInfo();
-
-      if ( l_info != null )
-      {
-         l_result = l_info.getAttackStatus();
-      }
-
-      return l_result;
+      return (AttackInfo) getIter().next();
    }
 
 
@@ -376,12 +267,6 @@ public class AttackParser extends    SectionParser
    //*************************************************************************
    //***                         PRIVATE DECLARATION                       ***
    //*************************************************************************
-
-   private AttackInfo getCurrentIterInfo()
-   {
-      return (AttackInfo) getCurrentIterObj();
-   }
-
 
    private TroupesInfo extractTroupInfo(String p_line)
    {

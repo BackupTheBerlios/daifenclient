@@ -16,7 +16,6 @@
 package mailbox.POP3;
 
 import mailbox.MailMessage;
-import netscape.messaging.mime.ByteString;
 import netscape.messaging.pop3.POP3Sink;
 import tools.Trace;
 

@@ -78,6 +78,68 @@ public class AttackInfo implements AttackStatus
    }
 
 
+   
+   public String[] getArrAttackers()
+   {
+      String[] l_result;
+
+      l_result = new String[_lstAttackers.size()];
+      l_result = (String[]) _lstAttackers.toArray(l_result);
+
+      return l_result;
+   }
+
+   public TroupesInfo[] getArrAttackTroups()
+   {
+      TroupesInfo[] l_result;
+
+      l_result = new TroupesInfo[_lstAttackTroups.size()];
+      l_result = (TroupesInfo[]) _lstAttackTroups.toArray(l_result);
+
+      return l_result;
+   }
+
+   public TroupesInfo[] getArrDefenseTroups()
+   {
+      TroupesInfo[] l_result;
+
+      l_result = new TroupesInfo[_lstDefenseTroups.size()];
+      l_result = (TroupesInfo[]) _lstDefenseTroups.toArray(l_result);
+
+      return l_result;
+   }
+
+   public TroupesInfo[] getArrDeadAttackTroups()
+   {
+      TroupesInfo[] l_result;
+
+      l_result = new TroupesInfo[_lstDeadAttackTroups.size()];
+      l_result = (TroupesInfo[]) _lstDeadAttackTroups.toArray(l_result);
+
+      return l_result;
+   }
+
+   public TroupesInfo[] getArrDeadDefenseTroups()
+   {
+      TroupesInfo[] l_result;
+
+      l_result = new TroupesInfo[_lstDeadDefenseTroups.size()];
+      l_result = (TroupesInfo[]) _lstDeadDefenseTroups.toArray(l_result);
+
+      return l_result;
+   }
+
+   public TroupesInfo[] getArrDestroyedBuilding()
+   {
+      TroupesInfo[] l_result;
+
+      l_result = new TroupesInfo[_lstDestroyedBuilding.size()];
+      l_result = (TroupesInfo[]) _lstDestroyedBuilding.toArray(l_result);
+
+      return l_result;
+   }
+
+
    //*************************************************************************
    //***                        PROTECTED DECLARATION                      ***
    //*************************************************************************

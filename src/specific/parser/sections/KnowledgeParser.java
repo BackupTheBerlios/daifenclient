@@ -16,6 +16,7 @@
 package specific.parser.sections;
 
 import specific.data.info.KnowledgeInfo;
+import specific.data.api.KnowledgeAPI;
 import specific.parser.KingdomParserConstants;
 import tools.Trace;
 
@@ -24,7 +25,7 @@ import java.util.regex.Pattern;
 
 
 public class KnowledgeParser extends    SectionParser
-                             implements KingdomParserConstants
+                             implements KingdomParserConstants, KnowledgeAPI
 {
    //*************************************************************************
    //***                          MEMBER DECLARATION                       ***
@@ -59,7 +60,11 @@ public class KnowledgeParser extends    SectionParser
    //***                         PUBLIC DECLARATION                        ***
    //*************************************************************************
 
-
+   public KnowledgeInfo next()
+   {
+      return (KnowledgeInfo) getIter().next();
+   }
+   
 
    //*************************************************************************
    //***                        PROTECTED DECLARATION                      ***

@@ -5,7 +5,7 @@
  *
  * DESCRIPTION:
  *
- *    @author        J-P HILAIRE  -  Jun 9, 2004
+ *    @author        STOLLVOR  -  Jun 9, 2004
  *    @version       v0.1          
  *
  * HOW TO USE:

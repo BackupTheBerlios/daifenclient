@@ -1,7 +1,7 @@
 // CC_VERSIONS
 
 /**
- * AttackAPI.java
+ * EconomyAPI.java
  *
  * DESCRIPTION:
  *
@@ -15,18 +15,15 @@
 
 package specific.data.api;
 
-import specific.data.info.AttackInfo;
 
-
-public interface AttackAPI
+public interface EconomyAPI
 {
    //*************************************************************************
    //***                          MEMBER DECLARATION                       ***
    //*************************************************************************
 
-   void           createIterator();
-   boolean        hasNext();
-   AttackInfo     next();
+   int getGold     ();
+   int getIntellect();
 }
 
 

@@ -16,6 +16,7 @@
 package specific.parser.sections;
 
 import specific.data.info.TroupesInfo;
+import specific.data.api.TroupesAPI;
 import specific.parser.KingdomParserConstants;
 import tools.Trace;
 
@@ -24,7 +25,7 @@ import java.util.regex.Pattern;
 
 
 public class TroupesParser extends    SectionParser
-                           implements KingdomParserConstants
+                           implements KingdomParserConstants, TroupesAPI
 {
    //*************************************************************************
    //***                          MEMBER DECLARATION                       ***
@@ -58,6 +59,12 @@ public class TroupesParser extends    SectionParser
    //*************************************************************************
    //***                         PUBLIC DECLARATION                        ***
    //*************************************************************************
+
+   public TroupesInfo next()
+   {
+      return (TroupesInfo) getIter().next();
+   }
+
 
    protected void specificParseLineData(String p_line)
    {

@@ -15,17 +15,18 @@
 
 package specific.parser.sections;
 
+import specific.data.info.KingdomInfo;
+import specific.data.api.DestroyedEliminatedAPI;
+import specific.parser.ContinentsParserConstants;
 import tools.Trace;
 
-import java.util.regex.Pattern;
 import java.util.regex.Matcher;
-
-import specific.data.info.KingdomInfo;
-import specific.parser.ContinentsParserConstants;
+import java.util.regex.Pattern;
 
 
 public class DestroyedEliminatedParser extends    SectionParser
-                                       implements ContinentsParserConstants
+                                       implements ContinentsParserConstants,
+                                                  DestroyedEliminatedAPI
 {
    //*************************************************************************
    //***                          MEMBER DECLARATION                       ***
@@ -59,6 +60,10 @@ public class DestroyedEliminatedParser extends    SectionParser
    //***                         PUBLIC DECLARATION                        ***
    //*************************************************************************
 
+   public KingdomInfo next()
+   {
+      return (KingdomInfo) getIter().next();
+   }
 
 
    //*************************************************************************

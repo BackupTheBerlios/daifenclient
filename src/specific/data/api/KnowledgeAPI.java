@@ -1,7 +1,7 @@
 // CC_VERSIONS
 
 /**
- * AttackAPI.java
+ * KnowledgeAPI.java
  *
  * DESCRIPTION:
  *
@@ -15,10 +15,10 @@
 
 package specific.data.api;
 
-import specific.data.info.AttackInfo;
+import specific.data.info.KnowledgeInfo;
 
 
-public interface AttackAPI
+public interface KnowledgeAPI
 {
    //*************************************************************************
    //***                          MEMBER DECLARATION                       ***
@@ -26,7 +26,7 @@ public interface AttackAPI
 
    void           createIterator();
    boolean        hasNext();
-   AttackInfo     next();
+   KnowledgeInfo  next();
 }
 
 

@@ -15,8 +15,8 @@
 
 package specific.parser.sections;
 
-import specific.data.info.SocialInfo;
 import specific.data.api.SocialAPI;
+import specific.data.info.SocialInfo;
 import specific.parser.KingdomParserConstants;
 import tools.Trace;
 

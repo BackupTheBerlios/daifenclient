@@ -5,9 +5,10 @@ import mailbox.MailBody;
 import mailbox.MailMessage;
 import specific.DaifenManager;
 import specific.DaifenMessage;
-import specific.data.api.KingdomDataAPI;
 import specific.data.api.AttackAPI;
+import specific.data.api.KingdomDataAPI;
 import specific.data.api.SocialAPI;
+import specific.data.info.AttackInfo;
 import specific.data.info.TroupesInfo;
 import tools.Trace;
 
@@ -107,21 +108,21 @@ public class Daifen
                      l_attackApi.createIterator();
                      while ( l_attackApi.hasNext() )
                      {
-                        l_attackApi.next();
+                        AttackInfo l_info = l_attackApi.next();
 
                         String        l_str;
                         int           l_status;
                         String[]      l_lst1;
                         TroupesInfo[] l_lst2;
 
-                        l_str    = l_attackApi.getAttackedKingdom();
-                        l_status = l_attackApi.getAttackStatus();
-                        l_lst1   = l_attackApi.getLstAttackers();
-                        l_lst2   = l_attackApi.getLstAttackTroups();
-                        l_lst2   = l_attackApi.getLstDeadAttackTroups();
-                        l_lst2   = l_attackApi.getLstDeadDefenseTroups();
-                        l_lst2   = l_attackApi.getLstDefenseTroups();
-                        l_lst2   = l_attackApi.getLstDestroyedBuilding();
+                        l_str    = l_info.getAttackedKingdom();
+                        l_status = l_info.getAttackStatus();
+                        l_lst1   = l_info.getArrAttackers();
+                        l_lst2   = l_info.getArrAttackTroups();
+                        l_lst2   = l_info.getArrDeadAttackTroups();
+                        l_lst2   = l_info.getArrDeadDefenseTroups();
+                        l_lst2   = l_info.getArrDefenseTroups();
+                        l_lst2   = l_info.getArrDestroyedBuilding();
                      }
                   }
 

@@ -15,24 +15,20 @@
 
 package specific;
 
-import exception.DaifenPropertyException;
-import exception.MessageException;
 import exception.ParsingMessageException;
 import mailbox.MailBody;
 import mailbox.MailMessage;
 import netscape.messaging.mime.*;
+import specific.data.api.KingdomDataAPI;
+import specific.parser.ContinentsParser;
+import specific.parser.KingdomParser;
+import specific.parser.MailParser;
 import tools.Trace;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.HashMap;
-
-import specific.parser.KingdomParser;
-import specific.parser.ContinentsParser;
-import specific.parser.MailParser;
-import specific.data.api.AttackAPI;
-import specific.data.api.KingdomDataAPI;
 
 
 public class DaifenMessage implements DaifenConstants

@@ -15,10 +15,10 @@
 
 package specific.parser;
 
-import specific.parser.sections.*;
 import specific.data.api.AttackAPI;
-import specific.data.api.SocialAPI;
 import specific.data.api.KingdomDataAPI;
+import specific.data.api.SocialAPI;
+import specific.parser.sections.*;
 
 
 public class KingdomParser extends    MailParser

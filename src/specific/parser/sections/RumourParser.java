@@ -16,6 +16,7 @@
 package specific.parser.sections;
 
 import specific.data.info.RumourInfo;
+import specific.data.api.RumourAPI;
 import specific.parser.KingdomParserConstants;
 import tools.Trace;
 
@@ -24,7 +25,7 @@ import java.util.regex.Pattern;
 
 
 public class RumourParser extends    SectionParser
-                          implements KingdomParserConstants
+                          implements KingdomParserConstants, RumourAPI
 {
    //*************************************************************************
    //***                          MEMBER DECLARATION                       ***
@@ -71,7 +72,11 @@ public class RumourParser extends    SectionParser
    //***                         PUBLIC DECLARATION                        ***
    //*************************************************************************
 
-
+   public RumourInfo next()
+   {
+      return (RumourInfo) getIter().next();
+   }
+   
 
    //*************************************************************************
    //***                        PROTECTED DECLARATION                      ***

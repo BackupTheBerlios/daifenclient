@@ -15,6 +15,8 @@
 
 package specific.data.api;
 
+import specific.data.info.ContactInfo;
+
 
 public interface ContactAPI
 {
@@ -22,14 +24,9 @@ public interface ContactAPI
    //***                          MEMBER DECLARATION                       ***
    //*************************************************************************
 
-   void     createIterator();
-   boolean  hasNext();
-   void     next();
-
-   String   getKingdom();
-   String   getSpecies();
-   String   getEmail();
-
+   void        createIterator();
+   boolean     hasNext();
+   ContactInfo next();
 }
 
 

@@ -15,9 +15,8 @@
 
 package specific.parser.sections;
 
-import specific.data.info.ContactInfo;
-import specific.data.info.AttackInfo;
 import specific.data.api.ContactAPI;
+import specific.data.info.ContactInfo;
 import specific.parser.KingdomParserConstants;
 import tools.Trace;
 
@@ -61,64 +60,16 @@ public class ContactParser extends    SectionParser
    //***                         PUBLIC DECLARATION                        ***
    //*************************************************************************
 
-
-   //*************************   API IMPLEMENTATION   ************************
-
-   public String getKingdom()
+   public ContactInfo next()
    {
-      String      l_result = "";
-      ContactInfo l_info   = getCurrentIterInfo();
-
-      if ( l_info != null )
-      {
-         l_result = l_info.getKingdom();
-      }
-
-      return l_result;
+      return (ContactInfo) getIter().next();
    }
 
-   public String getSpecies()
-   {
-      String      l_result = "";
-      ContactInfo l_info   = getCurrentIterInfo();
-
-      if ( l_info != null )
-      {
-         l_result = l_info.getSpecies();
-      }
-
-      return l_result;
-   }
-
-   public String getEmail()
-   {
-      String      l_result = "";
-      ContactInfo l_info   = getCurrentIterInfo();
-
-      if ( l_info != null )
-      {
-         l_result = l_info.getEmail();
-      }
-
-      return l_result;
-   }
 
 
    //*************************************************************************
    //***                        PROTECTED DECLARATION                      ***
    //*************************************************************************
-
-
-
-   //*************************************************************************
-   //***                         PRIVATE DECLARATION                       ***
-   //*************************************************************************
-
-   private ContactInfo getCurrentIterInfo()
-   {
-      return (ContactInfo) getCurrentIterObj();
-   }
-
 
    protected void specificParseLineData(String p_line)
    {
@@ -144,6 +95,12 @@ public class ContactParser extends    SectionParser
          _parsedData.add(l_info);
       }
    }
+
+
+   //*************************************************************************
+   //***                         PRIVATE DECLARATION                       ***
+   //*************************************************************************
+
 }
 
 

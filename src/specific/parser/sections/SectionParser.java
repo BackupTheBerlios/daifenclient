@@ -32,7 +32,6 @@ public abstract class SectionParser implements CommonParserConstants
    //================================   PRIVATE   ============================
 
    private Iterator     _iter                   = null;
-   private Object       _iterObj                = null;
 
 
    //===============================   PROTECTED   ===========================
@@ -116,9 +115,9 @@ public abstract class SectionParser implements CommonParserConstants
       return _iter.hasNext();
    }
 
-   public void next()
+   public Iterator getIter()
    {
-      _iterObj = _iter.next();
+      return _iter;
    }
 
 
@@ -176,11 +175,6 @@ public abstract class SectionParser implements CommonParserConstants
       // everything must be performed in the inherited classes
    }
 
-
-   protected Object getCurrentIterObj()
-   {
-      return _iterObj;
-   }
 
 
    //*************************************************************************

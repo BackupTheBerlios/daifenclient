@@ -1,7 +1,7 @@
 // CC_VERSIONS
 
 /**
- * AttackAPI.java
+ * DestroyedEliminatedAPI.java
  *
  * DESCRIPTION:
  *
@@ -15,18 +15,18 @@
 
 package specific.data.api;
 
-import specific.data.info.AttackInfo;
+import specific.data.info.KingdomInfo;
 
 
-public interface AttackAPI
+public interface DestroyedEliminatedAPI
 {
    //*************************************************************************
    //***                          MEMBER DECLARATION                       ***
    //*************************************************************************
 
-   void           createIterator();
-   boolean        hasNext();
-   AttackInfo     next();
+   void        createIterator();
+   boolean     hasNext();
+   KingdomInfo next();
 }
 
 

@@ -1,16 +1,10 @@
 // CC_VERSIONS
 
-import exception.*;
-import mailbox.MailBoxAccess;
-import mailbox.MailHeader;
-import mailbox.MailMessage;
-import mailbox.MailerFactory;
 import tools.Trace;
 
 import java.io.File;
-import java.util.Iterator;
-import java.lang.reflect.Method;
 import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 
 /**
  * Main.java

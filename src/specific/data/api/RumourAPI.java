@@ -1,11 +1,11 @@
 // CC_VERSIONS
 
 /**
- * AttackAPI.java
+ * RumourAPI.java
  *
  * DESCRIPTION:
  *
- *    @author        STOLLVOR  -  Jun 9, 2004
+ *    @author        STOLLVOR  -  Jun 10, 2004
  *    @version       v0.1          
  *
  * HOW TO USE:
@@ -15,10 +15,10 @@
 
 package specific.data.api;
 
-import specific.data.info.AttackInfo;
+import specific.data.info.RumourInfo;
 
 
-public interface AttackAPI
+public interface RumourAPI
 {
    //*************************************************************************
    //***                          MEMBER DECLARATION                       ***
@@ -26,7 +26,7 @@ public interface AttackAPI
 
    void           createIterator();
    boolean        hasNext();
-   AttackInfo     next();
+   RumourInfo     next();
 }
 
 

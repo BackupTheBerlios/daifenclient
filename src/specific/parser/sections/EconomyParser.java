@@ -15,6 +15,7 @@
 
 package specific.parser.sections;
 
+import specific.data.api.EconomyAPI;
 import specific.data.info.EconomyInfo;
 import specific.parser.KingdomParserConstants;
 import tools.Trace;
@@ -24,7 +25,7 @@ import java.util.regex.Pattern;
 
 
 public class EconomyParser extends    SectionParser
-                           implements KingdomParserConstants
+                           implements KingdomParserConstants, EconomyAPI
 {
    //*************************************************************************
    //***                          MEMBER DECLARATION                       ***
@@ -58,6 +59,19 @@ public class EconomyParser extends    SectionParser
    //***                         PUBLIC DECLARATION                        ***
    //*************************************************************************
 
+   public int getGold()
+   {
+      EconomyInfo l_info = (EconomyInfo) _parsedData.get(0);
+
+      return l_info.getGold();
+   }
+
+   public int getIntellect()
+   {
+      EconomyInfo l_info = (EconomyInfo) _parsedData.get(0);
+
+      return l_info.getIntellect();
+   }
 
 
    //*************************************************************************
