@@ -7,6 +7,8 @@ import infoClass.Trooper;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
+import java.awt.event.ContainerListener;
+import java.util.EventListener;
 
 /**
  * @version 1.0 11/09/98
@@ -62,43 +64,34 @@ public class AssaultTable extends JScrollPane {
                              "Assaut 1",
                              "Assaut 2",
                              "Assaut 3"});
-//      new Object[][]{
-//        {"true"             ,"String"  ,"JLabel"   ,"JComboBox"},
-//        {"false"            ,"String"  ,"JLabel"   ,"JComboBox"},
-//        {new Boolean(true)  ,"Boolean" ,"JCheckBox","JCheckBox"},
-//        {new Boolean(false) ,"Boolean" ,"JCheckBox","JCheckBox"},
-//        {"true"             ,"String"  ,"JLabel"   ,"JTextField"},
-//        {"false"            ,"String"  ,"JLabel"   ,"JTextField"}},
-//      new Object[]{"Component","Data","Renderer","Editor"});
-
-//        CheckBoxRenderer checkBoxRenderer = new CheckBoxRenderer();
 
         EachRowRenderer rowRenderer = new EachRowRenderer();
+        NumSpinnerRenderer numSpinnerRenderer;
         for (int i = 0; i < troopers.length; i++) {
-            NumSpinnerRenderer numSpinnerRenderer = new NumSpinnerRenderer();
+            numSpinnerRenderer = new NumSpinnerRenderer();
             rowRenderer.add(i + 1, numSpinnerRenderer);
         }
-//        rowRenderer.add(2, checkBoxRenderer);
-//        rowRenderer.add(3, checkBoxRenderer);
+
         JComboBox comboBox = getKingdomComboBox();
-        JCheckBox checkBox = new JCheckBox();
-//        checkBox.setHorizontalAlignment(JLabel.CENTER);
+
         DefaultCellEditor comboBoxEditor = new DefaultCellEditor(comboBox);
-//        DefaultCellEditor checkBoxEditor = new DefaultCellEditor(checkBox);
 
 
         JTable table = new JTable(dm);
         table.setRowHeight(25);
 
+// TODO ajout du listener sur la JTable        
+//        AssaultTableListener assaultTableListener = new AssaultTableListener();
+////        table.addContainerListener(assaultTableListener);
+//        table.addComponentListener(assaultTableListener);
+
         EachRowEditor rowEditor = new EachRowEditor(table);
         rowEditor.add(0, comboBoxEditor);
+        NumSpinnerEditor numSpinnerEditor;
         for (int i = 0; i < troopers.length; i++) {
-            NumSpinnerEditor numSpinnerEditor = new NumSpinnerEditor(checkBox);
+            numSpinnerEditor = new NumSpinnerEditor(new JCheckBox());
             rowEditor.add(i + 1, numSpinnerEditor);
         }
-//        rowEditor.add(1, comboBoxEditor);
-//        rowEditor.add(2, checkBoxEditor);
-//        rowEditor.add(3, checkBoxEditor);
 
         table.getColumn("Assaut 1").setCellRenderer(rowRenderer);
         table.getColumn("Assaut 1").setCellEditor(rowEditor);

@@ -17,7 +17,6 @@ import java.awt.event.ItemListener;
 public class NumSpinnerEditor extends DefaultCellEditor implements ItemListener {
     protected JSpinner spinner;
     private Integer intValue;
-//    private boolean isPushed;
 
     final Integer _spinnerStep = new Integer(1);
     final Integer _spinnerMin = new Integer(0);
@@ -39,34 +38,17 @@ public class NumSpinnerEditor extends DefaultCellEditor implements ItemListener 
 
     public Component getTableCellEditorComponent(JTable table, Object value,
                                                  boolean isSelected, int row, int column) {
-        if (isSelected) {
-            spinner.setForeground(table.getSelectionForeground());
-            spinner.setBackground(table.getSelectionBackground());
-        } else {
-            spinner.setForeground(table.getForeground());
-            spinner.setBackground(table.getBackground());
-        }
-//        intValue = (value == null) ? new Integer(0) : new Integer(value.toString());
-////        spinner.setValue(new Integer(value.toString()));
-//        spinner.setValue(intValue);
-        intValue = new Integer(spinner.getValue().toString());
-//        isPushed = true;
-        return spinner;
+      intValue = (value == null) ? new Integer(0) : new Integer(value.toString());
+        spinner.setValue(intValue);
+      return spinner;
+
     }
 
     public Object getCellEditorValue() {
-//        if (isPushed) {
-//            //
-//            //
-//            JOptionPane.showMessageDialog(spinner, intValue + ": Ouch!");
-//            // System.out.println(label + ": Ouch!");
-//        }
-//        isPushed = false;
-        return new String("" + intValue);
+        return spinner.getValue();
     }
 
     public boolean stopCellEditing() {
-//        isPushed = false;
         return super.stopCellEditing();
     }
 
