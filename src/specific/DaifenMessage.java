@@ -101,6 +101,8 @@ public class DaifenMessage implements DaifenConstants
 
    public void writeObject(String p_file) throws FileNotFoundException
    {
+      createSpecificDirectory(p_file);
+
       XMLEncoder l_encoder = new XMLEncoder(new FileOutputStream(p_file));
 
       l_encoder.writeObject(new Boolean(_mailParsed));
@@ -157,110 +159,11 @@ public class DaifenMessage implements DaifenConstants
    //***                        PROTECTED DECLARATION                      ***
    //*************************************************************************
 
-   private void extractMailData(MIMEMessage p_MIMEmsg) throws MIMEException,
-                                                              ParsingMessageException
-   {
-      Trace.enterFunction("DaifenMessage::parseMainPart()");
-
-      //================= check if the mail message exist ====================
-
-      if ( p_MIMEmsg == null )
-      {
-         throw new NullPointerException();
-      }
-
-      //========= check if the createIterator part of the message is =========
-      //======================== type of MIMEMultiPart =======================
-
-      MIMEMultiPart l_multiPart = null;
-
-      if ( p_MIMEmsg.getContentType().equals("MultiPart") )
-      {
-         l_multiPart = (MIMEMultiPart) p_MIMEmsg.getBody(false);
-      }
-      else
-      {
-         throw new ParsingMessageException();
-      }
-
-      //========== check the mail message contains at least 2 parts ==========
-
-      if ( l_multiPart.getBodyPartCount() < 2 )
-      {
-         throw new ParsingMessageException();
-      }
-
-      //========= This createIterator part corresponds to the list of ========
-      //=================== eliminated and destroyed kingdom =================
-
-      Object l_firstPart = l_multiPart.getBodyPart(0, false);
-
-      if ( l_firstPart instanceof MIMEBasicPart )
-      {
-         MIMEBasicPart l_continents = (MIMEBasicPart) l_firstPart;
-
-         if ( l_continents.getContentEncoding() != E7BIT )
-         {
-            throw new ParsingMessageException();
-         }
-
-         //----------------- parse the Continents datas ----------------------
-
-         try
-         {
-            _continentParser.setData(l_continents.getBodyData());
-
-            _continentParser.parse();
-         }
-         catch ( IOException e )
-         {
-            throw new ParsingMessageException();
-         }
-      }
-      else
-      {
-         throw new ParsingMessageException();
-      }
-
-      //====== The second part corresponds to the BASE64 attached file =======
-      //================== that contains the kingdom outcome =================
-
-      Object l_secondPart = l_multiPart.getBodyPart(1, false);
-
-      if ( l_secondPart instanceof MIMEBasicPart )
-      {
-         MIMEBasicPart l_kingdom = (MIMEBasicPart) l_secondPart;
-
-         if ( l_kingdom.getContentEncoding() != BASE64 )
-         {
-            throw new ParsingMessageException();
-         }
-
-         try
-         {
-            _kingdomParser.setData(l_kingdom.getBodyData());
-
-            _kingdomParser.parse();
-         }
-         catch ( IOException e )
-         {
-            throw new ParsingMessageException();
-         }
-      }
-      else
-      {
-         throw new ParsingMessageException();
-      }
-
-      Trace.exitFunction("DaifenMessage::parseMainPart()");
-   }
-
-
    protected void readObject(XMLDecoder p_decoder)
    {
-      _mailParsed = ((Boolean) p_decoder.readObject()).booleanValue();
-//      _continentParser.readObject(l_encoder);
-//      _kingdomParser.readObject(l_encoder);
+      _mailParsed      = ((Boolean) p_decoder.readObject()).booleanValue();
+      _continentParser = (MailParser) p_decoder.readObject();
+      _kingdomParser   = (MailParser) p_decoder.readObject();
    }
 
 
@@ -452,6 +355,117 @@ public class DaifenMessage implements DaifenConstants
    //*************************************************************************
    //***                         PRIVATE DECLARATION                       ***
    //*************************************************************************
+
+   private void extractMailData(MIMEMessage p_MIMEmsg) throws MIMEException,
+                                                              ParsingMessageException
+   {
+      Trace.enterFunction("DaifenMessage::parseMainPart()");
+
+      //================= check if the mail message exist ====================
+
+      if ( p_MIMEmsg == null )
+      {
+         throw new NullPointerException();
+      }
+
+      //========= check if the createIterator part of the message is =========
+      //======================== type of MIMEMultiPart =======================
+
+      MIMEMultiPart l_multiPart = null;
+
+      if ( p_MIMEmsg.getContentType().equals("MultiPart") )
+      {
+         l_multiPart = (MIMEMultiPart) p_MIMEmsg.getBody(false);
+      }
+      else
+      {
+         throw new ParsingMessageException();
+      }
+
+      //========== check the mail message contains at least 2 parts ==========
+
+      if ( l_multiPart.getBodyPartCount() < 2 )
+      {
+         throw new ParsingMessageException();
+      }
+
+      //========= This createIterator part corresponds to the list of ========
+      //=================== eliminated and destroyed kingdom =================
+
+      Object l_firstPart = l_multiPart.getBodyPart(0, false);
+
+      if ( l_firstPart instanceof MIMEBasicPart )
+      {
+         MIMEBasicPart l_continents = (MIMEBasicPart) l_firstPart;
+
+         if ( l_continents.getContentEncoding() != E7BIT )
+         {
+            throw new ParsingMessageException();
+         }
+
+         //----------------- parse the Continents datas ----------------------
+
+         try
+         {
+            _continentParser.setData(l_continents.getBodyData());
+
+            _continentParser.parse();
+         }
+         catch ( IOException e )
+         {
+            throw new ParsingMessageException();
+         }
+      }
+      else
+      {
+         throw new ParsingMessageException();
+      }
+
+      //====== The second part corresponds to the BASE64 attached file =======
+      //================== that contains the kingdom outcome =================
+
+      Object l_secondPart = l_multiPart.getBodyPart(1, false);
+
+      if ( l_secondPart instanceof MIMEBasicPart )
+      {
+         MIMEBasicPart l_kingdom = (MIMEBasicPart) l_secondPart;
+
+         if ( l_kingdom.getContentEncoding() != BASE64 )
+         {
+            throw new ParsingMessageException();
+         }
+
+         try
+         {
+            _kingdomParser.setData(l_kingdom.getBodyData());
+
+            _kingdomParser.parse();
+         }
+         catch ( IOException e )
+         {
+            throw new ParsingMessageException();
+         }
+      }
+      else
+      {
+         throw new ParsingMessageException();
+      }
+
+      Trace.exitFunction("DaifenMessage::parseMainPart()");
+   }
+
+
+   private void createSpecificDirectory(String p_file)
+   {
+      File     l_file = new File(p_file);
+      String   l_path = l_file.getParent();
+
+      if ( l_path != null )
+      {
+         new File(l_path).mkdirs();
+      }
+   }
+
 
    private boolean isParsingMessageNeeded()
    {

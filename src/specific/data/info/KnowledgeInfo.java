@@ -49,7 +49,7 @@ public class KnowledgeInfo extends Info
    //***                              ACCESSOR                             ***
    //*************************************************************************
 
-   public String getknowledge() { return _knowledge; }
+   public String getKnowledge() { return _knowledge; }
    public int    getTurn     () { return _turn; }
 
    public void setKnowledge(String p_knowledge)

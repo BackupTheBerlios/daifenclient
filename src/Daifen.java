@@ -38,7 +38,7 @@ public class Daifen
    private static String _mailerType    = "POP3";
    private static String _server        = "pop.mail.yahoo.fr";
    private static String _user          = "stollvor";
-   private static String _password      = "ajbat0jk";
+   private static String _password      = "";
 
 
    //===============================   PROTECTED   ===========================
@@ -85,8 +85,9 @@ public class Daifen
                {
                   l_DaifenMsg.parseMail();
 
-                  l_DaifenMsg.writeObject("347.xml");
+                  l_DaifenMsg.writeObject("data/bilan/347.xml");
 
+                  DaifenMessage l_readMsg = new DaifenMessage("data/bilan/347.xml");
                   DataKingdomAPI l_kdApi = l_DaifenMsg.getKingdomDataAPI();
 
                   /*try
@@ -177,7 +178,7 @@ public class Daifen
                         String        l_str;
                         int           l_int;
 
-                        l_str    = l_info.getknowledge();
+                        l_str    = l_info.getKnowledge();
                         l_int    = l_info.getTurn();
                      }
                   }

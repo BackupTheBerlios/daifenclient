@@ -60,6 +60,11 @@ public class SocialInfo extends Info
       _points = p_points;
    }
 
+   public void setInfo(String p_info)
+   {
+      _info = p_info;
+   }
+
    public void appendInfo(String p_line)
    {
       _info += p_line + "\n";
