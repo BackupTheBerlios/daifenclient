@@ -174,7 +174,7 @@
     <first-group selected-file="file://$PROJECT_DIR$/src/GeneralPanel.java">
       <entry file="file://$PROJECT_DIR$/src/GeneralPanel.java" pinned="false">
         <provider selected="true" editor-type-id="text-editor">
-          <state line="24" column="3" selection-start="626" selection-end="626" vertical-scroll-proportion="0.33333334">
+          <state line="24" column="3" selection-start="626" selection-end="626" vertical-scroll-proportion="0.4125">
             <folding>
               <element signature="imports" expanded="true" />
             </folding>
@@ -183,7 +183,7 @@
       </entry>
       <entry file="jar://C:/Program Files/j2sdk_nb/j2sdk1.4.2/src.zip!/javax/swing/JFrame.java" pinned="false">
         <provider selected="true" editor-type-id="text-editor">
-          <state line="490" column="0" selection-start="17779" selection-end="17779" vertical-scroll-proportion="0.04292929">
+          <state line="490" column="0" selection-start="17779" selection-end="17779" vertical-scroll-proportion="0.05625">
             <folding />
           </state>
         </provider>
@@ -200,7 +200,7 @@
       </entry>
       <entry file="file://$PROJECT_DIR$/src/MainForm.java" pinned="false">
         <provider selected="true" editor-type-id="text-editor">
-          <state line="64" column="12" selection-start="1325" selection-end="1325" vertical-scroll-proportion="0.04292929">
+          <state line="64" column="12" selection-start="1325" selection-end="1325" vertical-scroll-proportion="0.05625">
             <folding>
               <element signature="method#showMainPanel#0;class#MainForm#0" expanded="false" />
               <element signature="imports" expanded="true" />
@@ -210,35 +210,35 @@
       </entry>
       <entry file="jar://C:/Program Files/j2sdk_nb/j2sdk1.4.2/src.zip!/java/awt/Container.java" pinned="false">
         <provider selected="true" editor-type-id="text-editor">
-          <state line="992" column="16" selection-start="34918" selection-end="34918" vertical-scroll-proportion="0.04292929">
+          <state line="992" column="16" selection-start="34918" selection-end="34918" vertical-scroll-proportion="0.059375">
             <folding />
           </state>
         </provider>
       </entry>
       <entry file="jar://C:/Program Files/j2sdk_nb/j2sdk1.4.2/src.zip!/java/lang/reflect/Method.java" pinned="false">
         <provider selected="true" editor-type-id="text-editor">
-          <state line="323" column="0" selection-start="12573" selection-end="12573" vertical-scroll-proportion="0.04136253">
+          <state line="323" column="0" selection-start="12573" selection-end="12573" vertical-scroll-proportion="0.048854962">
             <folding />
           </state>
         </provider>
       </entry>
       <entry file="file://C:/Program Files/j2sdk_nb/j2sdk1.4.2/demo/jfc/SwingSet2/src/TabbedPaneDemo.java" pinned="false">
         <provider selected="true" editor-type-id="text-editor">
-          <state line="196" column="36" selection-start="6387" selection-end="6415" vertical-scroll-proportion="0.04136253">
+          <state line="196" column="36" selection-start="6387" selection-end="6415" vertical-scroll-proportion="0.048854962">
             <folding />
           </state>
         </provider>
       </entry>
       <entry file="file://$PROJECT_DIR$/src/Sprite.java" pinned="false">
         <provider selected="true" editor-type-id="text-editor">
-          <state line="84" column="0" selection-start="1811" selection-end="1811" vertical-scroll-proportion="1.2214112">
+          <state line="84" column="0" selection-start="1811" selection-end="1811" vertical-scroll-proportion="0.9816794">
             <folding />
           </state>
         </provider>
       </entry>
       <entry file="file://$PROJECT_DIR$/src/Building.java" pinned="false">
         <provider selected="true" editor-type-id="text-editor">
-          <state line="39" column="0" selection-start="956" selection-end="956" vertical-scroll-proportion="0.04136253">
+          <state line="39" column="0" selection-start="956" selection-end="956" vertical-scroll-proportion="0.048854962">
             <folding />
           </state>
         </provider>
@@ -261,10 +261,10 @@
     <expanded_node url="" module="Daifen" type="module" />
   </component>
   <component name="ProjectPane">
-    <expanded_node url="" module="Daifen" type="module" />
     <expanded_node url="file://$PROJECT_DIR$" module="Daifen" type="directory" />
-    <expanded_node url="file://$PROJECT_DIR$/src" module="Daifen" type="directory" />
     <expanded_node url="file://$PROJECT_DIR$/src/form" module="Daifen" type="directory" />
+    <expanded_node url="" module="Daifen" type="module" />
+    <expanded_node url="file://$PROJECT_DIR$/src" module="Daifen" type="directory" />
   </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" splitterProportion="0.5">
@@ -416,17 +416,17 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-4" y="-4" width="1160" height="848" extended-state="0" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="CVS" active="false" anchor="bottom" auto_hide="false" internal_type="docked" type="docked" visible="false" weight="0.33" order="8" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="docked" type="docked" visible="false" weight="0.32967034" order="7" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="docked" type="docked" visible="true" weight="0.2129964" order="0" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="docked" type="docked" visible="true" weight="0.19945848" order="0" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="docked" type="docked" visible="false" weight="0.33048433" order="1" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="docked" type="docked" visible="false" weight="0.25" order="1" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="docked" type="docked" visible="false" weight="0.32916668" order="8" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="docked" type="docked" visible="false" weight="0.4" order="6" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="docked" type="docked" visible="false" weight="0.25" order="1" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="docked" type="docked" visible="true" weight="0.32916668" order="2" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="docked" type="docked" visible="false" weight="0.32916668" order="2" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="docked" type="docked" visible="false" weight="0.25" order="2" />
       <window_info id="CVS File View" active="false" anchor="right" auto_hide="false" internal_type="docked" type="docked" visible="false" weight="0.33004925" order="3" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="docked" type="docked" visible="false" weight="0.4002849" order="4" />
@@ -547,7 +547,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/GeneralPanel.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="24" column="3" selection-start="626" selection-end="626" vertical-scroll-proportion="0.33333334">
+        <state line="24" column="3" selection-start="626" selection-end="626" vertical-scroll-proportion="0.4125">
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -556,7 +556,7 @@
     </entry>
     <entry file="jar://C:/Program Files/j2sdk_nb/j2sdk1.4.2/src.zip!/javax/swing/JFrame.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="490" column="0" selection-start="17779" selection-end="17779" vertical-scroll-proportion="0.04292929">
+        <state line="490" column="0" selection-start="17779" selection-end="17779" vertical-scroll-proportion="0.05625">
           <folding />
         </state>
       </provider>
@@ -573,7 +573,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/MainForm.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="64" column="12" selection-start="1325" selection-end="1325" vertical-scroll-proportion="0.04292929">
+        <state line="64" column="12" selection-start="1325" selection-end="1325" vertical-scroll-proportion="0.05625">
           <folding>
             <element signature="method#showMainPanel#0;class#MainForm#0" expanded="false" />
             <element signature="imports" expanded="true" />
@@ -583,35 +583,35 @@
     </entry>
     <entry file="jar://C:/Program Files/j2sdk_nb/j2sdk1.4.2/src.zip!/java/awt/Container.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="992" column="16" selection-start="34918" selection-end="34918" vertical-scroll-proportion="0.04292929">
+        <state line="992" column="16" selection-start="34918" selection-end="34918" vertical-scroll-proportion="0.059375">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="jar://C:/Program Files/j2sdk_nb/j2sdk1.4.2/src.zip!/java/lang/reflect/Method.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="323" column="0" selection-start="12573" selection-end="12573" vertical-scroll-proportion="0.04136253">
+        <state line="323" column="0" selection-start="12573" selection-end="12573" vertical-scroll-proportion="0.048854962">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://C:/Program Files/j2sdk_nb/j2sdk1.4.2/demo/jfc/SwingSet2/src/TabbedPaneDemo.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="196" column="36" selection-start="6387" selection-end="6415" vertical-scroll-proportion="0.04136253">
+        <state line="196" column="36" selection-start="6387" selection-end="6415" vertical-scroll-proportion="0.048854962">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Sprite.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="84" column="0" selection-start="1811" selection-end="1811" vertical-scroll-proportion="1.2214112">
+        <state line="84" column="0" selection-start="1811" selection-end="1811" vertical-scroll-proportion="0.9816794">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Building.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="39" column="0" selection-start="956" selection-end="956" vertical-scroll-proportion="0.04136253">
+        <state line="39" column="0" selection-start="956" selection-end="956" vertical-scroll-proportion="0.048854962">
           <folding />
         </state>
       </provider>
