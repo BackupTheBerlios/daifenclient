@@ -22,7 +22,7 @@ public class GeneralPanel extends JPanel{
             // setLayout(new BorderLayout());
        setLayout(new BorderLayout());
   //     setPreferredSize(new Dimension( -1, -1 ));
-        getLayout().preferredLayoutSize(BorderLayout);
+ //       getLayout().preferredLayoutSize(BorderLayout);
 
         // set the preferred size of the demo
       setPreferredSize(new Dimension(600,600));
