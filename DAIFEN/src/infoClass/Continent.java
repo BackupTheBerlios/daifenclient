@@ -10,7 +10,7 @@ package infoClass;
 public class Continent {
     public String continentName;
     public int currentMoon;
-    public Royaume[] myRoyaume = new Royaume[2];
-    public Royaume[] otherRoyaume;
+    public Kingdom[] myRoyaume = new Kingdom[2];
+    public Kingdom[] otherRoyaume;
 
 }

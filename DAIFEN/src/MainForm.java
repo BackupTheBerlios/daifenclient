@@ -10,7 +10,7 @@ import java.util.Vector;
 
 import infoClass.Continent;
 import infoClass.Lord;
-import infoClass.Royaume;
+import infoClass.Kingdom;
 
 /**
  * Created by IntelliJ IDEA.
@@ -432,7 +432,7 @@ class ContinentLoadingThread extends Thread {
         infoPanel.textInfo.setVisible(true);
 
         mainForm.currentContinent = new Continent();
-        mainForm.currentContinent.myRoyaume[0] = new Royaume();
+        mainForm.currentContinent.myRoyaume[0] = new Kingdom();
 
         InfoReader infoReader = new InfoReader( lordToLoad );
 

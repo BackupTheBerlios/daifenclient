@@ -34,7 +34,7 @@ public class BilanPanel {
     private JTable royaumesConnusTable;
 
 
-    public BilanPanel( Royaume royaume ) {
+    public BilanPanel( Kingdom royaume ) {
 
         // Update Ressources
         updateRessources( royaume );
@@ -48,7 +48,7 @@ public class BilanPanel {
     }
 
     // Ressources update
-    public void updateRessources ( Royaume royaume ){
+    public void updateRessources ( Kingdom royaume ){
 
         // Create a model of the data.
 
@@ -66,7 +66,7 @@ public class BilanPanel {
     }
 
     // infoClass.Knowledge Table update
-    void updateConnaissance( Royaume royaume ){
+    void updateConnaissance( Kingdom royaume ){
 
         // Create a model of the data.
 
@@ -96,7 +96,7 @@ public class BilanPanel {
     }
 
     // infoClass.Building Table update
-    public void updateBuildingTable( Royaume royaume ){
+    public void updateBuildingTable( Kingdom royaume ){
 
         // Create a model of the data.
 
@@ -134,7 +134,7 @@ public class BilanPanel {
     }
 
     // Troupes Table update
-    public void updateTroupesTable( Royaume royaume ){
+    public void updateTroupesTable( Kingdom royaume ){
 
         // Create a model of the data.
 
@@ -171,7 +171,7 @@ public class BilanPanel {
     }
 
     // Connaissances Table update
-    public void updateConnaissancesTable( Royaume royaume ){
+    public void updateConnaissancesTable( Kingdom royaume ){
 
         // Create a model of the data.
 
@@ -200,7 +200,7 @@ public class BilanPanel {
     }
 
     // Connaissances Table update
-    public void updateRoyaumesConnusTable( Royaume[] royaumesConnus ){
+    public void updateRoyaumesConnusTable( Kingdom[] royaumesConnus ){
 
         if ( royaumesConnus == null
                 || royaumesConnus.length == 0 ){
@@ -208,7 +208,7 @@ public class BilanPanel {
         }
         else {
             // titre
-            String[] columnNames = { new String("infoClass.Royaume de..."),
+            String[] columnNames = { new String("infoClass.Kingdom de..."),
                                      new String("Race"),
                                      new String("Adresse Mail"),
                                      new String("est un allie")};

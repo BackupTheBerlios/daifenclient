@@ -32,7 +32,7 @@ class Race {
 
 }
        */
-public class Royaume {
+public class Kingdom {
 
     private Lord lord;
 
