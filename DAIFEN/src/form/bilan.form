@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="BilanPanel">
+  <grid id="713cf" binding="bilanPanel" row-count="5" column-count="3" hgap="-1" vgap="-1">
+    <margin top="5" left="5" bottom="5" right="5"/>
+    <constraints>
+      <xy x="16" y="50" width="446" height="439"/>
+      <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3"/>
+    </constraints>
+    <properties>
+      <autoscrolls value="true"/>
+    </properties>
+    <border type="etched"/>
+    <children>
+      <grid id="fc75f" binding="cadreBatiments" row-count="1" column-count="1" hgap="-1" vgap="-1">
+        <margin top="0" left="0" bottom="0" right="0"/>
+        <constraints>
+          <xy x="7" y="83" width="432" height="46"/>
+          <grid row="1" column="0" row-span="1" col-span="3" vsize-policy="3" hsize-policy="3" anchor="0" fill="3"/>
+        </constraints>
+        <properties>
+          <autoscrolls value="false"/>
+          <visible value="true"/>
+        </properties>
+        <border type="none" title="Batiments"/>
+        <children>
+          <component id="ed2d1" class="javax.swing.JTable" binding="buildingTable">
+            <constraints>
+              <xy x="5" y="21" width="422" height="20"/>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="6" anchor="0" fill="3"/>
+            </constraints>
+            <properties>
+              <autoCreateColumnsFromModel value="true"/>
+              <autoResizeMode value="0"/>
+              <columnSelectionAllowed value="true"/>
+              <focusable value="false"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+      <grid id="443da" binding="cadreTroupes" row-count="1" column-count="1" hgap="-1" vgap="-1">
+        <margin top="0" left="0" bottom="0" right="0"/>
+        <constraints>
+          <xy x="7" y="134" width="432" height="76"/>
+          <grid row="2" column="0" row-span="1" col-span="3" vsize-policy="3" hsize-policy="3" anchor="0" fill="3"/>
+        </constraints>
+        <properties>
+          <visible value="false"/>
+        </properties>
+        <border type="none" title="Troupes"/>
+        <children>
+          <component id="33bd4" class="javax.swing.JTable" binding="troupesTable">
+            <constraints>
+              <xy x="5" y="21" width="422" height="50"/>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="6" anchor="0" fill="3">
+                <preferred-size width="150" height="50"/>
+              </grid>
+            </constraints>
+            <properties>
+              <visible value="true"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+      <grid id="a000b" binding="cadreRoyaumesConnus" row-count="1" column-count="1" hgap="-1" vgap="-1">
+        <margin top="0" left="0" bottom="0" right="0"/>
+        <constraints>
+          <xy x="7" y="215" width="432" height="76"/>
+          <grid row="3" column="0" row-span="1" col-span="3" vsize-policy="3" hsize-policy="3" anchor="0" fill="3"/>
+        </constraints>
+        <properties>
+          <visible value="false"/>
+        </properties>
+        <border type="none" title="Royaumes connus"/>
+        <children>
+          <component id="6d69" class="javax.swing.JTable" binding="royaumesConnusTable">
+            <constraints>
+              <xy x="5" y="21" width="422" height="50"/>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="6" anchor="0" fill="3">
+                <preferred-size width="150" height="50"/>
+              </grid>
+            </constraints>
+            <properties/>
+          </component>
+        </children>
+      </grid>
+      <grid id="b1cee" binding="cadreConnaissances" row-count="1" column-count="1" hgap="-1" vgap="-1">
+        <margin top="0" left="0" bottom="0" right="0"/>
+        <constraints>
+          <xy x="105" y="7" width="150" height="71"/>
+          <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3">
+            <minimum-size width="150" height="-1"/>
+          </grid>
+        </constraints>
+        <properties>
+          <visible value="true"/>
+        </properties>
+        <border type="none" title="Connaissances"/>
+        <children>
+          <component id="c4c9d" class="javax.swing.JTable" binding="connaissancesTable">
+            <constraints>
+              <xy x="5" y="21" width="140" height="45"/>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="6" anchor="0" fill="3"/>
+            </constraints>
+            <properties/>
+          </component>
+        </children>
+      </grid>
+      <grid id="b2105" binding="cadreRessources" row-count="2" column-count="2" hgap="-1" vgap="-1">
+        <margin top="0" left="0" bottom="0" right="0"/>
+        <constraints>
+          <xy x="7" y="7" width="88" height="71"/>
+          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="9" fill="1">
+            <maximum-size width="120" height="100"/>
+          </grid>
+        </constraints>
+        <properties>
+          <autoscrolls value="false"/>
+          <visible value="true"/>
+        </properties>
+        <border type="none" title="Ressources"/>
+        <children>
+          <component id="6ae5" class="javax.swing.JLabel">
+            <constraints>
+              <xy x="5" y="22" width="19" height="17"/>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0"/>
+            </constraints>
+            <properties>
+              <text value="Or :"/>
+            </properties>
+          </component>
+          <component id="3126a" class="javax.swing.JLabel">
+            <constraints>
+              <xy x="5" y="47" width="48" height="17"/>
+              <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0"/>
+            </constraints>
+            <properties>
+              <text value="Intellect :"/>
+            </properties>
+          </component>
+          <component id="9d850" class="javax.swing.JLabel" binding="intellect">
+            <constraints>
+              <xy x="63" y="47" width="7" height="17"/>
+              <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0"/>
+            </constraints>
+            <properties>
+              <text value="0"/>
+            </properties>
+          </component>
+          <component id="dafc6" class="javax.swing.JLabel" binding="or">
+            <constraints>
+              <xy x="63" y="22" width="7" height="17"/>
+              <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0"/>
+            </constraints>
+            <properties>
+              <text value="0"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+      <hspacer id="ad827">
+        <constraints>
+          <xy x="255" y="37" width="184" height="11"/>
+          <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1"/>
+        </constraints>
+      </hspacer>
+      <vspacer id="d808d">
+        <constraints>
+          <xy x="45" y="230" width="11" height="202"/>
+          <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2"/>
+        </constraints>
+      </vspacer>
+    </children>
+  </grid>
+</form>
