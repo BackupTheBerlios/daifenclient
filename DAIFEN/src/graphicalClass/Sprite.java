@@ -1,3 +1,4 @@
+package graphicalClass;
 
 import javax.swing.*;
 import java.awt.*;
@@ -10,12 +11,12 @@ import java.awt.*;
  * To change this template use File | Settings | File Templates.
  */
 public class Sprite extends JComponent {
-    Dimension position;
-    ImageIcon imageIcon;
+    public Dimension position;
+    public ImageIcon imageIcon;
     String imageFileName;
-    String label;
+    public String label;
 
-  /*  public Sprite( JPanel drawingArea, String imageFileName, String label, Dimension position ) {
+  /*  public graphicalClass.Sprite( JPanel drawingArea, String imageFileName, String label, Dimension position ) {
 
         this.drawingArea = drawingArea;
 

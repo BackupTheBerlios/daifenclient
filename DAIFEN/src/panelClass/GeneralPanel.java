@@ -1,9 +1,13 @@
+package panelClass;
 
-import javax.swing.*;
-import javax.swing.border.Border;
+import infoClass.Continent;
+
 import javax.swing.border.BevelBorder;
+import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
+
+import graphicalClass.Sprite;
 
 
 public class GeneralPanel extends JPanel{
@@ -46,7 +50,7 @@ public class GeneralPanel extends JPanel{
 
 
         // TODO enlever le test
-            String picturesPath = "./src/pictures/";
+            String picturesPath = "./src/resources/pictures/";
 
             // mon royaume
             String filename = picturesPath + "royaumeElfe.jpg";
@@ -72,22 +76,22 @@ public class GeneralPanel extends JPanel{
               graphicPanel.repaint();
               graphicPanel.setBackground(Color.BLACK);
 
-               String picturesPath = "./src/pictures/";
+               String picturesPath = "./src/resources.pictures/";
                // TODO enlever le test
                // mon royaume
                String filename = picturesPath + "royaumeElfe.jpg";
-               new Sprite( graphicPanel, filename, "Argawaen", 0 , 0);
+               new graphicalClass.Sprite( graphicPanel, filename, "Argawaen", 0 , 0);
                // les autres royaumes
                filename = picturesPath + "royaumeOrc.jpg";
-               new Sprite( graphicPanel, filename, "Stollvor", 1 , 5);
+               new graphicalClass.Sprite( graphicPanel, filename, "Stollvor", 1 , 5);
                filename = picturesPath + "royaumeNain.jpg";
-               new Sprite( graphicPanel, filename, "Portekwa", 2 , 5);
+               new graphicalClass.Sprite( graphicPanel, filename, "Portekwa", 2 , 5);
                filename = picturesPath + "royaumeHumain.jpg";
-               new Sprite( graphicPanel, filename, "St-Marcelin", 3 , 5);
+               new graphicalClass.Sprite( graphicPanel, filename, "St-Marcelin", 3 , 5);
                filename = picturesPath + "royaumeOrc.jpg";
-               new Sprite( graphicPanel, filename, "titi", 4 , 5);
+               new graphicalClass.Sprite( graphicPanel, filename, "titi", 4 , 5);
                filename = picturesPath + "royaumeOrc.jpg";
-               new Sprite( graphicPanel, filename, "toto", 5 , 5);
+               new graphicalClass.Sprite( graphicPanel, filename, "toto", 5 , 5);
                // TODO FIN TEST
 
 
@@ -95,16 +99,16 @@ public class GeneralPanel extends JPanel{
      */
     public void updateGraphicPanel( Continent currentContinent ) {
 
-        String picturesPath = "./src/pictures/";
+        String picturesPath = "./src/resources.pictures/";
 
         // affiche mon royaume
         /*
         String filename = picturesPath + "royaume" + currentContinent.myRoyaume[0].getLord().getRace() +".jpg";
-        new Sprite( graghicPanel, filename, currentContinent.myRoyaume[0].getLord().getLogin(), 0 , 0);
+        new graphicalClass.Sprite( graghicPanel, filename, currentContinent.myRoyaume[0].getLord().getLogin(), 0 , 0);
 
         for ( int i=0 ; i < currentContinent.otherRoyaume.length ; i++) {
             filename = picturesPath + "royaume" + currentContinent.otherRoyaume[i].getLord().getRace() +".jpg";
-            new Sprite( graghicPanel, filename, currentContinent.otherRoyaume[i].getLord().getLogin(), i+1, currentContinent.otherRoyaume.length);
+            new graphicalClass.Sprite( graghicPanel, filename, currentContinent.otherRoyaume[i].getLord().getLogin(), i+1, currentContinent.otherRoyaume.length);
         }
         */
     }

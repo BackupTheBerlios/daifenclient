@@ -1,58 +1,45 @@
+package infoClass;
 
 /**
  * Created by IntelliJ IDEA.
  * User: pfouche
  * Date: Mar 22, 2004
- * Time: 2:32:53 PM
+ * Time: 2:40:20 PM
  * To change this template use File | Settings | File Templates.
  */
-public class Trooper {
+public class Building {
     protected String name;
     protected int id;
     protected int nb;
-    protected int A;
-    protected int D;
-    protected int I;
     protected int R;
     protected int price;
-    protected int generator;
+    protected int moreF;
+    protected int moreI;
     protected int knowReq;
     protected int forRaceOnly;
 
-    public Trooper( String name,
-                    int id,
-                    int nb,
-                    int A,
-                    int D,
-                    int I,
-                    int R,
-                    int price,
-                    int generator,
-                    int knowReq,
-                    int forRaceOnly){
+    public Building( String name,
+                     int id,
+                     int nb,
+                     int R,
+                     int price,
+                     int moreF,
+                     int moreI,
+                     int knowReq,
+                     int forRaceOnly ) {
         this.name = name;
         this.id = id;
         this.nb = nb;
-        this.A = A;
-        this.D = D;
-        this.I = I;
         this.R = R;
         this.price = price;
-        this.generator = generator;
+        this.moreF = moreF;
+        this.moreI = moreI;
         this.knowReq = knowReq;
         this.forRaceOnly = forRaceOnly;
     }
 
-    public Trooper(String name) {
+    public Building(String name) {
         this.name = name;
-    }
-
-    public int getForRaceOnly() {
-        return forRaceOnly;
-    }
-
-    public void setForRaceOnly(int forRaceOnly) {
-        this.forRaceOnly = forRaceOnly;
     }
 
     public String getName() {
@@ -79,30 +66,6 @@ public class Trooper {
         this.nb = nb;
     }
 
-    public int getA() {
-        return A;
-    }
-
-    public void setA(int a) {
-        A = a;
-    }
-
-    public int getD() {
-        return D;
-    }
-
-    public void setD(int d) {
-        D = d;
-    }
-
-    public int getI() {
-        return I;
-    }
-
-    public void setI(int i) {
-        I = i;
-    }
-
     public int getR() {
         return R;
     }
@@ -119,12 +82,20 @@ public class Trooper {
         this.price = price;
     }
 
-    public int getGenerator() {
-        return generator;
+    public int getMoreF() {
+        return moreF;
     }
 
-    public void setGenerator(int generator) {
-        this.generator = generator;
+    public void setMoreF(int moreF) {
+        this.moreF = moreF;
+    }
+
+    public int getMoreI() {
+        return moreI;
+    }
+
+    public void setMoreI(int moreI) {
+        this.moreI = moreI;
     }
 
     public int getKnowReq() {
@@ -133,6 +104,14 @@ public class Trooper {
 
     public void setKnowReq(int knowReq) {
         this.knowReq = knowReq;
+    }
+
+    public int getForRaceOnly() {
+        return forRaceOnly;
+    }
+
+    public void setForRaceOnly(int forRaceOnly) {
+        this.forRaceOnly = forRaceOnly;
     }
 
 }

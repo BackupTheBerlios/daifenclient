@@ -1,8 +1,16 @@
 
+import panelClass.InfoPanel;
+import panelClass.BilanPanel;
+import panelClass.GeneralPanel;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.util.Vector;
+
+import infoClass.Continent;
+import infoClass.Lord;
+import infoClass.Royaume;
 
 /**
  * Created by IntelliJ IDEA.
@@ -42,10 +50,10 @@ public class MainForm extends JPanel {
 
 
     // About Box
-  //  private JDialog aboutBox = null;
+    //  private JDialog aboutBox = null;
 
 
-    // Continent courant
+    // infoClass.Continent courant
     public Continent currentContinent = null;
 
 
@@ -81,50 +89,50 @@ public class MainForm extends JPanel {
     public static JFrame createFrame(GraphicsConfiguration gc) {
         JFrame newFrame = new JFrame(gc);
         newFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	    return newFrame;
+        return newFrame;
     }
 
     /**
      * Returns the frame instance
      */
     public JFrame getFrame() {
-	return frame;
+        return frame;
     }
-      /**
+    /**
      * Bring up the SwingSet2 demo by showing the frame (only
      * applicable if coming up as an application, not an applet);
      */
     public void showMainPanel() {
-	    // put swingset in a frame and show it
-	    JFrame f = getFrame();
-	    f.setTitle("Daifen IHM...");
-	    f.getContentPane().add(this, BorderLayout.CENTER);
-	    f.pack();
+        // put swingset in a frame and show it
+        JFrame f = getFrame();
+        f.setTitle("Daifen IHM...");
+        f.getContentPane().add(this, BorderLayout.CENTER);
+        f.pack();
 
-	    Rectangle screenRect = f.getGraphicsConfiguration().getBounds();
-            Insets screenInsets = Toolkit.getDefaultToolkit().getScreenInsets(
-                    f.getGraphicsConfiguration());
+        Rectangle screenRect = f.getGraphicsConfiguration().getBounds();
+        Insets screenInsets = Toolkit.getDefaultToolkit().getScreenInsets(
+                f.getGraphicsConfiguration());
 
-            // Make sure we don't place the demo off the screen.
-            int centerWidth = screenRect.width < f.getSize().width ?
-                    screenRect.x :
-                    screenRect.x + screenRect.width/2 - f.getSize().width/2;
-            int centerHeight = screenRect.height < f.getSize().height ?
-                    screenRect.y :
-                    screenRect.y + screenRect.height/2 - f.getSize().height/2;
+        // Make sure we don't place the demo off the screen.
+        int centerWidth = screenRect.width < f.getSize().width ?
+                screenRect.x :
+                screenRect.x + screenRect.width/2 - f.getSize().width/2;
+        int centerHeight = screenRect.height < f.getSize().height ?
+                screenRect.y :
+                screenRect.y + screenRect.height/2 - f.getSize().height/2;
 
-            centerHeight = centerHeight < screenInsets.top ?
-                    screenInsets.top : centerHeight;
+        centerHeight = centerHeight < screenInsets.top ?
+                screenInsets.top : centerHeight;
 
-            f.setLocation(centerWidth, centerHeight);
-	    f.show();
-          swingSets.add(this);
+        f.setLocation(centerWidth, centerHeight);
+        f.show();
+        swingSets.add(this);
 
     }
 
     public void initializeApp() {
         JPanel top = this;
-   /*     top.setLayout(new BorderLayout());
+        /*     top.setLayout(new BorderLayout());
         add(top, BorderLayout.NORTH);
         top.setSize(this.getWidth(), this.getHeight());*/
 
@@ -140,9 +148,9 @@ public class MainForm extends JPanel {
         infoPanel = createInfoPanel();
         top.add(infoPanel.infoPanel, BorderLayout.SOUTH);
 
-       }
+    }
 
-     /**
+    /**
      * Create Tabbed Pane
      */
     public JTabbedPane createTabbedPane() {
@@ -157,38 +165,38 @@ public class MainForm extends JPanel {
     }
 
 
-     /**
+    /**
      * Create Info Panel
      */
-     public InfoPanel createInfoPanel() {
-         InfoPanel NewInfoPanel = new InfoPanel();
-     return NewInfoPanel;
+    public InfoPanel createInfoPanel() {
+        InfoPanel NewInfoPanel = new InfoPanel();
+        return NewInfoPanel;
     }
 
 
-     /**
+    /**
      * Create menus
      */
     public JMenuBar createMenus() {
-	JMenuItem mi;
-	// ***** create the menubar ****
-	JMenuBar menuBar = new JMenuBar();
+        JMenuItem mi;
+        // ***** create the menubar ****
+        JMenuBar menuBar = new JMenuBar();
 //	menuBar.getAccessibleContext().setAccessibleName(
 //	    getString("MenuBar.accessible_description"));
 
-	// ***** create File menu
-	JMenu fileMenu = (JMenu) menuBar.add(new JMenu("Continent"));
+        // ***** create File menu
+        JMenu fileMenu = (JMenu) menuBar.add(new JMenu("Continent"));
 
-     mi = (JMenuItem) fileMenu.add(new JMenuItem("Charger un Seigneur")) ;
-     mi.addActionListener(new LordLoadAction(this));
+        mi = (JMenuItem) fileMenu.add(new JMenuItem("Charger un Seigneur")) ;
+        mi.addActionListener(new LordLoadAction(this));
 
 
         fileMenu.addSeparator();
 
 
-           mi = (JMenuItem) fileMenu.add(new JMenuItem("Open")) ;
+        mi = (JMenuItem) fileMenu.add(new JMenuItem("Open")) ;
 
-	return menuBar;
+        return menuBar;
     }
 
 
@@ -197,12 +205,12 @@ public class MainForm extends JPanel {
 
     public static void main (String[] args){
 
-        	MainForm mainForm = new MainForm( GraphicsEnvironment.
-                                             getLocalGraphicsEnvironment().
-                                             getDefaultScreenDevice().
-                                             getDefaultConfiguration());
+        MainForm mainForm = new MainForm( GraphicsEnvironment.
+                getLocalGraphicsEnvironment().
+                getDefaultScreenDevice().
+                getDefaultConfiguration());
 
-   /*
+        /*
         MainForm form = new MainForm();
 
         final JFrame frame = new JFrame ("Petit essai d'interface...");
@@ -236,20 +244,20 @@ public class MainForm extends JPanel {
 
 
 class LordLoadAction extends AbstractAction {
-MainForm mainForm;
+    MainForm mainForm;
     protected LordLoadAction(MainForm mainForm) {
         super("LordLoadAction");
-    this.mainForm = mainForm;
+        this.mainForm = mainForm;
     }
 
     public void actionPerformed(ActionEvent e) {
 
         // In a ComponentDialog, you can show as many message components and
-    // as many options as you want:
+        // as many options as you want:
         Lord lordToLoad;
 
-    // Messages
-         Object[] message;
+        // Messages
+        Object[] message;
         message = new Object[7];
         message[0] = "Choisissez un seigneur dans la liste. Saisissez votre mot de passe. puis validez.";
 
@@ -269,13 +277,13 @@ MainForm mainForm;
         message[5] = new JPasswordField();
         message[6] = "Ou creez un nouveau seigneur en cliquant sur le bouton <Creer un Seigneur>";
 
-      //?????  ((JPasswordField)message[5]).setVisible( ((JCheckBox)message[4]).isSelected() );
+        //?????  ((JPasswordField)message[5]).setVisible( ((JCheckBox)message[4]).isSelected() );
 
         // Check Box Action
- /*       ((JCheckBox)message[4]).addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                ((JPasswordField)message[5]).setVisible( ((JCheckBox)message[4]).isSelected() );
-            }
+        /*       ((JCheckBox)message[4]).addActionListener(new ActionListener() {
+        public void actionPerformed(ActionEvent e) {
+        ((JPasswordField)message[5]).setVisible( ((JCheckBox)message[4]).isSelected() );
+        }
         });   */
 
         // Options
@@ -397,8 +405,8 @@ MainForm mainForm;
 
         if ( res ==  JOptionPane.YES_OPTION ){
 
-           ContinentLoadingThread thread = new ContinentLoadingThread( mainForm, lordToLoad );
-           thread.start();
+            ContinentLoadingThread thread = new ContinentLoadingThread( mainForm, lordToLoad );
+            thread.start();
         }
     }
 }
@@ -438,7 +446,7 @@ class ContinentLoadingThread extends Thread {
         mainForm.getInfoPanel().progressBar.setValue( 5 );
         infoPanel.textInfo.setText("Seigneur loading...");
 
-        // Lord Refresh
+        // infoClass.Lord Refresh
         lordToLoad.setRace( infoReader.getRace() );
         mainForm.currentContinent.myRoyaume[0].setLord( lordToLoad );
         mainForm.getInfoPanel().seigneurName.setText( ""+mainForm.currentContinent.myRoyaume[0].getLord().getLogin() );
@@ -448,9 +456,9 @@ class ContinentLoadingThread extends Thread {
 
         // Progress Bar evolution
         mainForm.getInfoPanel().progressBar.setValue( 10 );
-        infoPanel.textInfo.setText("Continent loading...");
+        infoPanel.textInfo.setText("infoClass.Continent loading...");
 
-        // Continent Refresh
+        // infoClass.Continent Refresh
 
         mainForm.currentContinent.continentName = infoReader.getContinent();
         mainForm.getInfoPanel().continentName.setText( mainForm.currentContinent.continentName );
@@ -460,7 +468,7 @@ class ContinentLoadingThread extends Thread {
         mainForm.getInfoPanel().progressBar.setValue( 15 );
         infoPanel.textInfo.setText("Ressources loading...");
 
-        // Ressource Refresh
+        // infoClass.Ressource Refresh
         mainForm.currentContinent.myRoyaume[0].setRessource( infoReader.getRessources( mainForm.currentContinent.currentMoon ) );
         mainForm.getBilanPanel().updateRessources( mainForm.currentContinent.myRoyaume[0] );
 
@@ -468,7 +476,7 @@ class ContinentLoadingThread extends Thread {
         mainForm.getInfoPanel().progressBar.setValue( 25 );
         infoPanel.textInfo.setText("Connaissances loading...");
 
-        // Connaissance Refresh
+        // infoClass.Knowledge Refresh
         mainForm.currentContinent.myRoyaume[0].setConnaissances( infoReader.getConnaissances( mainForm.currentContinent.currentMoon ) );
         mainForm.getBilanPanel().updateConnaissancesTable( mainForm.currentContinent.myRoyaume[0] );
 
@@ -494,7 +502,7 @@ class ContinentLoadingThread extends Thread {
 
         // Royaumes connus Refresh
         //TODO ????????????? A REMETTRE des que David ma livrer la nouvelle function
- //       mainForm.currentContinent.otherRoyaume = infoReader.getRoyaumesConnus( mainForm.currentContinent.currentMoon );
+        //       mainForm.currentContinent.otherRoyaume = infoReader.getRoyaumesConnus( mainForm.currentContinent.currentMoon );
         mainForm.getBilanPanel().updateRoyaumesConnusTable( mainForm.currentContinent.otherRoyaume );
         mainForm.getGeneralPanel().updateGraphicPanel( mainForm.currentContinent );
 

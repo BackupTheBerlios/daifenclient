@@ -1,3 +1,9 @@
+package infoClass;
+
+import infoClass.Building;
+import infoClass.Knowledge;
+import infoClass.Lord;
+import infoClass.Ressource;
 
 /**
  * Created by IntelliJ IDEA.
@@ -33,7 +39,7 @@ public class Royaume {
     private Ressource ressource;
     private Ressource tmpRessource;
 
-    private Connaissance connaissances[];
+    private Knowledge connaissances[];
     private int nbKnowlegde = 0;
 
     private Building buildings[];
@@ -68,7 +74,7 @@ public class Royaume {
 
             if ( numFind > 0){
                 //?????????????????????
-                buildings[nbBuildingType] = new Building(InfoReader.getBuildname(buildingType),
+                buildings[nbBuildingType] = new infoClass.Building(InfoReader.getBuildname(buildingType),
                         InfoReader.getBuildingId(buildingType),
                         nbNew,
                         InfoReader.getBuildingR(buildingType),
@@ -132,7 +138,7 @@ public class Royaume {
 
         for ( i=0 ; i < nbBuildingType; i++){
             if ( (InfoReader.getTrooperGenerator(trooperType) == buildings[i].id)
-                    || (InfoReader.getTrooperGenerator(trooperType) == Building.Unknow.id) ){
+                    || (InfoReader.getTrooperGenerator(trooperType) == infoClass.Building.Unknow.id) ){
                 generatorFind = true;
             }
         }
@@ -151,7 +157,7 @@ public class Royaume {
 
             if ( numFind > 0){
                 //?????????????????????
-                troopers[nbTrooperType] = new Trooper(InfoReader.getTrooperName(trooperType),
+                troopers[nbTrooperType] = new infoClass.Trooper(InfoReader.getTrooperName(trooperType),
                         InfoReader.getTrooperId(trooperType),
                         nbNew,
                         InfoReader.getTrooperA(trooperType),
@@ -223,11 +229,11 @@ public class Royaume {
         this.tmpRessource = tmpRessource;
     }
 
-    public Connaissance[] getConnaissances() {
+    public Knowledge[] getConnaissances() {
         return connaissances;
     }
 
-    public void setConnaissances(Connaissance[] connaissances) {
+    public void setConnaissances(Knowledge[] connaissances) {
         this.connaissances = connaissances;
     }
 

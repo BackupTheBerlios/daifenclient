@@ -1,3 +1,4 @@
+package infoClass;
 
 /**
  * Created by IntelliJ IDEA.

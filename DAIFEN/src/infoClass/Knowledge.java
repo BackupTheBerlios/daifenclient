@@ -1,3 +1,4 @@
+package infoClass;
 
 /**
  * Created by IntelliJ IDEA.
@@ -6,13 +7,13 @@
  * Time: 4:17:24 PM
  * To change this template use File | Settings | File Templates.
  */
-public class Connaissance {
+public class Knowledge {
     
     private String name = null;
     private int id = -1;
     private int knowReq = -1;
 
-    public Connaissance(String name) {
+    public Knowledge(String name) {
         this.name = name;
     }
 

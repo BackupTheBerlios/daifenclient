@@ -1,3 +1,4 @@
+package panelClass;
 
 import javax.swing.*;
 import java.awt.*;

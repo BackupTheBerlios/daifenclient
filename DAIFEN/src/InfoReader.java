@@ -11,6 +11,7 @@ import java.util.Vector;
 import org.xml.sax.*;
 import org.xml.sax.ContentHandler;
 import org.xml.sax.helpers.*;
+import infoClass.*;
 
 /**
  * @author david
@@ -229,15 +230,15 @@ public class InfoReader {
     return new Ressource ( or, intellect );
   }
   
-  public Connaissance[] getConnaissances ( int numero_du_tour ) {
+  public Knowledge[] getConnaissances ( int numero_du_tour ) {
     Vector v = nd.getBilan ("Connaissances");
     if ( v.size() == 0)
       return null;
 
-    Connaissance[] b = new Connaissance[v.size()];
+    Knowledge[] b = new Knowledge[v.size()];
     for ( int i = 0; i < v.size(); i++ ) {
       CleValeur cv = (CleValeur)v.elementAt(i);
-      b[i] = new Connaissance ( cv.getCle() );
+      b[i] = new Knowledge ( cv.getCle() );
     }
 
     return b;
