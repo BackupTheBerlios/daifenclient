@@ -16,7 +16,7 @@
 package specific.data.info;
 
 
-public class TroupesInfo
+public class TroupesInfo extends Info
 {
    //*************************************************************************
    //***                          MEMBER DECLARATION                       ***
@@ -35,6 +35,8 @@ public class TroupesInfo
    //***                       CONSTRUCTOR DECLARATION                     ***
    //*************************************************************************
 
+   public TroupesInfo() {}
+
    public TroupesInfo(String p_unit, int p_quantity)
    {
       _unit      = p_unit;
@@ -43,11 +45,27 @@ public class TroupesInfo
 
 
    //*************************************************************************
-   //***                         PUBLIC DECLARATION                        ***
+   //***                              ACCESSOR                             ***
    //*************************************************************************
 
    public String getUnit    () { return _unit; }
    public int    getQuantity() { return _quantity; }
+
+   public void setUnit(String p_unit)
+   {
+      _unit = p_unit;
+   }
+
+   public void setQuantity(int p_quantity)
+   {
+      _quantity = p_quantity;
+   }
+
+
+   //*************************************************************************
+   //***                         PUBLIC DECLARATION                        ***
+   //*************************************************************************
+
 
 
    //*************************************************************************

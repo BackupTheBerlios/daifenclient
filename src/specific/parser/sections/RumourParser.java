@@ -15,8 +15,8 @@
 
 package specific.parser.sections;
 
-import specific.data.info.RumourInfo;
 import specific.data.api.RumourAPI;
+import specific.data.info.RumourInfo;
 import specific.parser.KingdomParserConstants;
 import tools.Trace;
 

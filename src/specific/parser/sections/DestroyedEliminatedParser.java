@@ -15,8 +15,8 @@
 
 package specific.parser.sections;
 
-import specific.data.info.KingdomInfo;
 import specific.data.api.DestroyedEliminatedAPI;
+import specific.data.info.KingdomInfo;
 import specific.parser.ContinentsParserConstants;
 import tools.Trace;
 

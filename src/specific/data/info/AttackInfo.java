@@ -18,7 +18,7 @@ package specific.data.info;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AttackInfo implements AttackStatus
+public class AttackInfo extends Info implements AttackStatus
 {
    //*************************************************************************
    //***                          MEMBER DECLARATION                       ***
@@ -44,13 +44,11 @@ public class AttackInfo implements AttackStatus
    //***                       CONSTRUCTOR DECLARATION                     ***
    //*************************************************************************
 
-   public AttackInfo()
-   {
-   }
+   public AttackInfo() {}
 
 
    //*************************************************************************
-   //***                         PUBLIC DECLARATION                        ***
+   //***                              ACCESSOR                             ***
    //*************************************************************************
 
    public int        getAttackStatus        () { return _attackStatus; }
@@ -77,8 +75,41 @@ public class AttackInfo implements AttackStatus
       _lstAttackers.addAll(p_lstAttackers);
    }
 
+   public void setLstAttackers(ArrayList p_lstAttackers)
+   {
+      _lstAttackers = p_lstAttackers;
+   }
 
-   
+   public void setLstAttackTroups(ArrayList p_lstAttackTroups)
+   {
+      _lstAttackTroups = p_lstAttackTroups;
+   }
+
+   public void setLstDefenseTroups(ArrayList p_lstDefenseTroups)
+   {
+      _lstDefenseTroups = p_lstDefenseTroups;
+   }
+
+   public void setLstDeadAttackTroups(ArrayList p_lstDeadAttackTroups)
+   {
+      _lstDeadAttackTroups = p_lstDeadAttackTroups;
+   }
+
+   public void setLstDeadDefenseTroups(ArrayList p_lstDeadDefenseTroups)
+   {
+      _lstDeadDefenseTroups = p_lstDeadDefenseTroups;
+   }
+
+   public void setLstDestroyedBuilding(ArrayList p_lstDestroyedBuilding)
+   {
+      _lstDestroyedBuilding = p_lstDestroyedBuilding;
+   }
+
+
+   //*************************************************************************
+   //***                         PUBLIC DECLARATION                        ***
+   //*************************************************************************
+
    public String[] getArrAttackers()
    {
       String[] l_result;

@@ -16,7 +16,7 @@
 package specific.data.info;
 
 
-public class ContactInfo
+public class ContactInfo extends Info
 {
    //*************************************************************************
    //***                          MEMBER DECLARATION                       ***
@@ -37,6 +37,8 @@ public class ContactInfo
    //***                       CONSTRUCTOR DECLARATION                     ***
    //*************************************************************************
 
+   public ContactInfo() {}
+
    public ContactInfo(String p_kingdom, String p_species, String p_email)
    {
       _kingdom = p_kingdom;
@@ -46,14 +48,34 @@ public class ContactInfo
 
 
    //*************************************************************************
-   //***                         PUBLIC DECLARATION                        ***
+   //***                              ACCESSOR                             ***
    //*************************************************************************
 
    public String getKingdom() { return _kingdom; };
    public String getSpecies() { return _species; };
    public String getEmail()   { return _email; };
 
+   public void setKingdom(String p_kingdom)
+   {
+      _kingdom = p_kingdom;
+   }
 
+   public void setSpecies(String p_species)
+   {
+      _species = p_species;
+   }
+
+   public void setEmail(String p_email)
+   {
+      _email = p_email;
+   }
+
+   //*************************************************************************
+   //***                         PUBLIC DECLARATION                        ***
+   //*************************************************************************
+
+
+   
    //*************************************************************************
    //***                        PROTECTED DECLARATION                      ***
    //*************************************************************************
@@ -66,6 +88,5 @@ public class ContactInfo
 
 
 }
-
 
 //*** EOF ************************************************************ EOF ***

@@ -68,7 +68,7 @@ public class ContinentsParser extends    MailParser
    {
       return (DestroyedEliminatedAPI) _eliminatedParser;
    }
-   
+
 
    //*************************************************************************
    //***                        PROTECTED DECLARATION                      ***

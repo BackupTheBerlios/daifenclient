@@ -18,6 +18,7 @@ package specific.parser.sections;
 import specific.parser.CommonParserConstants;
 import tools.Trace;
 
+import java.beans.XMLEncoder;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.regex.Pattern;
@@ -50,6 +51,21 @@ public abstract class SectionParser implements CommonParserConstants
    //***                       CONSTRUCTOR DECLARATION                     ***
    //*************************************************************************
 
+
+
+   //*************************************************************************
+   //***                              ACCESSOR                             ***
+   //*************************************************************************
+
+   public ArrayList getParsedData()
+   {
+      return _parsedData;
+   }
+
+   public void setParsedData(ArrayList p_parsedData)
+   {
+      _parsedData = p_parsedData;
+   }
 
 
    //*************************************************************************
@@ -127,7 +143,7 @@ public abstract class SectionParser implements CommonParserConstants
 
    protected boolean checkSubSection(String p_line)
    {
-      Trace.enterFunction("KingdomParser::checkSubSection()");
+      Trace.enterFunction("SectionParser::checkSubSection()");
 
       boolean l_foundSubSection = false;
 
@@ -147,7 +163,7 @@ public abstract class SectionParser implements CommonParserConstants
          }
       }
 
-      Trace.exitFunction("KingdomParser::checkSubSection()");
+      Trace.exitFunction("SectionParser::checkSubSection()");
 
       return l_foundSubSection;
    }
@@ -174,7 +190,6 @@ public abstract class SectionParser implements CommonParserConstants
       //
       // everything must be performed in the inherited classes
    }
-
 
 
    //*************************************************************************

@@ -15,8 +15,8 @@
 
 package specific.parser.sections;
 
-import specific.data.info.KnowledgeInfo;
 import specific.data.api.KnowledgeAPI;
+import specific.data.info.KnowledgeInfo;
 import specific.parser.KingdomParserConstants;
 import tools.Trace;
 

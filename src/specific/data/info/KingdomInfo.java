@@ -16,7 +16,7 @@
 package specific.data.info;
 
 
-public class KingdomInfo
+public class KingdomInfo extends Info
 {
    //*************************************************************************
    //***                          MEMBER DECLARATION                       ***
@@ -37,6 +37,8 @@ public class KingdomInfo
    //***                       CONSTRUCTOR DECLARATION                     ***
    //*************************************************************************
 
+   public KingdomInfo() {}
+
    public KingdomInfo(String p_kingdom,
                       String p_species,
                       String p_continent)
@@ -48,12 +50,32 @@ public class KingdomInfo
 
 
    //*************************************************************************
-   //***                         PUBLIC DECLARATION                        ***
+   //***                              ACCESSOR                             ***
    //*************************************************************************
 
    public String getKingdom  () { return _kingdom; }
    public String getSpecies  () { return _species; }
    public String getContinent() { return _continent; }
+
+   public void setKingdom(String p_kingdom)
+   {
+      _kingdom = p_kingdom;
+   }
+
+   public void setSpecies(String p_species)
+   {
+      _species = p_species;
+   }
+
+   public void setContinent(String p_continent)
+   {
+      _continent = p_continent;
+   }
+
+
+   //*************************************************************************
+   //***                         PUBLIC DECLARATION                        ***
+   //*************************************************************************
 
 
 

@@ -19,17 +19,16 @@ import exception.ParsingMessageException;
 import mailbox.MailBody;
 import mailbox.MailMessage;
 import netscape.messaging.mime.*;
-import specific.data.api.DataKingdomAPI;
 import specific.data.api.DataContinentsAPI;
+import specific.data.api.DataKingdomAPI;
 import specific.parser.ContinentsParser;
 import specific.parser.KingdomParser;
 import specific.parser.MailParser;
 import tools.Trace;
 
-import java.io.ByteArrayInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.HashMap;
+import java.io.*;
+import java.beans.XMLEncoder;
+import java.beans.XMLDecoder;
 
 
 public class DaifenMessage implements DaifenConstants
@@ -67,6 +66,20 @@ public class DaifenMessage implements DaifenConstants
    }
 
 
+   public DaifenMessage(String p_file) throws FileNotFoundException
+   {
+      //==================== check if the file name exist ====================
+
+      FileInputStream l_in = new FileInputStream(p_file);
+
+      XMLDecoder l_decoder = new XMLDecoder(l_in);
+
+      readObject(l_decoder);
+
+      _mailParsed = true;
+   }
+
+
    //*************************************************************************
    //***                         PUBLIC DECLARATION                        ***
    //*************************************************************************
@@ -86,11 +99,19 @@ public class DaifenMessage implements DaifenConstants
    }
 
 
-   //*************************************************************************
-   //***                        PROTECTED DECLARATION                      ***
-   //*************************************************************************
+   public void writeObject(String p_file) throws FileNotFoundException
+   {
+      XMLEncoder l_encoder = new XMLEncoder(new FileOutputStream(p_file));
 
-   protected void parseMail() throws ParsingMessageException
+      l_encoder.writeObject(new Boolean(_mailParsed));
+      l_encoder.writeObject(_continentParser);
+      l_encoder.writeObject(_kingdomParser);
+
+      l_encoder.close();
+   }
+
+
+   public void parseMail() throws ParsingMessageException
    {
       Trace.enterFunction("DaifenMessage::parseMail()");
 
@@ -132,6 +153,10 @@ public class DaifenMessage implements DaifenConstants
    }
 
 
+   //*************************************************************************
+   //***                        PROTECTED DECLARATION                      ***
+   //*************************************************************************
+
    private void extractMailData(MIMEMessage p_MIMEmsg) throws MIMEException,
                                                               ParsingMessageException
    {
@@ -144,7 +169,7 @@ public class DaifenMessage implements DaifenConstants
          throw new NullPointerException();
       }
 
-      //=============== check if the createIterator part of the message is ============
+      //========= check if the createIterator part of the message is =========
       //======================== type of MIMEMultiPart =======================
 
       MIMEMultiPart l_multiPart = null;
@@ -165,7 +190,7 @@ public class DaifenMessage implements DaifenConstants
          throw new ParsingMessageException();
       }
 
-      //============== This createIterator part corresponds to the list of ============
+      //========= This createIterator part corresponds to the list of ========
       //=================== eliminated and destroyed kingdom =================
 
       Object l_firstPart = l_multiPart.getBodyPart(0, false);
@@ -230,6 +255,13 @@ public class DaifenMessage implements DaifenConstants
       Trace.exitFunction("DaifenMessage::parseMainPart()");
    }
 
+
+   protected void readObject(XMLDecoder p_decoder)
+   {
+      _mailParsed = ((Boolean) p_decoder.readObject()).booleanValue();
+//      _continentParser.readObject(l_encoder);
+//      _kingdomParser.readObject(l_encoder);
+   }
 
 
    //@@@@@@@@@@@@@@@@@@@@   TEMPORARY USEFUL FUNCTION   @@@@@@@@@@@@@@@@@@@@@@

@@ -2,9 +2,20 @@
 
 import tools.Trace;
 
-import java.io.File;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
+import javax.swing.JButton;
+import java.beans.XMLEncoder;
+import java.beans.XMLDecoder;
+import java.beans.PersistenceDelegate;
+import java.beans.DefaultPersistenceDelegate;
+import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.lang.reflect.Field;
+import java.awt.Point;
+
+import specific.data.info.AttackInfo;
+import specific.data.info.TroupesInfo;
+import specific.DaifenMessage;
 
 /**
  * Main.java
@@ -12,24 +23,57 @@ import java.lang.reflect.Method;
  * DESCRIPTION:
  *
  *    @author        STOLLVOR  -  Mar 29, 2004
- *    @version       v0.1          
+ *    @version       v0.1
  *
  * HOW TO USE:
  *
  *
  */
 
-class Essai
+class Essai implements Serializable
 {
-   public void essai()
+   private String  _name    = new String("Toto");
+   public int      _value   = 123;
+
+   public String getName()
    {
-      System.out.println("Execution de la fonction essai()...");
+      return _name;
    }
 
-   public void essai2(int i)
+   public int getValue()
    {
-      System.out.println("Execution de la fonction essai2(" + i + ")...");
+      return _value;
    }
+
+   public void setName(String p_name)
+   {
+      _name = p_name;
+   }
+
+   public void setValue(int p_value)
+   {
+      _value = p_value;
+   }
+//   public void essai()
+//   {
+//      System.out.println("Execution de la fonction essai()...");
+//   }
+//
+//   public void essai2(int i)
+//   {
+//      System.out.println("Execution de la fonction essai2(" + i + ")...");
+//   }
+}
+
+class Stuff {
+   private int k = 1;
+   private String s = "hello";
+
+   public Stuff() {}
+   public int getK() {return k;}
+   public String getS(){return s;}
+   public void setK(int i) {k=i;}
+   public void setS(String t){s=t;}
 }
 
 public class Main
@@ -62,35 +106,57 @@ public class Main
    {
       Trace.setTraces((new File("./TRACES")).isFile());
 
-      Trace.println("Connecting to yahoo...");
+      Trace.println("Main starts...");
 
-      Essai    l_essai = new Essai();
-      Method[] l_lst   = l_essai.getClass().getMethods();
-
-      for ( int i = 0 ; i < l_lst.length ; i++ )
+      /*try
       {
-         Method f = l_lst[i];
+         AttackInfo l_info = new AttackInfo();
+         l_info.setAttackedKingdom("Stollvor");
+         l_info.setAttackStatus(1);
+         l_info.getLstAttackers().add("Stollvor") ;
+         l_info.getLstAttackers().add("Portekwa") ;
+         l_info.getLstAttackers().add("Argawaen") ;
+         l_info.getLstAttackTroups().add(new TroupesInfo("Shaman", 12));
+         l_info.getLstAttackTroups().add(new TroupesInfo("Eluros", 85));
 
-         if ( f.getName().compareTo("essai2") == 0 )
-         {
-            try
-            {
-               f.invoke(l_essai, new Object[0]);
-//               Class[] l_type = f.getParameterTypes();
-//               l_type.clone();
-//               f.invoke(l_essai, new Class[] {Class.class. });
-            }
-            catch ( IllegalAccessException e )
-            {
-               // TODO: Meme si tu ne traites pas l'exception pour le moment
-               //       met au moins une trace... Trace.println(...);
-            }
-            catch ( InvocationTargetException e )
-            {
-               // TODO: Meme si tu ne traites pas l'exception pour le moment
-               //       met au moins une trace... Trace.println(...);
-            }
-         }
+         TroupesInfo l_troupes = new TroupesInfo("Firmir", 60);
+         l_troupes.setUnit("Orc");
+         l_troupes.setQuantity(123);
+
+
+         String filename = "Test.xml";
+         XMLEncoder encoder = new XMLEncoder(new FileOutputStream(filename));
+
+         encoder.writeObject(l_info);
+         encoder.writeObject(l_info.getLstAttackers());
+         encoder.writeObject(l_info.getArrAttackTroups());
+
+         encoder.close();
+
+
+
+//         XMLDecoder decoder = new XMLDecoder(
+//            new FileInputStream(filename));
+//         AttackInfo x =  (AttackInfo)decoder.readObject();
+//         x.setLstAttackers((List) decoder.readObject());
+//         System.out.println(
+//            "k=" +  x.getAttackedKingdom() + " s=" + x.getAttackStatus());
+      }
+      catch (FileNotFoundException e)
+      {
+         System.out.println("not found");
+      }*/
+
+
+      String l_file = "347.xml";
+
+      try
+      {
+         DaifenMessage l_msg = new DaifenMessage(l_file);
+      }
+      catch ( FileNotFoundException e )
+      {
+         System.out.println("FileNotFoundException encountered...");
       }
 
 

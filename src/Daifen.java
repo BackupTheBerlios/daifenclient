@@ -9,8 +9,9 @@ import specific.data.api.*;
 import specific.data.info.*;
 import tools.Trace;
 
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
+import java.beans.XMLEncoder;
+import java.beans.XMLDecoder;
 
 /**
  * Daifen.java
@@ -37,7 +38,7 @@ public class Daifen
    private static String _mailerType    = "POP3";
    private static String _server        = "pop.mail.yahoo.fr";
    private static String _user          = "stollvor";
-   private static String _password      = "";
+   private static String _password      = "ajbat0jk";
 
 
    //===============================   PROTECTED   ===========================
@@ -71,7 +72,7 @@ public class Daifen
 
          try
          {
-            MailMessage l_msg = l_daifen.getBilan("344");
+            MailMessage l_msg = l_daifen.getBilan("347");
 //            MailMessage l_msg = l_daifen.getLastBilan();
 
             if ( l_msg != null )
@@ -82,7 +83,31 @@ public class Daifen
 
                try
                {
+                  l_DaifenMsg.parseMail();
+
+                  l_DaifenMsg.writeObject("347.xml");
+
                   DataKingdomAPI l_kdApi = l_DaifenMsg.getKingdomDataAPI();
+
+                  /*try
+                  {
+//                     String filename = "Test.xml";
+//                     XMLEncoder encoder =
+//                        new XMLEncoder(new  FileOutputStream(filename));
+//                     encoder.writeObject(l_DaifenMsg);
+//                     encoder.close();
+
+//                  XMLDecoder decoder = new XMLDecoder(
+//                     new FileInputStream(filename));
+//                  AttackInfo x =  (AttackInfo)decoder.readObject();
+//                  System.out.println(
+//                     "k=" +  x.getAttackedKingdom() + " s=" + x.getAttackStatus());
+                  }
+                  catch (FileNotFoundException e)
+                  {
+                     System.out.println("not found");
+                  }*/
+
 
                   //########################   ATTACK   ######################
 
@@ -235,6 +260,11 @@ public class Daifen
          {
             System.out.println("Exception Error: " +
                                "Unable to retrieve the last bilan.");
+         }
+         catch ( FileNotFoundException e )
+         {
+            System.out.println("Exception Error: " +
+                               "Unable to read/write the persistant file.");
          }
          catch ( IOException e )
          {

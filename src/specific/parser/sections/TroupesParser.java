@@ -15,8 +15,8 @@
 
 package specific.parser.sections;
 
-import specific.data.info.TroupesInfo;
 import specific.data.api.TroupesAPI;
+import specific.data.info.TroupesInfo;
 import specific.parser.KingdomParserConstants;
 import tools.Trace;
 

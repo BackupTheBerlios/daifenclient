@@ -16,8 +16,6 @@
 package specific.parser;
 
 
-
-
 public interface KingdomParserConstants
 {
    //*************************************************************************

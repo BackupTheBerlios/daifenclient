@@ -16,7 +16,7 @@
 package specific.data.info;
 
 
-public class RumourInfo
+public class RumourInfo extends Info
 {
    //*************************************************************************
    //***                          MEMBER DECLARATION                       ***
@@ -36,21 +36,26 @@ public class RumourInfo
    //***                       CONSTRUCTOR DECLARATION                     ***
    //*************************************************************************
 
-   public RumourInfo()
-   {
-   }
+   public RumourInfo() {}
 
 
    //*************************************************************************
-   //***                         PUBLIC DECLARATION                        ***
+   //***                              ACCESSOR                             ***
    //*************************************************************************
 
    public String getKingdom() { return _kingdom; }
    public String getRumour () { return _rumour; }
 
    public void setKingdom  (String p_kingdom) { _kingdom  = p_kingdom; }
+   public void setRumour   (String p_rumour)  { _rumour   = p_rumour; }
    public void appendRumour(String p_rumour)  { _rumour  += p_rumour; }
 
+
+   //*************************************************************************
+   //***                         PUBLIC DECLARATION                        ***
+   //*************************************************************************
+
+   
 
    //*************************************************************************
    //***                        PROTECTED DECLARATION                      ***

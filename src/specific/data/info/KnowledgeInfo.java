@@ -16,7 +16,7 @@
 package specific.data.info;
 
 
-public class KnowledgeInfo
+public class KnowledgeInfo extends Info
 {
    //*************************************************************************
    //***                          MEMBER DECLARATION                       ***
@@ -36,6 +36,8 @@ public class KnowledgeInfo
    //***                       CONSTRUCTOR DECLARATION                     ***
    //*************************************************************************
 
+   public KnowledgeInfo() {}
+
    public KnowledgeInfo(String p_knowledge, int p_turn)
    {
       _knowledge = p_knowledge;
@@ -44,11 +46,27 @@ public class KnowledgeInfo
 
 
    //*************************************************************************
-   //***                         PUBLIC DECLARATION                        ***
+   //***                              ACCESSOR                             ***
    //*************************************************************************
 
    public String getknowledge() { return _knowledge; }
    public int    getTurn     () { return _turn; }
+
+   public void setKnowledge(String p_knowledge)
+   {
+      _knowledge = p_knowledge;
+   }
+
+   public void setTurn(int p_turn)
+   {
+      _turn = p_turn;
+   }
+
+
+   //*************************************************************************
+   //***                         PUBLIC DECLARATION                        ***
+   //*************************************************************************
+
 
 
    //*************************************************************************

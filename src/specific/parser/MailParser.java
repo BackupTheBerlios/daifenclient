@@ -24,6 +24,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.regex.Pattern;
+import java.beans.XMLEncoder;
+import java.beans.XMLDecoder;
 
 
 public abstract class MailParser implements CommonParserConstants
@@ -48,6 +50,21 @@ public abstract class MailParser implements CommonParserConstants
 
    public MailParser()
    {
+   }
+
+
+   //*************************************************************************
+   //***                              ACCESSOR                             ***
+   //*************************************************************************
+
+   public SectionParser[] getLstSectionsParsers()
+   {
+      return _lstSectionsParsers;
+   }
+
+   public void setLstSectionsParsers(SectionParser[] p_lstSectionsParsers)
+   {
+      _lstSectionsParsers = p_lstSectionsParsers;
    }
 
 
