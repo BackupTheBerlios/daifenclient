@@ -19,7 +19,8 @@ import exception.ParsingMessageException;
 import mailbox.MailBody;
 import mailbox.MailMessage;
 import netscape.messaging.mime.*;
-import specific.data.api.KingdomDataAPI;
+import specific.data.api.DataKingdomAPI;
+import specific.data.api.DataContinentsAPI;
 import specific.parser.ContinentsParser;
 import specific.parser.KingdomParser;
 import specific.parser.MailParser;
@@ -41,7 +42,7 @@ public class DaifenMessage implements DaifenConstants
 
    private MailMessage  _msg              = null;
 
-   private HashMap      _messageContent   = null;
+   private boolean      _mailParsed       = false;
 
    MailParser           _continentParser  = new ContinentsParser();
    MailParser           _kingdomParser    = new KingdomParser();
@@ -70,19 +71,18 @@ public class DaifenMessage implements DaifenConstants
    //***                         PUBLIC DECLARATION                        ***
    //*************************************************************************
 
-   public KingdomDataAPI getKingdomDataAPI() throws ParsingMessageException
+   public DataKingdomAPI getKingdomDataAPI() throws ParsingMessageException
    {
       if ( isParsingMessageNeeded() ) parseMail();
 
-      return (KingdomDataAPI) _kingdomParser;
+      return (DataKingdomAPI) _kingdomParser;
    }
 
-   public KingdomDataAPI getContinentsDataAPI() throws ParsingMessageException
+   public DataContinentsAPI getContinentsDataAPI() throws ParsingMessageException
    {
       if ( isParsingMessageNeeded() ) parseMail();
 
-//      return (ContinentsDataAPI) _continentsParser;
-      return null;
+      return (DataContinentsAPI) _continentParser;
    }
 
 
@@ -94,7 +94,7 @@ public class DaifenMessage implements DaifenConstants
    {
       Trace.enterFunction("DaifenMessage::parseMail()");
 
-      _messageContent = new HashMap();
+      _mailParsed = false;
 
       MailBody l_mailBody  = _msg;
 //      String   l_bufBody      = _msg.getBody();
@@ -125,6 +125,8 @@ public class DaifenMessage implements DaifenConstants
 
          throw new ParsingMessageException();
       }
+
+      _mailParsed = true;
 
       Trace.exitFunction("DaifenMessage::parseMail()");
    }
@@ -421,7 +423,7 @@ public class DaifenMessage implements DaifenConstants
 
    private boolean isParsingMessageNeeded()
    {
-      return _messageContent == null;
+      return _mailParsed == false;
    }
 }
 

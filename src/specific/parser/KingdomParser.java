@@ -15,14 +15,12 @@
 
 package specific.parser;
 
-import specific.data.api.AttackAPI;
-import specific.data.api.KingdomDataAPI;
-import specific.data.api.SocialAPI;
+import specific.data.api.*;
 import specific.parser.sections.*;
 
 
 public class KingdomParser extends    MailParser
-                           implements KingdomParserConstants, KingdomDataAPI
+                           implements KingdomParserConstants, DataKingdomAPI
 {
    //*************************************************************************
    //***                          MEMBER DECLARATION                       ***
@@ -76,6 +74,31 @@ public class KingdomParser extends    MailParser
    public SocialAPI getSocialAPI()
    {
       return (SocialAPI) _socialParser;
+   }
+
+   public ContactAPI getContactAPI()
+   {
+      return (ContactAPI) _contactParser;
+   }
+
+   public EconomyAPI getEconomyAPI()
+   {
+      return (EconomyAPI) _economyParser;
+   }
+
+   public KnowledgeAPI getKnowledgeAPI()
+   {
+      return (KnowledgeAPI) _knowledgeParser;
+   }
+
+   public TroupesAPI getTroupesAPI()
+   {
+      return (TroupesAPI) _invTroupesParser;
+   }
+
+   public TroupesAPI getBatimentsAPI()
+   {
+      return (TroupesAPI) _invBatimentsParser;
    }
 
 

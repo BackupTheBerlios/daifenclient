@@ -17,10 +17,13 @@ package specific.parser;
 
 import specific.parser.sections.DestroyedEliminatedParser;
 import specific.parser.sections.SectionParser;
+import specific.data.api.DataContinentsAPI;
+import specific.data.api.DestroyedEliminatedAPI;
 
 
 public class ContinentsParser extends    MailParser
-                              implements ContinentsParserConstants
+                              implements ContinentsParserConstants,
+                                         DataContinentsAPI
 {
    //*************************************************************************
    //***                          MEMBER DECLARATION                       ***
@@ -56,8 +59,17 @@ public class ContinentsParser extends    MailParser
    //***                         PUBLIC DECLARATION                        ***
    //*************************************************************************
 
+   public DestroyedEliminatedAPI getDestroyedAPI()
+   {
+      return (DestroyedEliminatedAPI) _detroyedParser;
+   }
 
+   public DestroyedEliminatedAPI getEliminatedAPI()
+   {
+      return (DestroyedEliminatedAPI) _eliminatedParser;
+   }
    
+
    //*************************************************************************
    //***                        PROTECTED DECLARATION                      ***
    //*************************************************************************

@@ -1,7 +1,7 @@
 // CC_VERSIONS
 
 /**
- * KingdomDataAPI.java
+ * DataKingdomAPI.java
  *
  * DESCRIPTION:
  *
@@ -16,15 +16,19 @@
 package specific.data.api;
 
 
-public interface KingdomDataAPI
+public interface DataKingdomAPI
 {
    //*************************************************************************
    //***                          MEMBER DECLARATION                       ***
    //*************************************************************************
 
-   AttackAPI getAttackAPI();
-   SocialAPI getSocialAPI();
-
+   AttackAPI               getAttackAPI();
+   ContactAPI              getContactAPI();
+   EconomyAPI              getEconomyAPI();
+   KnowledgeAPI            getKnowledgeAPI();
+   SocialAPI               getSocialAPI();
+   TroupesAPI              getTroupesAPI();
+   TroupesAPI              getBatimentsAPI();
 }
 
 

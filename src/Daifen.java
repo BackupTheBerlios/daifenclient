@@ -6,10 +6,12 @@ import mailbox.MailMessage;
 import specific.DaifenManager;
 import specific.DaifenMessage;
 import specific.data.api.AttackAPI;
-import specific.data.api.KingdomDataAPI;
+import specific.data.api.DataKingdomAPI;
 import specific.data.api.SocialAPI;
+import specific.data.api.ContactAPI;
 import specific.data.info.AttackInfo;
 import specific.data.info.TroupesInfo;
+import specific.data.info.ContactInfo;
 import tools.Trace;
 
 import java.io.File;
@@ -85,26 +87,13 @@ public class Daifen
 
                try
                {
-                  KingdomDataAPI l_kdApi     = l_DaifenMsg.getKingdomDataAPI();
-
-                  //########################   SOCIAL   ######################
-
-                  SocialAPI      l_socialApi = l_kdApi.getSocialAPI();
-
-                  {
-                     String l_str    = null;
-                     int    l_points = 0;
-
-                     l_str    = l_socialApi.getRank();
-                     l_str    = l_socialApi.getInfo();
-                     l_points = l_socialApi.getPoints();
-                  }
+                  DataKingdomAPI l_kdApi = l_DaifenMsg.getKingdomDataAPI();
 
                   //########################   ATTACK   ######################
 
-                  AttackAPI      l_attackApi = l_kdApi.getAttackAPI();
-
                   {
+                     AttackAPI l_attackApi = l_kdApi.getAttackAPI();
+
                      l_attackApi.createIterator();
                      while ( l_attackApi.hasNext() )
                      {
@@ -123,6 +112,40 @@ public class Daifen
                         l_lst2   = l_info.getArrDeadDefenseTroups();
                         l_lst2   = l_info.getArrDefenseTroups();
                         l_lst2   = l_info.getArrDestroyedBuilding();
+                     }
+                  }
+
+                  //########################   SOCIAL   ######################
+
+                  {
+                     SocialAPI l_socialApi = l_kdApi.getSocialAPI();
+
+                     String l_str    = null;
+                     int    l_points = 0;
+
+                     l_str    = l_socialApi.getRank();
+                     l_str    = l_socialApi.getInfo();
+                     l_points = l_socialApi.getPoints();
+                  }
+
+                  //#######################   CONTACTS   #####################
+
+                  {
+                     ContactAPI l_contactApi = l_kdApi.getContactAPI();
+
+                     l_contactApi.createIterator();
+                     while ( l_contactApi.hasNext() )
+                     {
+                        ContactInfo l_info = l_contactApi.next();
+
+                        String        l_str;
+                        int           l_status;
+                        String[]      l_lst1;
+                        TroupesInfo[] l_lst2;
+
+                        l_str    = l_info.getKingdom();
+                        l_str    = l_info.getSpecies();
+                        l_str    = l_info.getEmail();
                      }
                   }
 
