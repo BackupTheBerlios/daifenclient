@@ -1,31 +1,31 @@
 // CC_VERSIONS
 
 /**
- * KingdomParser.java
+ * EconomyInfo.java
  *
  * DESCRIPTION:
  *
- *    @author        STOLLVOR  -  May 19, 2004
- *    @version       v0.1
+ *    @author        STOLLVOR  -  Jun 4, 2004
+ *    @version       v0.1          
  *
  * HOW TO USE:
  *
  *
  */
 
-package specific.parser;
-
-import specific.parser.sections.*;
+package specific.data;
 
 
-public class KingdomParser extends    MailParser
-                           implements KingdomParserConstants
+public class EconomyInfo
 {
    //*************************************************************************
    //***                          MEMBER DECLARATION                       ***
    //*************************************************************************
 
    //================================   PRIVATE   ============================
+
+   private int _gold       = -1;
+   private int _intellect  = -1;
 
 
    //===============================   PROTECTED   ===========================
@@ -36,17 +36,10 @@ public class KingdomParser extends    MailParser
    //***                       CONSTRUCTOR DECLARATION                     ***
    //*************************************************************************
 
-   public KingdomParser()
+   public EconomyInfo(int p_gold, int p_intellect)
    {
-      _lstSectionsParsers = new SectionParser[]
-                                    {
-                                       new RumourParser(),
-                                       new EconomyParser(),
-                                       new TroupesParser(CST_INV_TROUPES),
-                                       new TroupesParser(CST_INV_BATIMENTS),
-                                       new KnowledgeParser(),
-                                       new ContactParser(),
-                                    };
+      _gold       = p_gold;
+      _intellect  = p_intellect;
    }
 
 
@@ -54,6 +47,8 @@ public class KingdomParser extends    MailParser
    //***                         PUBLIC DECLARATION                        ***
    //*************************************************************************
 
+   public int getGold     () { return _gold; }
+   public int getIntellect() { return _intellect; }
 
 
    //*************************************************************************
@@ -68,5 +63,6 @@ public class KingdomParser extends    MailParser
 
 
 }
+
 
 //*** EOF ************************************************************ EOF ***

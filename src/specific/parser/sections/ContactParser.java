@@ -1,24 +1,29 @@
 // CC_VERSIONS
 
 /**
- * KingdomParser.java
+ * ContactParser.java
  *
  * DESCRIPTION:
  *
- *    @author        STOLLVOR  -  May 19, 2004
- *    @version       v0.1
+ *    @author        STOLLVOR  -  Jun 4, 2004
+ *    @version       v0.1          
  *
  * HOW TO USE:
  *
  *
  */
 
-package specific.parser;
+package specific.parser.sections;
 
-import specific.parser.sections.*;
+import specific.data.ContactInfo;
+import specific.parser.KingdomParserConstants;
+import tools.Trace;
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 
-public class KingdomParser extends    MailParser
+public class ContactParser extends    SectionParser
                            implements KingdomParserConstants
 {
    //*************************************************************************
@@ -26,6 +31,8 @@ public class KingdomParser extends    MailParser
    //*************************************************************************
 
    //================================   PRIVATE   ============================
+
+   Pattern _patternRegexp = Pattern.compile(CST_CONTACTS_REGEXP);
 
 
    //===============================   PROTECTED   ===========================
@@ -36,17 +43,15 @@ public class KingdomParser extends    MailParser
    //***                       CONSTRUCTOR DECLARATION                     ***
    //*************************************************************************
 
-   public KingdomParser()
+   public ContactParser()
    {
-      _lstSectionsParsers = new SectionParser[]
-                                    {
-                                       new RumourParser(),
-                                       new EconomyParser(),
-                                       new TroupesParser(CST_INV_TROUPES),
-                                       new TroupesParser(CST_INV_BATIMENTS),
-                                       new KnowledgeParser(),
-                                       new ContactParser(),
-                                    };
+      _sectionPattern       = Pattern.compile(CST_CONTACTS);
+
+      _lstSubSectionPattern = new Pattern[] {
+                                            };
+
+      _lstSubSectionIndex   = new int[]     {
+                                            };
    }
 
 
@@ -66,7 +71,31 @@ public class KingdomParser extends    MailParser
    //***                         PRIVATE DECLARATION                       ***
    //*************************************************************************
 
+   protected void specificParseLineData(String p_line)
+   {
+      Matcher l_matcher = _patternRegexp.matcher(p_line);
 
+      if ( l_matcher.matches() )
+      {
+         String   l_king    = new String();
+         String   l_species = new String();
+         String   l_email   = new String();
+
+         l_king    = new String(l_matcher.group(1));
+         l_species = new String(l_matcher.group(2));
+         l_email   = new String(l_matcher.group(3));
+
+         ContactInfo l_info = new ContactInfo(l_king, l_species, l_email);
+
+         Trace.println("---------------------------------");
+         Trace.println("   King    : ", l_king);
+         Trace.println("   Species : ", l_species);
+         Trace.println("   Email   : ", l_email);
+
+         _parsedData.add(l_info);
+      }
+   }
 }
+
 
 //*** EOF ************************************************************ EOF ***

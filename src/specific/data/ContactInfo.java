@@ -1,31 +1,32 @@
 // CC_VERSIONS
 
 /**
- * KingdomParser.java
+ * ContactInfo.java
  *
  * DESCRIPTION:
  *
- *    @author        STOLLVOR  -  May 19, 2004
- *    @version       v0.1
+ *    @author        STOLLVOR  -  Jun 4, 2004
+ *    @version       v0.1          
  *
  * HOW TO USE:
  *
  *
  */
 
-package specific.parser;
-
-import specific.parser.sections.*;
+package specific.data;
 
 
-public class KingdomParser extends    MailParser
-                           implements KingdomParserConstants
+public class ContactInfo
 {
    //*************************************************************************
    //***                          MEMBER DECLARATION                       ***
    //*************************************************************************
 
    //================================   PRIVATE   ============================
+
+   private String _king    = new String();
+   private String _species = new String();
+   private String _email   = new String();
 
 
    //===============================   PROTECTED   ===========================
@@ -36,17 +37,11 @@ public class KingdomParser extends    MailParser
    //***                       CONSTRUCTOR DECLARATION                     ***
    //*************************************************************************
 
-   public KingdomParser()
+   public ContactInfo(String p_king, String p_species, String p_email)
    {
-      _lstSectionsParsers = new SectionParser[]
-                                    {
-                                       new RumourParser(),
-                                       new EconomyParser(),
-                                       new TroupesParser(CST_INV_TROUPES),
-                                       new TroupesParser(CST_INV_BATIMENTS),
-                                       new KnowledgeParser(),
-                                       new ContactParser(),
-                                    };
+      _king    = p_king;
+      _species = p_species;
+      _email   = p_email;
    }
 
 
@@ -54,6 +49,9 @@ public class KingdomParser extends    MailParser
    //***                         PUBLIC DECLARATION                        ***
    //*************************************************************************
 
+   public String getKing()    { return _king; };
+   public String getSpecies() { return _species; };
+   public String getEmail()   { return _email; };
 
 
    //*************************************************************************
@@ -68,5 +66,6 @@ public class KingdomParser extends    MailParser
 
 
 }
+
 
 //*** EOF ************************************************************ EOF ***

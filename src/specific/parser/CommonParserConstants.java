@@ -16,7 +16,7 @@
 package specific.parser;
 
 
-interface CommonParserConstants
+public interface CommonParserConstants
 {
    //*************************************************************************
    //***                          MEMBER DECLARATION                       ***

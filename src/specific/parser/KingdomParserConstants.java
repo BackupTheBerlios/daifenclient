@@ -18,7 +18,7 @@ package specific.parser;
 
 
 
-interface KingdomParserConstants
+public interface KingdomParserConstants
 {
    //*************************************************************************
    //***                          MEMBER DECLARATION                       ***
@@ -42,6 +42,12 @@ interface KingdomParserConstants
    public final String CST_CONNAISSANCES  = "Connaissances acquises :";
    public final String CST_CONTACTS       = "Royaumes Connus :";
    public final String CST_SOCIAL         = "Social +\\(. .\\)";
+
+   public final String CST_ECONOMIE_REGEXP       = "\\| Total Fin du tour +\\| (\\d+) +\\| (\\d+) +\\|";
+   public final String CST_INV_TROUPES_REGEXP    = "\\| (.+\\w) +\\| (\\d+) +\\| +\\|";
+   public final String CST_CONNAISSANCES_REGEXP  = "- (.+\\w) \\(Tour (\\d+)\\)";
+   public final String CST_CONTACTS_REGEXP       = "- (.+\\w) \\((\\w+)\\) Contact : ([\\w@\\.\\-]+)";
+
 
    //.............. flag that indicates in which section we are ..............
 

@@ -1,24 +1,29 @@
 // CC_VERSIONS
 
 /**
- * KingdomParser.java
+ * TroupesParser.java
  *
  * DESCRIPTION:
  *
- *    @author        STOLLVOR  -  May 19, 2004
- *    @version       v0.1
+ *    @author        STOLLVOR  -  Jun 4, 2004
+ *    @version       v0.1          
  *
  * HOW TO USE:
  *
  *
  */
 
-package specific.parser;
+package specific.parser.sections;
 
-import specific.parser.sections.*;
+import specific.data.TroupesInfo;
+import specific.parser.KingdomParserConstants;
+import tools.Trace;
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 
-public class KingdomParser extends    MailParser
+public class TroupesParser extends    SectionParser
                            implements KingdomParserConstants
 {
    //*************************************************************************
@@ -26,6 +31,8 @@ public class KingdomParser extends    MailParser
    //*************************************************************************
 
    //================================   PRIVATE   ============================
+
+   Pattern _patternRegexp = Pattern.compile(CST_INV_TROUPES_REGEXP);
 
 
    //===============================   PROTECTED   ===========================
@@ -36,17 +43,15 @@ public class KingdomParser extends    MailParser
    //***                       CONSTRUCTOR DECLARATION                     ***
    //*************************************************************************
 
-   public KingdomParser()
+   public TroupesParser(String p_kind)
    {
-      _lstSectionsParsers = new SectionParser[]
-                                    {
-                                       new RumourParser(),
-                                       new EconomyParser(),
-                                       new TroupesParser(CST_INV_TROUPES),
-                                       new TroupesParser(CST_INV_BATIMENTS),
-                                       new KnowledgeParser(),
-                                       new ContactParser(),
-                                    };
+      _sectionPattern       = Pattern.compile(p_kind);
+
+      _lstSubSectionPattern = new Pattern[] {
+                                            };
+
+      _lstSubSectionIndex   = new int[]     {
+                                            };
    }
 
 
@@ -54,6 +59,29 @@ public class KingdomParser extends    MailParser
    //***                         PUBLIC DECLARATION                        ***
    //*************************************************************************
 
+   protected void specificParseLineData(String p_line)
+   {
+      Matcher l_matcher = _patternRegexp.matcher(p_line);
+
+      if ( l_matcher.matches() )
+      {
+         String   l_str       = null;
+         String   l_unit      = new String();
+         int      l_quantity  = 0;
+
+         l_unit      = new String(l_matcher.group(1));
+         l_str       = new String(l_matcher.group(2));
+         l_quantity  = Integer.parseInt(l_str);
+
+         TroupesInfo l_info = new TroupesInfo(l_unit, l_quantity);
+
+         Trace.println("---------------------------------");
+         Trace.println("   Unit     : ", l_unit);
+         Trace.println("   Quantity : ", Integer.toString(l_quantity));
+
+         _parsedData.add(l_info);
+      }
+   }
 
 
    //*************************************************************************
@@ -68,5 +96,6 @@ public class KingdomParser extends    MailParser
 
 
 }
+
 
 //*** EOF ************************************************************ EOF ***

@@ -16,15 +16,14 @@
 package specific.parser;
 
 import exception.ParsingMessageException;
+import specific.parser.sections.SectionParser;
 import tools.Trace;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
 import java.util.regex.Pattern;
-import java.lang.reflect.Method;
 
 
 public abstract class MailParser implements CommonParserConstants
@@ -40,11 +39,7 @@ public abstract class MailParser implements CommonParserConstants
 
    protected InputStream   _bodyData               = null;
 
-   protected Pattern  []   _lstSectionPattern      = null;
-   protected int      []   _lstSectionIndex        = null;
-   protected ArrayList[]   _lstDatasList           = null;
-   protected Method   []   _lstCallbacks           = null;
-   protected Class    []   _lstCallbackParamClass  = null;
+   protected SectionParser[] _lstSectionsParsers   = null;
 
 
    //*************************************************************************
@@ -79,13 +74,13 @@ public abstract class MailParser implements CommonParserConstants
 
       //---------------- delete previous parsed kingdom list -----------------
 
-      cleanParsedDatasList();
+      init();
 
       BufferedReader l_reader = new BufferedReader(
                                             new InputStreamReader(_bodyData));
 
-      int     l_section      = SECTION_UNKNOWN;
-      int     l_subSection   = SECTION_UNKNOWN;
+      int            l_section         = SECTION_UNKNOWN;
+      SectionParser  l_sectionParser   = null;
 
 
       try
@@ -99,30 +94,21 @@ public abstract class MailParser implements CommonParserConstants
 
             //========== analyse the current line for a new section ==========
 
-            int l_newSection = checkSection(l_line, l_section);
+            SectionParser l_newSectionParser = checkSection(l_line, l_section);
 
-            if ( l_newSection == SECTION_UNKNOWN )
+            if ( l_newSectionParser != null )
             {
-               //==== check if the current section has some sub sections =====
+               l_sectionParser = l_newSectionParser;
 
-               int l_newSubSection = checkSubSection(l_line, l_section);
-
-               if ( l_newSubSection != SECTION_UNKNOWN )
-               {
-                  l_subSection = l_newSubSection;
-               };
-            }
-            else
-            {
-               l_section = l_newSection;
+               l_sectionParser.startSection();
             }
 
             //=============== check if a section has been found ==============
 
-            if ( l_section    != SECTION_UNKNOWN &&
-                 l_newSection == SECTION_UNKNOWN    )
+            if ( l_sectionParser    != null &&
+                 l_newSectionParser == null    )
             {
-               addLineSectionParsedInfo(l_line, l_section, l_subSection);
+               l_sectionParser.parse(l_line);
             };
          }
 
@@ -142,141 +128,47 @@ public abstract class MailParser implements CommonParserConstants
    //***                        PROTECTED DECLARATION                      ***
    //*************************************************************************
 
-   protected int checkSection(String p_line,
-                              int    p_iCurSection)
+   protected SectionParser checkSection(String p_line,
+                                        int    p_iCurSection)
    {
       Trace.enterFunction("MailParser::checkSection()");
 
-      int l_foundNewSection = SECTION_UNKNOWN;
+      SectionParser l_foundNewSection = null;
 
-      for ( int i = 0 ; i < _lstSectionPattern.length ; i++ )
+      for ( int i = 0 ; i < _lstSectionsParsers.length ; i++ )
       {
-         if ( _lstSectionPattern[i].matcher(p_line).matches() )
+         Pattern l_pattern = _lstSectionsParsers[i].getSectionPattern();
+
+         if ( l_pattern.matcher(p_line).matches() )
          {
-            l_foundNewSection = _lstSectionIndex[i];
+            l_foundNewSection = _lstSectionsParsers[i];
             break;
          }
       }
 
-      Trace.exitFunction("MailParser::checkSection()",
-                         Integer.toString(l_foundNewSection));
+      Trace.exitFunction("MailParser::checkSection()");
 
       return l_foundNewSection;
    }
 
 
-   protected int checkSubSection(String  p_line,
-                                 int     p_iCurSection)
+   protected void init()
    {
-      return SECTION_UNKNOWN;
-   }
+      Trace.enterFunction("MailParser::init()");
 
-
-   protected ArrayList getDatasList(int p_section)
-   {
-      Trace.enterFunction("MailParser::getDatasList()");
-
-      ArrayList l_datasList = null;
-
-      //================ check if the section index is valid =================
-
-      int l_pos = getSectionIndex(p_section);
-
-      if ( l_pos != -1 )
+      for ( int i = 0 ; i < _lstSectionsParsers.length ; i++ )
       {
-         l_datasList = _lstDatasList[l_pos];
+         _lstSectionsParsers[i].init();
       }
 
-      Trace.exitFunction("MailParser::getDatasList()",
-                         l_datasList.toString());
-
-      return l_datasList;
+      Trace.exitFunction("MailParser::init()");
    }
-
-
-   protected Method getCallback(int p_section)
-   {
-      Trace.enterFunction("MailParser::getCallback()");
-
-      Method l_method = null;
-
-      //================ check if the section index is valid =================
-
-      int l_pos = getSectionIndex(p_section);
-
-      if ( l_pos != -1 )
-      {
-         l_method = _lstCallbacks[l_pos];
-      }
-
-      Trace.exitFunction("MailParser::getCallback()",
-                         l_method.toString());
-
-      return l_method;
-   }
-
-
-   protected Pattern getSectionPattern(int p_section)
-   {
-      Trace.enterFunction("MailParser::getSectionPattern()");
-
-      Pattern l_sectionPattern = null;
-
-      //================ check if the section index is valid =================
-
-      int l_pos = getSectionIndex(p_section);
-
-      if ( l_pos != -1 )
-      {
-         l_sectionPattern = _lstSectionPattern[l_pos];
-      }
-
-      Trace.exitFunction("MailParser::getSectionPattern()",
-                         l_sectionPattern.toString());
-
-      return l_sectionPattern;
-   }
-
-
-   protected void cleanParsedDatasList()
-   {
-      Trace.enterFunction("MailParser::cleanParsedDatasList()");
-
-      for ( int i = 0 ; i < _lstDatasList.length ; i++ )
-      {
-         _lstDatasList[i] = new ArrayList();
-      }
-
-      Trace.exitFunction("MailParser::cleanParsedDatasList()");
-   }
-
-
-   protected abstract void addLineSectionParsedInfo(String l_line,
-                                                    int    l_section,
-                                                    int    l_subSection);
-
 
 
    //*************************************************************************
    //***                         PRIVATE DECLARATION                       ***
    //*************************************************************************
 
-   private int getSectionIndex(int p_section)
-   {
-      int l_pos = -1;
-
-      for ( int i = 0 ; i < _lstSectionIndex.length ; i++ )
-      {
-         if ( _lstSectionIndex[i] == p_section )
-         {
-            l_pos = i;
-
-            break;
-         }
-      }
-
-      return l_pos;
-   }
 }
 
 //*** EOF ************************************************************ EOF ***

@@ -1,31 +1,31 @@
 // CC_VERSIONS
 
 /**
- * KingdomParser.java
+ * KnowledgeInfo.java
  *
  * DESCRIPTION:
  *
- *    @author        STOLLVOR  -  May 19, 2004
- *    @version       v0.1
+ *    @author        STOLLVOR  -  Jun 4, 2004
+ *    @version       v0.1          
  *
  * HOW TO USE:
  *
  *
  */
 
-package specific.parser;
-
-import specific.parser.sections.*;
+package specific.data;
 
 
-public class KingdomParser extends    MailParser
-                           implements KingdomParserConstants
+public class KnowledgeInfo
 {
    //*************************************************************************
    //***                          MEMBER DECLARATION                       ***
    //*************************************************************************
 
    //================================   PRIVATE   ============================
+
+   private String _knowledge = new String();
+   private int    _turn      = 0;
 
 
    //===============================   PROTECTED   ===========================
@@ -36,17 +36,10 @@ public class KingdomParser extends    MailParser
    //***                       CONSTRUCTOR DECLARATION                     ***
    //*************************************************************************
 
-   public KingdomParser()
+   public KnowledgeInfo(String p_knowledge, int p_turn)
    {
-      _lstSectionsParsers = new SectionParser[]
-                                    {
-                                       new RumourParser(),
-                                       new EconomyParser(),
-                                       new TroupesParser(CST_INV_TROUPES),
-                                       new TroupesParser(CST_INV_BATIMENTS),
-                                       new KnowledgeParser(),
-                                       new ContactParser(),
-                                    };
+      _knowledge = p_knowledge;
+      _turn      = p_turn;
    }
 
 
@@ -54,6 +47,8 @@ public class KingdomParser extends    MailParser
    //***                         PUBLIC DECLARATION                        ***
    //*************************************************************************
 
+   public String getknowledge() { return _knowledge; }
+   public int    getTurn     () { return _turn; }
 
 
    //*************************************************************************
@@ -68,5 +63,6 @@ public class KingdomParser extends    MailParser
 
 
 }
+
 
 //*** EOF ************************************************************ EOF ***

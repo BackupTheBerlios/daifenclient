@@ -1,25 +1,22 @@
 // CC_VERSIONS
 
 /**
- * KingdomParser.java
+ * TroupesInfo.java
  *
  * DESCRIPTION:
  *
- *    @author        STOLLVOR  -  May 19, 2004
- *    @version       v0.1
+ *    @author        STOLLVOR  -  Jun 4, 2004
+ *    @version       v0.1          
  *
  * HOW TO USE:
  *
  *
  */
 
-package specific.parser;
-
-import specific.parser.sections.*;
+package specific.data;
 
 
-public class KingdomParser extends    MailParser
-                           implements KingdomParserConstants
+public class TroupesInfo
 {
    //*************************************************************************
    //***                          MEMBER DECLARATION                       ***
@@ -27,6 +24,8 @@ public class KingdomParser extends    MailParser
 
    //================================   PRIVATE   ============================
 
+   private String _unit       = new String();
+   private int    _quantity   = 0;
 
    //===============================   PROTECTED   ===========================
 
@@ -36,17 +35,10 @@ public class KingdomParser extends    MailParser
    //***                       CONSTRUCTOR DECLARATION                     ***
    //*************************************************************************
 
-   public KingdomParser()
+   public TroupesInfo(String p_unit, int p_quantity)
    {
-      _lstSectionsParsers = new SectionParser[]
-                                    {
-                                       new RumourParser(),
-                                       new EconomyParser(),
-                                       new TroupesParser(CST_INV_TROUPES),
-                                       new TroupesParser(CST_INV_BATIMENTS),
-                                       new KnowledgeParser(),
-                                       new ContactParser(),
-                                    };
+      _unit      = p_unit;
+      _quantity  = p_quantity;
    }
 
 
@@ -54,6 +46,8 @@ public class KingdomParser extends    MailParser
    //***                         PUBLIC DECLARATION                        ***
    //*************************************************************************
 
+   public String getUnit    () { return _unit; }
+   public int    getQuantity() { return _quantity; }
 
 
    //*************************************************************************
@@ -68,5 +62,6 @@ public class KingdomParser extends    MailParser
 
 
 }
+
 
 //*** EOF ************************************************************ EOF ***

@@ -18,7 +18,7 @@ package specific.parser;
 
 
 
-interface ContinentsParserConstants
+public interface ContinentsParserConstants
 {
    //*************************************************************************
    //***                          MEMBER DECLARATION                       ***
