@@ -1,11 +1,11 @@
 // CC_VERSIONS
 
 /**
- * TroupesParser.java
+ * SocialParser.java
  *
  * DESCRIPTION:
  *
- *    @author        STOLLVOR  -  Jun 4, 2004
+ *    @author        STOLLVOR  -  Jun 9, 2004
  *    @version       v0.1          
  *
  * HOW TO USE:
@@ -15,7 +15,8 @@
 
 package specific.parser.sections;
 
-import specific.data.info.TroupesInfo;
+import specific.data.info.SocialInfo;
+import specific.data.api.SocialAPI;
 import specific.parser.KingdomParserConstants;
 import tools.Trace;
 
@@ -23,8 +24,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 
-public class TroupesParser extends    SectionParser
-                           implements KingdomParserConstants
+public class SocialParser extends    SectionParser
+                          implements KingdomParserConstants, SocialAPI
 {
    //*************************************************************************
    //***                          MEMBER DECLARATION                       ***
@@ -32,7 +33,9 @@ public class TroupesParser extends    SectionParser
 
    //================================   PRIVATE   ============================
 
-   private Pattern _patternRegexp = Pattern.compile(CST_INV_TROUPES_REGEXP);
+   private Pattern      _patternRegexp = Pattern.compile(CST_SOCIAL_REGEXP);
+
+   private SocialInfo   _currentInfo   = null;
 
 
    //===============================   PROTECTED   ===========================
@@ -43,9 +46,9 @@ public class TroupesParser extends    SectionParser
    //***                       CONSTRUCTOR DECLARATION                     ***
    //*************************************************************************
 
-   public TroupesParser(String p_kind)
+   public SocialParser()
    {
-      _sectionPattern       = Pattern.compile(p_kind);
+      _sectionPattern       = Pattern.compile(CST_SOCIAL);
 
       _lstSubSectionPattern = new Pattern[] {
                                             };
@@ -59,28 +62,38 @@ public class TroupesParser extends    SectionParser
    //***                         PUBLIC DECLARATION                        ***
    //*************************************************************************
 
-   protected void specificParseLineData(String p_line)
+   public void init()
    {
-      Matcher l_matcher = _patternRegexp.matcher(p_line);
+      super.init();
 
-      if ( l_matcher.matches() )
-      {
-         String   l_str       = null;
-         String   l_unit      = new String();
-         int      l_quantity  = 0;
+      //----------------- add the unique SocialInfo Instance -----------------
 
-         l_unit      = new String(l_matcher.group(1));
-         l_str       = new String(l_matcher.group(2));
-         l_quantity  = Integer.parseInt(l_str);
+      _currentInfo = new SocialInfo();
+      _parsedData.add(_currentInfo);
+   }
 
-         TroupesInfo l_info = new TroupesInfo(l_unit, l_quantity);
 
-         Trace.println("---------------------------------");
-         Trace.println("   Unit     : ", l_unit);
-         Trace.println("   Quantity : ", Integer.toString(l_quantity));
+   //*************************   API IMPLEMENTATION   ************************
 
-         _parsedData.add(l_info);
-      }
+   public String getRank()
+   {
+      SocialInfo l_info = (SocialInfo) _parsedData.get(0);
+
+      return l_info.getRank();
+   }
+
+   public int getPoints()
+   {
+      SocialInfo l_info = (SocialInfo) _parsedData.get(0);
+
+      return l_info.getPoints();
+   }
+
+   public String getInfo()
+   {
+      SocialInfo l_info = (SocialInfo) _parsedData.get(0);
+
+      return l_info.getInfo();
    }
 
 
@@ -94,7 +107,27 @@ public class TroupesParser extends    SectionParser
    //***                         PRIVATE DECLARATION                       ***
    //*************************************************************************
 
+   protected void specificParseLineData(String p_line)
+   {
+      Matcher l_matcher = _patternRegexp.matcher(p_line);
 
+      if ( l_matcher.matches() )
+      {
+         String   l_rank   = l_matcher.group(1);
+         int      l_points = Integer.parseInt(l_matcher.group(2));
+
+         Trace.println("---------------------------------");
+         Trace.println("   Rank   : ", l_rank);
+         Trace.println("   points : ", Integer.toString(l_points));
+
+         _currentInfo.setRank(l_rank);
+         _currentInfo.setPoints(l_points);
+      }
+
+      //----------- always add the current social information line -----------
+
+      _currentInfo.appendInfo(p_line);
+   }
 }
 
 

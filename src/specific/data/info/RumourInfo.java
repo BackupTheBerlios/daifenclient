@@ -1,11 +1,11 @@
 // CC_VERSIONS
 
 /**
- * KnowledgeInfo.java
+ * RumourInfo.java
  *
  * DESCRIPTION:
  *
- *    @author        STOLLVOR  -  Jun 4, 2004
+ *    @author        STOLLVOR  -  May 28, 2004
  *    @version       v0.1          
  *
  * HOW TO USE:
@@ -13,10 +13,10 @@
  *
  */
 
-package specific.data;
+package specific.data.info;
 
 
-public class KnowledgeInfo
+public class RumourInfo
 {
    //*************************************************************************
    //***                          MEMBER DECLARATION                       ***
@@ -24,8 +24,8 @@ public class KnowledgeInfo
 
    //================================   PRIVATE   ============================
 
-   private String _knowledge = new String();
-   private int    _turn      = 0;
+   private String _kingdom   = new String();
+   private String _rumour    = new String();
 
 
    //===============================   PROTECTED   ===========================
@@ -36,10 +36,8 @@ public class KnowledgeInfo
    //***                       CONSTRUCTOR DECLARATION                     ***
    //*************************************************************************
 
-   public KnowledgeInfo(String p_knowledge, int p_turn)
+   public RumourInfo()
    {
-      _knowledge = p_knowledge;
-      _turn      = p_turn;
    }
 
 
@@ -47,8 +45,11 @@ public class KnowledgeInfo
    //***                         PUBLIC DECLARATION                        ***
    //*************************************************************************
 
-   public String getknowledge() { return _knowledge; }
-   public int    getTurn     () { return _turn; }
+   public String getKingdom() { return _kingdom; }
+   public String getRumour () { return _rumour; }
+
+   public void setKingdom  (String p_kingdom) { _kingdom  = p_kingdom; }
+   public void appendRumour(String p_rumour)  { _rumour  += p_rumour; }
 
 
    //*************************************************************************

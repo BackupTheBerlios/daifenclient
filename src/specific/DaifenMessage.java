@@ -30,6 +30,9 @@ import java.util.HashMap;
 
 import specific.parser.KingdomParser;
 import specific.parser.ContinentsParser;
+import specific.parser.MailParser;
+import specific.data.api.AttackAPI;
+import specific.data.api.KingdomDataAPI;
 
 
 public class DaifenMessage implements DaifenConstants
@@ -44,8 +47,8 @@ public class DaifenMessage implements DaifenConstants
 
    private HashMap      _messageContent   = null;
 
-   ContinentsParser     l_continentParser = new ContinentsParser();
-   KingdomParser        l_kingdomParser   = new KingdomParser();
+   MailParser           _continentParser  = new ContinentsParser();
+   MailParser           _kingdomParser    = new KingdomParser();
 
 
    //===============================   PROTECTED   ===========================
@@ -56,7 +59,7 @@ public class DaifenMessage implements DaifenConstants
    //***                       CONSTRUCTOR DECLARATION                     ***
    //*************************************************************************
 
-   public DaifenMessage(MailMessage p_msg) throws MessageException
+   public DaifenMessage(MailMessage p_msg)
    {
       if ( p_msg == null )
       {
@@ -71,23 +74,19 @@ public class DaifenMessage implements DaifenConstants
    //***                         PUBLIC DECLARATION                        ***
    //*************************************************************************
 
-   public String getUserName() throws ParsingMessageException,
-                                      DaifenPropertyException
+   public KingdomDataAPI getKingdomDataAPI() throws ParsingMessageException
    {
       if ( isParsingMessageNeeded() ) parseMail();
 
-      String l_userName = new String();
+      return (KingdomDataAPI) _kingdomParser;
+   }
 
-      if ( _messageContent.containsKey(CST_USERNAME) )
-      {
-         l_userName = _messageContent.get(CST_USERNAME).toString();
-      }
-      else
-      {
-         throw new DaifenPropertyException();
-      }
+   public KingdomDataAPI getContinentsDataAPI() throws ParsingMessageException
+   {
+      if ( isParsingMessageNeeded() ) parseMail();
 
-      return l_userName;
+//      return (ContinentsDataAPI) _continentsParser;
+      return null;
    }
 
 
@@ -147,7 +146,7 @@ public class DaifenMessage implements DaifenConstants
          throw new NullPointerException();
       }
 
-      //=============== check if the first part of the message is ============
+      //=============== check if the createIterator part of the message is ============
       //======================== type of MIMEMultiPart =======================
 
       MIMEMultiPart l_multiPart = null;
@@ -168,7 +167,7 @@ public class DaifenMessage implements DaifenConstants
          throw new ParsingMessageException();
       }
 
-      //============== This first part corresponds to the list of ============
+      //============== This createIterator part corresponds to the list of ============
       //=================== eliminated and destroyed kingdom =================
 
       Object l_firstPart = l_multiPart.getBodyPart(0, false);
@@ -186,9 +185,9 @@ public class DaifenMessage implements DaifenConstants
 
          try
          {
-            l_continentParser.setData(l_continents.getBodyData());
+            _continentParser.setData(l_continents.getBodyData());
 
-            l_continentParser.parse();
+            _continentParser.parse();
          }
          catch ( IOException e )
          {
@@ -216,9 +215,9 @@ public class DaifenMessage implements DaifenConstants
 
          try
          {
-            l_kingdomParser.setData(l_kingdom.getBodyData());
+            _kingdomParser.setData(l_kingdom.getBodyData());
 
-            l_kingdomParser.parse();
+            _kingdomParser.parse();
          }
          catch ( IOException e )
          {

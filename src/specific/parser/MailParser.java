@@ -79,8 +79,8 @@ public abstract class MailParser implements CommonParserConstants
       BufferedReader l_reader = new BufferedReader(
                                             new InputStreamReader(_bodyData));
 
-      int            l_section         = SECTION_UNKNOWN;
-      SectionParser  l_sectionParser   = null;
+      int            l_section              = SECTION_UNKNOWN;
+      SectionParser  l_currentSectionParser = null;
 
 
       try
@@ -98,17 +98,17 @@ public abstract class MailParser implements CommonParserConstants
 
             if ( l_newSectionParser != null )
             {
-               l_sectionParser = l_newSectionParser;
+               l_currentSectionParser = l_newSectionParser;
 
-               l_sectionParser.startSection();
+               l_currentSectionParser.startSection(l_line);
             }
 
             //=============== check if a section has been found ==============
 
-            if ( l_sectionParser    != null &&
-                 l_newSectionParser == null    )
+            if ( l_currentSectionParser != null &&
+                 l_newSectionParser     == null    )
             {
-               l_sectionParser.parse(l_line);
+               l_currentSectionParser.parse(l_line);
             };
          }
 

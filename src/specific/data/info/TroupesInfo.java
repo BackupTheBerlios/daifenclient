@@ -13,7 +13,7 @@
  *
  */
 
-package specific.data;
+package specific.data.info;
 
 
 public class TroupesInfo

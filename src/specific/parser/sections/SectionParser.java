@@ -19,6 +19,7 @@ import specific.parser.CommonParserConstants;
 import tools.Trace;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.regex.Pattern;
 
 
@@ -29,6 +30,9 @@ public abstract class SectionParser implements CommonParserConstants
    //*************************************************************************
 
    //================================   PRIVATE   ============================
+
+   private Iterator     _iter                   = null;
+   private Object       _iterObj                = null;
 
 
    //===============================   PROTECTED   ===========================
@@ -59,12 +63,14 @@ public abstract class SectionParser implements CommonParserConstants
    }
 
 
-   public void startSection()
+   public void startSection(String p_line)
    {
       Trace.enterFunction("SectionParser::startSection()");
 
       _isSectionHeader     = false;
       _subSection          = SECTION_UNKNOWN;
+
+      extractSpecificSectionData(p_line);
 
       Trace.exitFunction("SectionParser::startSection()");
    }
@@ -100,6 +106,22 @@ public abstract class SectionParser implements CommonParserConstants
    }
 
 
+   public void createIterator()
+   {
+      _iter = _parsedData.iterator();
+   }
+
+   public boolean hasNext()
+   {
+      return _iter.hasNext();
+   }
+
+   public void next()
+   {
+      _iterObj = _iter.next();
+   }
+
+
    //*************************************************************************
    //***                        PROTECTED DECLARATION                      ***
    //*************************************************************************
@@ -132,6 +154,14 @@ public abstract class SectionParser implements CommonParserConstants
    }
 
 
+   protected void extractSpecificSectionData(String p_line)
+   {
+      // nothing to do
+      //
+      // everything must be performed in the inherited classes
+   }
+
+
    protected void extractSpecificSubSectionData(String p_line)
    {
       // nothing to do
@@ -144,6 +174,12 @@ public abstract class SectionParser implements CommonParserConstants
       // nothing to do
       //
       // everything must be performed in the inherited classes
+   }
+
+
+   protected Object getCurrentIterObj()
+   {
+      return _iterObj;
    }
 
 

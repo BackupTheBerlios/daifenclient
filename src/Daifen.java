@@ -5,6 +5,10 @@ import mailbox.MailBody;
 import mailbox.MailMessage;
 import specific.DaifenManager;
 import specific.DaifenMessage;
+import specific.data.api.KingdomDataAPI;
+import specific.data.api.AttackAPI;
+import specific.data.api.SocialAPI;
+import specific.data.info.TroupesInfo;
 import tools.Trace;
 
 import java.io.File;
@@ -69,34 +73,63 @@ public class Daifen
 
          try
          {
-//            MailMessage l_msg = l_daifen.getBilan("336");
-            MailMessage l_msg = l_daifen.getLastBilan();
-
-//            System.out.println(l_msg.getSubject());
+            MailMessage l_msg = l_daifen.getBilan("344");
+//            MailMessage l_msg = l_daifen.getLastBilan();
 
             if ( l_msg != null )
             {
-               // TODO TEMPORAIRE
                MailBody l_body = l_daifen.getBody(l_msg);
-
-//            l_body.printOn();
-               // TODO TEMPORAIRE
 
                DaifenMessage l_DaifenMsg = new DaifenMessage((MailMessage)l_body);
 
                try
                {
-                  Trace.println("User Name = ", l_DaifenMsg.getUserName());
+                  KingdomDataAPI l_kdApi     = l_DaifenMsg.getKingdomDataAPI();
+
+                  //########################   SOCIAL   ######################
+
+                  SocialAPI      l_socialApi = l_kdApi.getSocialAPI();
+
+                  {
+                     String l_str    = null;
+                     int    l_points = 0;
+
+                     l_str    = l_socialApi.getRank();
+                     l_str    = l_socialApi.getInfo();
+                     l_points = l_socialApi.getPoints();
+                  }
+
+                  //########################   ATTACK   ######################
+
+                  AttackAPI      l_attackApi = l_kdApi.getAttackAPI();
+
+                  {
+                     l_attackApi.createIterator();
+                     while ( l_attackApi.hasNext() )
+                     {
+                        l_attackApi.next();
+
+                        String        l_str;
+                        int           l_status;
+                        String[]      l_lst1;
+                        TroupesInfo[] l_lst2;
+
+                        l_str    = l_attackApi.getAttackedKingdom();
+                        l_status = l_attackApi.getAttackStatus();
+                        l_lst1   = l_attackApi.getLstAttackers();
+                        l_lst2   = l_attackApi.getLstAttackTroups();
+                        l_lst2   = l_attackApi.getLstDeadAttackTroups();
+                        l_lst2   = l_attackApi.getLstDeadDefenseTroups();
+                        l_lst2   = l_attackApi.getLstDefenseTroups();
+                        l_lst2   = l_attackApi.getLstDestroyedBuilding();
+                     }
+                  }
+
                }
                catch ( ParsingMessageException e )
                {
                   System.out.println("Exception Error: " +
-                                     "Problem encountered during mail parsing.");
-               }
-               catch ( DaifenPropertyException e )
-               {
-                  System.out.println("Exception Error: " +
-                                     "Unable to retrieve the User Name.");
+                                     "Unable to retrieve the last bilan.");
                }
             }
          }

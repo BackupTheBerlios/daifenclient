@@ -1,7 +1,7 @@
 // CC_VERSIONS
 
 /**
- * KnowledgeParser.java
+ * KnowledgeInfo.java
  *
  * DESCRIPTION:
  *
@@ -13,18 +13,10 @@
  *
  */
 
-package specific.parser.sections;
-
-import specific.data.info.KnowledgeInfo;
-import specific.parser.KingdomParserConstants;
-import tools.Trace;
-
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+package specific.data.info;
 
 
-public class KnowledgeParser extends    SectionParser
-                             implements KingdomParserConstants
+public class KnowledgeInfo
 {
    //*************************************************************************
    //***                          MEMBER DECLARATION                       ***
@@ -32,7 +24,8 @@ public class KnowledgeParser extends    SectionParser
 
    //================================   PRIVATE   ============================
 
-   private Pattern _patternRegexp = Pattern.compile(CST_CONNAISSANCES_REGEXP);
+   private String _knowledge = new String();
+   private int    _turn      = 0;
 
 
    //===============================   PROTECTED   ===========================
@@ -43,15 +36,10 @@ public class KnowledgeParser extends    SectionParser
    //***                       CONSTRUCTOR DECLARATION                     ***
    //*************************************************************************
 
-   public KnowledgeParser()
+   public KnowledgeInfo(String p_knowledge, int p_turn)
    {
-      _sectionPattern       = Pattern.compile(CST_CONNAISSANCES);
-
-      _lstSubSectionPattern = new Pattern[] {
-                                            };
-
-      _lstSubSectionIndex   = new int[]     {
-                                            };
+      _knowledge = p_knowledge;
+      _turn      = p_turn;
    }
 
 
@@ -59,35 +47,14 @@ public class KnowledgeParser extends    SectionParser
    //***                         PUBLIC DECLARATION                        ***
    //*************************************************************************
 
+   public String getknowledge() { return _knowledge; }
+   public int    getTurn     () { return _turn; }
 
 
    //*************************************************************************
    //***                        PROTECTED DECLARATION                      ***
    //*************************************************************************
 
-   protected void specificParseLineData(String p_line)
-   {
-      Matcher l_matcher = _patternRegexp.matcher(p_line);
-
-      if ( l_matcher.matches() )
-      {
-         String   l_str    = null;
-         String   l_know   = new String();
-         int      l_turn   = 0;
-
-         l_know  = new String(l_matcher.group(1));
-         l_str   = new String(l_matcher.group(2));
-         l_turn  = Integer.parseInt(l_str);
-
-         KnowledgeInfo l_info = new KnowledgeInfo(l_know, l_turn);
-
-         Trace.println("---------------------------------");
-         Trace.println("   Knowledge : ", l_know);
-         Trace.println("   Turn      : ", Integer.toString(l_turn));
-
-         _parsedData.add(l_info);
-      }
-   }
 
 
    //*************************************************************************

@@ -13,7 +13,7 @@
  *
  */
 
-package specific.data;
+package specific.data.info;
 
 
 public class ContactInfo
@@ -24,7 +24,7 @@ public class ContactInfo
 
    //================================   PRIVATE   ============================
 
-   private String _king    = new String();
+   private String _kingdom = new String();
    private String _species = new String();
    private String _email   = new String();
 
@@ -37,9 +37,9 @@ public class ContactInfo
    //***                       CONSTRUCTOR DECLARATION                     ***
    //*************************************************************************
 
-   public ContactInfo(String p_king, String p_species, String p_email)
+   public ContactInfo(String p_kingdom, String p_species, String p_email)
    {
-      _king    = p_king;
+      _kingdom = p_kingdom;
       _species = p_species;
       _email   = p_email;
    }
@@ -49,7 +49,7 @@ public class ContactInfo
    //***                         PUBLIC DECLARATION                        ***
    //*************************************************************************
 
-   public String getKing()    { return _king; };
+   public String getKingdom() { return _kingdom; };
    public String getSpecies() { return _species; };
    public String getEmail()   { return _email; };
 

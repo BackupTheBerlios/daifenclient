@@ -20,7 +20,7 @@ import tools.Trace;
 import java.util.regex.Pattern;
 import java.util.regex.Matcher;
 
-import specific.data.KingdomInfo;
+import specific.data.info.KingdomInfo;
 import specific.parser.ContinentsParserConstants;
 
 
@@ -33,7 +33,7 @@ public class DestroyedEliminatedParser extends    SectionParser
 
    //================================   PRIVATE   ============================
 
-   Pattern _patternRegexp = Pattern.compile(CST_KINGDOM_REGEXP);
+   private Pattern _patternRegexp = Pattern.compile(CST_KINGDOM_REGEXP);
 
    //===============================   PROTECTED   ===========================
 

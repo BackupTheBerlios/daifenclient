@@ -15,7 +15,9 @@
 
 package specific.parser.sections;
 
-import specific.data.ContactInfo;
+import specific.data.info.ContactInfo;
+import specific.data.info.AttackInfo;
+import specific.data.api.ContactAPI;
 import specific.parser.KingdomParserConstants;
 import tools.Trace;
 
@@ -24,7 +26,7 @@ import java.util.regex.Pattern;
 
 
 public class ContactParser extends    SectionParser
-                           implements KingdomParserConstants
+                           implements KingdomParserConstants, ContactAPI
 {
    //*************************************************************************
    //***                          MEMBER DECLARATION                       ***
@@ -32,7 +34,7 @@ public class ContactParser extends    SectionParser
 
    //================================   PRIVATE   ============================
 
-   Pattern _patternRegexp = Pattern.compile(CST_CONTACTS_REGEXP);
+   private Pattern _patternRegexp = Pattern.compile(CST_CONTACTS_REGEXP);
 
 
    //===============================   PROTECTED   ===========================
@@ -60,6 +62,47 @@ public class ContactParser extends    SectionParser
    //*************************************************************************
 
 
+   //*************************   API IMPLEMENTATION   ************************
+
+   public String getKingdom()
+   {
+      String      l_result = "";
+      ContactInfo l_info   = getCurrentIterInfo();
+
+      if ( l_info != null )
+      {
+         l_result = l_info.getKingdom();
+      }
+
+      return l_result;
+   }
+
+   public String getSpecies()
+   {
+      String      l_result = "";
+      ContactInfo l_info   = getCurrentIterInfo();
+
+      if ( l_info != null )
+      {
+         l_result = l_info.getSpecies();
+      }
+
+      return l_result;
+   }
+
+   public String getEmail()
+   {
+      String      l_result = "";
+      ContactInfo l_info   = getCurrentIterInfo();
+
+      if ( l_info != null )
+      {
+         l_result = l_info.getEmail();
+      }
+
+      return l_result;
+   }
+
 
    //*************************************************************************
    //***                        PROTECTED DECLARATION                      ***
@@ -70,6 +113,12 @@ public class ContactParser extends    SectionParser
    //*************************************************************************
    //***                         PRIVATE DECLARATION                       ***
    //*************************************************************************
+
+   private ContactInfo getCurrentIterInfo()
+   {
+      return (ContactInfo) getCurrentIterObj();
+   }
+
 
    protected void specificParseLineData(String p_line)
    {

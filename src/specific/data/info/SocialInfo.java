@@ -1,11 +1,11 @@
 // CC_VERSIONS
 
 /**
- * RumourInfo.java
+ * SocialInfo.java
  *
  * DESCRIPTION:
  *
- *    @author        STOLLVOR  -  May 28, 2004
+ *    @author        STOLLVOR  -  Jun 9, 2004
  *    @version       v0.1          
  *
  * HOW TO USE:
@@ -13,10 +13,10 @@
  *
  */
 
-package specific.data;
+package specific.data.info;
 
 
-public class RumourInfo
+public class SocialInfo
 {
    //*************************************************************************
    //***                          MEMBER DECLARATION                       ***
@@ -24,8 +24,10 @@ public class RumourInfo
 
    //================================   PRIVATE   ============================
 
-   private String _kingdom   = new String();
-   private String _rumour    = new String();
+   private String _rank    = new String();
+   private int    _points  = 0;
+
+   private String _info    = new String();
 
 
    //===============================   PROTECTED   ===========================
@@ -36,11 +38,8 @@ public class RumourInfo
    //***                       CONSTRUCTOR DECLARATION                     ***
    //*************************************************************************
 
-   public RumourInfo(String p_kingdom,
-                     String p_rumour)
+   public SocialInfo()
    {
-      _kingdom   = p_kingdom;
-      _rumour    = p_rumour;
    }
 
 
@@ -48,8 +47,25 @@ public class RumourInfo
    //***                         PUBLIC DECLARATION                        ***
    //*************************************************************************
 
-   public String getKingdom() { return _kingdom; }
-   public String getRumour () { return _rumour; }
+   public String  getRank  () { return _rank; }
+   public int     getPoints() { return _points; }
+   public String  getInfo  () { return _info; }
+
+
+   public void setRank(String p_rank)
+   {
+      _rank = p_rank;
+   }
+
+   public void setPoints(int p_points)
+   {
+      _points = p_points;
+   }
+
+   public void appendInfo(String p_line)
+   {
+      _info += p_line + "\n";
+   }
 
 
    //*************************************************************************

@@ -15,13 +15,12 @@
 
 package specific.parser.sections;
 
+import specific.data.info.RumourInfo;
 import specific.parser.KingdomParserConstants;
-import specific.data.RumourInfo;
-
-import java.util.regex.Pattern;
-import java.util.regex.Matcher;
-
 import tools.Trace;
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 
 public class RumourParser extends    SectionParser
@@ -38,8 +37,7 @@ public class RumourParser extends    SectionParser
    private Pattern _patternRumourBegin = null;
    private Pattern _patternRumourEnd   = null;
 
-   private String    _strTmpKingdom    = new String();
-   private String    _strTmpRumour     = new String();
+   private RumourInfo _currentInfo     = null;
 
 
    //===============================   PROTECTED   ===========================
@@ -85,13 +83,17 @@ public class RumourParser extends    SectionParser
 
       if ( _subSection == SECTION_RUMOUR_BEGIN )
       {
+         _currentInfo = new RumourInfo();
+         _parsedData.add(_currentInfo);
+
          Matcher l_matcher   = _patternRumourBegin.matcher(p_line);
 
          if ( l_matcher.matches() )
          {
-            _strTmpKingdom = l_matcher.group(1);
+            String l_str = l_matcher.group(1);
+            _currentInfo.setKingdom(l_str);
 
-            Trace.println("   Kingdom  : ", _strTmpKingdom);
+            Trace.println("   Kingdom  : ", l_str);
          }
       }
 
@@ -126,21 +128,7 @@ public class RumourParser extends    SectionParser
       {
          case SECTION_RUMOUR_BEGIN:
             {
-               _strTmpRumour += p_line + "\n";
-
-               break;
-            }
-
-         case SECTION_RUMOUR_END:
-            {
-               if ( _strTmpRumour.length() != 0 )
-               {
-                  _parsedData.add(new RumourInfo(_strTmpKingdom,
-                                                 _strTmpRumour));
-               }
-
-               _strTmpKingdom = "";
-               _strTmpRumour  = "";
+               _currentInfo.appendRumour(p_line + "\n");
 
                break;
             }

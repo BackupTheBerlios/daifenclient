@@ -15,7 +15,7 @@
 
 package specific.parser.sections;
 
-import specific.data.EconomyInfo;
+import specific.data.info.EconomyInfo;
 import specific.parser.KingdomParserConstants;
 import tools.Trace;
 
@@ -32,7 +32,7 @@ public class EconomyParser extends    SectionParser
 
    //================================   PRIVATE   ============================
 
-   Pattern _patternRegexp = Pattern.compile(CST_ECONOMIE_REGEXP);
+   private Pattern _patternRegexp = Pattern.compile(CST_ECONOMIE_REGEXP);
 
    //===============================   PROTECTED   ===========================
 

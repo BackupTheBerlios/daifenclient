@@ -1,11 +1,11 @@
 // CC_VERSIONS
 
 /**
- * EconomyInfo.java
+ * KingdomInfo.java
  *
  * DESCRIPTION:
  *
- *    @author        STOLLVOR  -  Jun 4, 2004
+ *    @author        STOLLVOR  -  May 26, 2004
  *    @version       v0.1          
  *
  * HOW TO USE:
@@ -13,10 +13,10 @@
  *
  */
 
-package specific.data;
+package specific.data.info;
 
 
-public class EconomyInfo
+public class KingdomInfo
 {
    //*************************************************************************
    //***                          MEMBER DECLARATION                       ***
@@ -24,8 +24,9 @@ public class EconomyInfo
 
    //================================   PRIVATE   ============================
 
-   private int _gold       = -1;
-   private int _intellect  = -1;
+   private String _kingdom   = new String();
+   private String _species   = new String();
+   private String _continent = new String();
 
 
    //===============================   PROTECTED   ===========================
@@ -36,10 +37,13 @@ public class EconomyInfo
    //***                       CONSTRUCTOR DECLARATION                     ***
    //*************************************************************************
 
-   public EconomyInfo(int p_gold, int p_intellect)
+   public KingdomInfo(String p_kingdom,
+                      String p_species,
+                      String p_continent)
    {
-      _gold       = p_gold;
-      _intellect  = p_intellect;
+      _kingdom   = p_kingdom;
+      _species   = p_species;
+      _continent = p_continent;
    }
 
 
@@ -47,8 +51,10 @@ public class EconomyInfo
    //***                         PUBLIC DECLARATION                        ***
    //*************************************************************************
 
-   public int getGold     () { return _gold; }
-   public int getIntellect() { return _intellect; }
+   public String getKingdom  () { return _kingdom; }
+   public String getSpecies  () { return _species; }
+   public String getContinent() { return _continent; }
+
 
 
    //*************************************************************************
@@ -63,6 +69,5 @@ public class EconomyInfo
 
 
 }
-
 
 //*** EOF ************************************************************ EOF ***
