@@ -1,5 +1,6 @@
 import javax.swing.*;
 import java.util.ArrayList;
+import java.util.Date;
 import java.awt.*;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseEvent;
@@ -226,6 +227,9 @@ class GraphicPanel extends JPanel{
     }
 
     private class SelectionThread extends Thread {
+
+        private final int sleepTime = 15;
+
         public SelectionThread() {
             super();
         }
@@ -233,6 +237,8 @@ class GraphicPanel extends JPanel{
        public void run(){
             int sensRotation;
             double deltaAngle;
+            long startDate = 0;
+            long endDate = 0;
 
             int selectedIndex = getSelectedSprite();
 
@@ -255,6 +261,7 @@ class GraphicPanel extends JPanel{
 
             while ( Math.abs( ((Sprite)(spriteList.get(selectedIndex))).getAngle() - angleSelection ) >= angleStep ) {
 
+                startDate = (new Date()).getTime();
 /*               deltaAngle = Math.abs( ((Sprite)(spriteList.get(selectedIndex))).getAngle() - angleSelection );
                 if ( deltaAngle <  angleStep ) {
                     globalRotation += deltaAngle * sensRotation;
@@ -268,10 +275,15 @@ class GraphicPanel extends JPanel{
                 updateSpritesPosition();
                 repaint();
 
-                try {
-                    Thread.sleep(20);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
+                endDate = (new Date()).getTime();
+
+                long deltaDate = endDate - startDate;
+                if (deltaDate < sleepTime) {
+                    try {
+                        Thread.sleep(sleepTime - deltaDate );
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
                 }
 
             }
