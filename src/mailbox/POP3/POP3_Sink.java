@@ -16,6 +16,7 @@
 package mailbox.POP3;
 
 import mailbox.MailMessage;
+import netscape.messaging.mime.ByteString;
 import netscape.messaging.pop3.POP3Sink;
 import tools.Trace;
 
@@ -37,6 +38,7 @@ public class POP3_Sink extends POP3Sink
 
    private HashMap         _tmpHeaderMap  = null;
    private String          _tmpBody       = null;
+   private byte[]          _tmpBody2       = null;
 
    private int             _index         = -1;
    private String          _key           = new String();
@@ -78,11 +80,11 @@ public class POP3_Sink extends POP3Sink
    }
 
 
-   public String getMailBody()
+//   public String getMailBody()
+   public byte[] getMailBody()
    {
-      return _tmpBody;
+      return _tmpBody2;
    }
-
 
 
    //============================= API implementation ========================
@@ -162,14 +164,59 @@ public class POP3_Sink extends POP3Sink
    {
       super.retrieveStart(i, i1);
 
-      _tmpBody = new String();
+      _tmpBody  = new String();
+      _tmpBody2 = null;
 
-      System.out.println("1111111111111111111111111111111111111111111111111");
+      Trace.println("1111111111111111111111111111111111111111111111111");
    }
 
    public void retrieve(byte[] p_bytes)
    {
       super.retrieve(p_bytes);
+
+//      Charset charset = Charset.forName("ISO-8859-1");
+// //     Charset charset = Charset.forName("US-ASCII");
+//      CharsetDecoder decoder = charset.newDecoder();
+//      try
+//      {
+//         CharBuffer cbuf = decoder.decode(ByteBuffer.wrap(p_bytes));
+//         String s = cbuf.toString();
+//         _tmpBody += s;
+//         Trace.println(s);
+//
+//      }
+//      catch (CharacterCodingException e)
+//      {
+//      }
+
+
+      byte[] tmp    = null;
+
+      if ( _tmpBody2 == null )
+      {
+         _tmpBody2 = new byte[p_bytes.length];
+
+         for ( int i = 0 ; i < p_bytes.length ; i++ )
+         {
+            _tmpBody2[i] = p_bytes[i];
+         }
+      }
+      else
+      {
+         tmp   = new byte[_tmpBody2.length + p_bytes.length];
+
+         for ( int i = 0 ; i < _tmpBody2.length ; i++ )
+         {
+            tmp[i] = _tmpBody2[i];
+         }
+         for ( int i = 0 ; i < p_bytes.length ; i++ )
+         {
+            tmp[i + _tmpBody2.length] = p_bytes[i];
+         }
+
+         _tmpBody2 = tmp;
+      }
+
 
       _tmpBody += new String(p_bytes);
    }
@@ -178,8 +225,8 @@ public class POP3_Sink extends POP3Sink
    {
       super.retrieveComplete();
 
-      System.out.println(_tmpBody);
-      System.out.println("2222222222222222222222222222222222222222222222222");
+      Trace.println(_tmpBody);
+      Trace.println("2222222222222222222222222222222222222222222222222");
    }
 
 

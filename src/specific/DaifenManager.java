@@ -100,9 +100,15 @@ public class DaifenManager
    {
       Trace.enterFunction("specific.DaifenManager::getBody()");
 
+      if ( p_msg == null )
+      {
+         throw new NullPointerException();
+      }
+
+      MailBody l_mailBody = null;
 //      String l_body = new String();
 
-      MailBody l_mailBody = _mailBox.getMessageBody(p_msg);
+      l_mailBody = _mailBox.getMessageBody(p_msg);
 
 //      MIMEParser l_parser = new MIMEParser();
 //

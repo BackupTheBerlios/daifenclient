@@ -35,7 +35,7 @@ public class Daifen
    private static String _mailerType    = "POP3";
    private static String _server        = "pop.mail.yahoo.fr";
    private static String _user          = "stollvor";
-   private static String _password      = "";
+   private static String _password      = "SiOuX1";
 
 
    //===============================   PROTECTED   ===========================
@@ -69,28 +69,35 @@ public class Daifen
 
          try
          {
-            MailMessage l_msg = l_daifen.getBilan("327");
-//            MailMessage l_msg = l_daifen.getLastBilan();
+//            MailMessage l_msg = l_daifen.getBilan("336");
+            MailMessage l_msg = l_daifen.getLastBilan();
 
 //            System.out.println(l_msg.getSubject());
 
-
-            // TODO TEMPORAIRE
-            MailBody l_body = l_daifen.getBody(l_msg);
+            if ( l_msg != null )
+            {
+               // TODO TEMPORAIRE
+               MailBody l_body = l_daifen.getBody(l_msg);
 
 //            l_body.printOn();
-            // TODO TEMPORAIRE
+               // TODO TEMPORAIRE
 
-            DaifenMessage l_DaifenMsg = new DaifenMessage((MailMessage)l_body);
+               DaifenMessage l_DaifenMsg = new DaifenMessage((MailMessage)l_body);
 
-            try
-            {
-               Trace.println("User Name = ", l_DaifenMsg.getUserName());
-            }
-            catch ( ParsingMessageException e )
-            {
-               System.out.println("Exception Error: " +
-                                  "Unable to retrieve the User Name.");
+               try
+               {
+                  Trace.println("User Name = ", l_DaifenMsg.getUserName());
+               }
+               catch ( ParsingMessageException e )
+               {
+                  System.out.println("Exception Error: " +
+                                     "Problem encountered during mail parsing.");
+               }
+               catch ( DaifenPropertyException e )
+               {
+                  System.out.println("Exception Error: " +
+                                     "Unable to retrieve the User Name.");
+               }
             }
          }
          catch ( MessageException e )

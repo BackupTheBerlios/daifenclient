@@ -32,7 +32,8 @@ public abstract class MailMessage implements MailHeader, MailBody
    protected int        _index   = -1;
    protected HashMap    _header  = null;
 
-   protected String     _body    = new String();
+//   protected String     _bufBody    = new String();
+   protected byte[]     _bufBody    = null;
 
 
    //*************************************************************************
@@ -65,14 +66,16 @@ public abstract class MailMessage implements MailHeader, MailBody
       System.out.println("Message Header = " + _header.entrySet().toString());
    }
 
-   public String getBody()
+//   public String getBody()
+   public byte[] getBody()
    {
-      return _body;
+      return _bufBody;
    }
 
-   public void setBody(String p_body)
+//   public void setBody(String p_body)
+   public void setBody(byte[] p_body)
    {
-      _body = p_body;
+      _bufBody = p_body;
    }
 
 

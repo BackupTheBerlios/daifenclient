@@ -22,7 +22,8 @@ public interface MailBody
    //***                          MEMBER DECLARATION                       ***
    //*************************************************************************
 
-   public abstract String getBody();
+//   public abstract String getBody();
+   public abstract byte[] getBody();
 
    public abstract void printOn();
 }

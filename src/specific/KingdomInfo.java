@@ -1,11 +1,11 @@
 // CC_VERSIONS
 
 /**
- * POP3_Message.java
+ * KingdomInfo.java
  *
  * DESCRIPTION:
  *
- *    @author        STOLLVOR  -  Mar 29, 2004
+ *    @author        STOLLVOR  -  May 26, 2004
  *    @version       v0.1          
  *
  * HOW TO USE:
@@ -13,21 +13,20 @@
  *
  */
 
-package mailbox.POP3;
-
-import mailbox.MailMessage;
-import tools.Trace;
-
-import java.util.HashMap;
+package specific;
 
 
-public class POP3_Message extends MailMessage implements POP3_Constants
+public class KingdomInfo
 {
    //*************************************************************************
    //***                          MEMBER DECLARATION                       ***
    //*************************************************************************
 
    //================================   PRIVATE   ============================
+
+   private String _kingdom   = new String();
+   private String _species   = new String();
+   private String _continent = new String();
 
 
    //===============================   PROTECTED   ===========================
@@ -38,9 +37,13 @@ public class POP3_Message extends MailMessage implements POP3_Constants
    //***                       CONSTRUCTOR DECLARATION                     ***
    //*************************************************************************
 
-   public POP3_Message(int p_index, HashMap p_header)
+   public KingdomInfo(String p_kingdom,
+                      String p_species,
+                      String p_continent)
    {
-      super(p_index, p_header);
+      _kingdom   = p_kingdom;
+      _species   = p_species;
+      _continent = p_continent;
    }
 
 
@@ -48,51 +51,10 @@ public class POP3_Message extends MailMessage implements POP3_Constants
    //***                         PUBLIC DECLARATION                        ***
    //*************************************************************************
 
-   public String getFrom()
-   {
-      String l_text = _header.get(CST_FROM).toString();
+   public String getKingdom  () { return _kingdom; }
+   public String getSpecies  () { return _species; }
+   public String getContinent() { return _continent; }
 
-      Trace.println("POP3_Message::getFrom() -> ", "return(" + l_text + ")");
-
-      return l_text;
-   }
-
-   public String getTo()
-   {
-      String l_text = _header.get(CST_TO).toString();
-
-      Trace.println("POP3_Message::getTo() -> ", "return(" + l_text + ")");
-
-      return l_text;
-   }
-
-   public String getDate()
-   {
-      String l_text = _header.get(CST_DATE).toString();
-
-      Trace.println("POP3_Message::getDate() -> ", "return(" + l_text + ")");
-
-      return l_text;
-   }
-
-   public String getSubject()
-   {
-      String l_text = _header.get(CST_SUBJECT).toString();
-
-      Trace.println("POP3_Message::getSubject() -> ", "return(" + l_text + ")");
-
-      return l_text;
-   }
-
-   public byte[] getBody()
-   {
-//      String l_text = _bufBody; // TODO remove comment
-
-//      Trace.println("POP3_Message::getBody() -> ", "return(" + l_text + ")"); // TODO remove comment
-
-//      return l_text; // TODO remove comment
-      return _bufBody;
-   }
 
 
    //*************************************************************************

@@ -1,27 +1,22 @@
 // CC_VERSIONS
 
 /**
- * POP3_Message.java
+ * ConnectionException.java
  *
  * DESCRIPTION:
  *
- *    @author        STOLLVOR  -  Mar 29, 2004
- *    @version       v0.1          
+ *    @author        STOLLVOR  -  Mar 30, 2004
+ *    @version       v0.1
  *
  * HOW TO USE:
  *
  *
  */
 
-package mailbox.POP3;
-
-import mailbox.MailMessage;
-import tools.Trace;
-
-import java.util.HashMap;
+package exception;
 
 
-public class POP3_Message extends MailMessage implements POP3_Constants
+public class DaifenPropertyException extends Exception
 {
    //*************************************************************************
    //***                          MEMBER DECLARATION                       ***
@@ -38,9 +33,8 @@ public class POP3_Message extends MailMessage implements POP3_Constants
    //***                       CONSTRUCTOR DECLARATION                     ***
    //*************************************************************************
 
-   public POP3_Message(int p_index, HashMap p_header)
+   public DaifenPropertyException()
    {
-      super(p_index, p_header);
    }
 
 
@@ -48,51 +42,6 @@ public class POP3_Message extends MailMessage implements POP3_Constants
    //***                         PUBLIC DECLARATION                        ***
    //*************************************************************************
 
-   public String getFrom()
-   {
-      String l_text = _header.get(CST_FROM).toString();
-
-      Trace.println("POP3_Message::getFrom() -> ", "return(" + l_text + ")");
-
-      return l_text;
-   }
-
-   public String getTo()
-   {
-      String l_text = _header.get(CST_TO).toString();
-
-      Trace.println("POP3_Message::getTo() -> ", "return(" + l_text + ")");
-
-      return l_text;
-   }
-
-   public String getDate()
-   {
-      String l_text = _header.get(CST_DATE).toString();
-
-      Trace.println("POP3_Message::getDate() -> ", "return(" + l_text + ")");
-
-      return l_text;
-   }
-
-   public String getSubject()
-   {
-      String l_text = _header.get(CST_SUBJECT).toString();
-
-      Trace.println("POP3_Message::getSubject() -> ", "return(" + l_text + ")");
-
-      return l_text;
-   }
-
-   public byte[] getBody()
-   {
-//      String l_text = _bufBody; // TODO remove comment
-
-//      Trace.println("POP3_Message::getBody() -> ", "return(" + l_text + ")"); // TODO remove comment
-
-//      return l_text; // TODO remove comment
-      return _bufBody;
-   }
 
 
    //*************************************************************************

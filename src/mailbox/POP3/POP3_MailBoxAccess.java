@@ -213,9 +213,7 @@ public class POP3_MailBoxAccess extends MailBoxAccess
 
       //--------------------- set the message body ---------------------------
 
-      MailMessage l_msg = getLstMsg().getMail(l_index);
-
-      l_msg.setBody(_pop3Sink.getMailBody());
+      p_msg.setBody(_pop3Sink.getMailBody());
 
       Trace.exitFunction("POP3_MailBoxAccess::getMessageBody()");
 
@@ -272,7 +270,7 @@ public class POP3_MailBoxAccess extends MailBoxAccess
       MailMessage[] l_lstMsg = findMessages(p_regExp);
       MailMessage   l_msg    = null;
 
-      if ( l_lstMsg != null )
+      if ( l_lstMsg.length > 0 )
       {
          l_msg = l_lstMsg[l_lstMsg.length-1];
       }
