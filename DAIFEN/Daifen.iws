@@ -195,7 +195,7 @@
       </entry>
       <entry file="file://$PROJECT_DIR$/src/MainForm.java" pinned="false">
         <provider selected="true" editor-type-id="text-editor">
-          <state line="250" column="15" selection-start="6215" selection-end="6215" vertical-scroll-proportion="0.1836478">
+          <state line="266" column="0" selection-start="6636" selection-end="6636" vertical-scroll-proportion="0.52578616">
             <folding>
               <element signature="method#showMainPanel#0;class#MainForm#0" expanded="false" />
             </folding>
@@ -421,7 +421,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1280" height="982" extended-state="0" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="docked" type="docked" visible="false" weight="0.25" order="1" />
       <window_info id="CVS" active="false" anchor="bottom" auto_hide="false" internal_type="docked" type="docked" visible="false" weight="0.33" order="8" />
@@ -431,7 +431,7 @@
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="docked" type="docked" visible="false" weight="0.25" order="2" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="docked" type="docked" visible="false" weight="0.32967034" order="7" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="sliding" type="sliding" visible="false" weight="0.4" order="0" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="docked" type="docked" visible="true" weight="0.19476268" order="0" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="docked" type="docked" visible="true" weight="0.19476268" order="0" />
       <window_info id="simpleUML" active="false" anchor="left" auto_hide="false" internal_type="docked" type="docked" visible="false" weight="0.33" order="-1" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="docked" type="docked" visible="false" weight="0.4002849" order="4" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="docked" type="docked" visible="false" weight="0.25" order="1" />
@@ -589,7 +589,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/MainForm.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="250" column="15" selection-start="6215" selection-end="6215" vertical-scroll-proportion="0.1836478">
+        <state line="266" column="0" selection-start="6636" selection-end="6636" vertical-scroll-proportion="0.52578616">
           <folding>
             <element signature="method#showMainPanel#0;class#MainForm#0" expanded="false" />
           </folding>

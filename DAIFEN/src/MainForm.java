@@ -264,7 +264,6 @@ MainForm mainForm;
         message[1] = cb;
 
         message[2] = "Mot de passe Daifen :";
-        // TODO Retirer le mot de passe en dure
         message[3] = new JPasswordField("");
         message[4] = new JCheckBox("Mot de passe Yahoo different :", false);
         message[5] = new JPasswordField();
